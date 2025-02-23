@@ -9,6 +9,7 @@ function App() {
   return (
     <>
       <h2>Hi Bestieeeeeeeeeeee</h2>
+      <h2>se logro</h2>
     </>
   )
 }
