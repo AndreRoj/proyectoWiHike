@@ -1,0 +1,79 @@
+.ruta-popular {
+    width: 350px;
+    height: 460px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Raleway-Regular;
+    margin: 20px;
+  }
+  
+  .imagen-container {
+    position: relative;
+    max-height: 360px; /* Ajusta la altura máxima según sea necesario */
+    overflow: hidden; /* Recorta la imagen si excede la altura */
+    border-radius: 10px;
+  }
+  
+  .imagen {
+    width: 100%;
+    display: block;
+    object-fit: contain; /* Ajusta la imagen para que cubra el contenedor */
+    border-radius: 10px;
+  }
+  
+  .mas-popular {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 0.8em;
+  }
+  
+  .nombre {
+    text-transform: uppercase;
+    font-family: 'PaytoneOne';
+    position: absolute;
+    bottom: 30px;
+    left: 25px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-size: 1.9em;
+    margin: 0;
+  }
+  
+  .detalles {
+    padding: 15px;
+  }
+  
+  .guia,
+  .estrellas,
+  .duracion,
+  .dificultad {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    text-align: left;
+  }
+  
+  .estrellas img {
+    width: 15px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+
+  @font-face {
+    font-family: 'Raleway-Regular'; /* Nombre que le darás a la fuente */
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype'); /* Ruta al archivo de fuente */
+    font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+    font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+  }
+
+  @font-face {
+    font-family: 'PaytoneOne'; /* Nombre que le darás a la fuente */
+    src: url('/fonts/PaytoneOne.ttf') format('truetype'); /* Ruta al archivo de fuente */
+    font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+    font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+  }
