@@ -5,7 +5,9 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Raleway-Regular;
-    margin: 20px;
+    margin: 0px;
+    padding: 0;
+    margin-top: 12px;
   }
   
   .imagen-container {

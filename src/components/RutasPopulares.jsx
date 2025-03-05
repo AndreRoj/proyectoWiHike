@@ -1,4 +1,4 @@
-import './RutasPopulares.css';
+import "../styles/RutasPopulares.css";
 
 
 export function RutasPopulares({ link, nombre, nombreGuia, duracion, dificultad }) {
