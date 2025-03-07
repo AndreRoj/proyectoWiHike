@@ -4,18 +4,27 @@ import './App.css'
 import {Navbar} from './components/Navbar'
 import  {RutasPopulares}  from './components/RutasPopulares'
 import  {Contacto}  from './components/Contacto'
-import { HomePage } from './pages/HomePage';
+import HomePage from './pages/HomePage';
+import { BrowserRouter, Routes, Route } from 'react-router';
+
 
 
 
 function App() {
 
   return (
-    <>
-    <Navbar/>
-    <HomePage frase='EXPLORA NUEVAS AVENTURAS EN LA NATURALEZA.'/> 
-    <Contacto />
-    </>
+
+    <BrowserRouter>
+
+    <Routes>
+      <Route path='/' element = {<HomePage frase={'Hello'}/>} />
+
+
+    </Routes>
+    
+    </BrowserRouter>
+
+  
   )
 }
 

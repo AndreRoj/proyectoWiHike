@@ -2,16 +2,19 @@ import React from 'react';
 import "./HomePage.css";
 import { RutasPopulares } from '../components/RutasPopulares';
 import { Contacto } from '../components/Contacto';
+import { MisionVision } from '../components/MisionVision';
+import { Navbar } from '../components/Navbar';
 
-export function HomePage({ frase }) {
+export default function HomePage({ frase }) {
     return (
-        <div> 
+        <div className='HomePage'> 
+        <Navbar/>
           <div className='pagina'>
 
             <div className="title-container">
 
-              <h1 className='titulo' >EXPLORA NUEVAS AVENTURAS</h1>
-              <h1 className='titulo' >EN LA NATURALEZA.</h1>
+              <h1 className='titulo1' >EXPLORA NUEVAS AVENTURAS</h1>
+              <h1 className='titulo2' >EN LA NATURALEZA.</h1>
 
             </div>
 
@@ -23,7 +26,7 @@ export function HomePage({ frase }) {
 
           <div className='rutas'>
             <RutasPopulares
-                link="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvOTEwODkxMjUvMDc2YzFiN2QyM2IzZGRkZDhkNjk3YThmZGRhZTdlZWMuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJ3ZWJwIiwicmVzaXplIjp7IndpZHRoIjoyMDQ4LCJoZWlnaHQiOjIwNDgsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsImpwZWc6eyJ0cmVsbGlzUXVhbXRpc2F0aW9uIjp0cnVlLCJvdmVyc2hvb3REZXJpbmdpbmciOnRydWUsIm9wdGltaXplU2NhbnMiOnRydWUsInF1YW50aXNhdGlvblRhYmxlIjozfX19"
+                link="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvOTIzNjEwNTMvZGQ1M2RmMDM2N2RmYjJlZTgxOTdmNWQwZmRhZTBiYjAuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJ3ZWJwIiwicmVzaXplIjp7IndpZHRoIjoyMDQ4LCJoZWlnaHQiOjIwNDgsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsImpwZWciOnsidHJlbGxpc1F1YW50aXNhdGlvbiI6dHJ1ZSwib3ZlcnNob290RGVyaW5naW5nIjp0cnVlLCJvcHRpbWlzZVNjYW5zIjp0cnVlLCJxdWFudGlzYXRpb25UYWJsZSI6M319fQ=="
                 nombre="Sabas Nieves"
                 nombreGuia="Jose Fernandez"
                 duracion="1hora 30minutos"
@@ -31,7 +34,7 @@ export function HomePage({ frase }) {
             />
 
             <RutasPopulares
-                link="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvODk5MTU2NzkvMTk2MDc4YjFhOTJhNDcwNDY1M2I5ZWI5NzgzN2EzN2YuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJqcGVnIiwicmVzaXplIjp7IndpZHRoIjo1MDAsImhlaWdodCI6NTAwLCJmaXQiOiJpbnNpZGUifSwicm90YXRlIjpudWxsLCJqcGVnIjp7InRyZWxsaXNRdWFudGlzYXRpb24iOnRydWUsIm92ZXJzaG9vdERlcmluZ2luZyI6dHJ1ZSwib3B0aW1pc2VTY2FucyI6dHJ1ZSwicXVhbnRpc2F0aW9uVGFibGUiOjN9fX0="
+                link="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvODk5MTU2ODAvZDRlYjUyZjU5NTg1YWI4OTQxZWFhNmI1NDkxODM2OTMuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJ3ZWJwIiwicmVzaXplIjp7IndpZHRoIjoyMDQ4LCJoZWlnaHQiOjIwNDgsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsImpwZWciOnsidHJlbGxpc1F1YW50aXNhdGlvbiI6dHJ1ZSwib3ZlcnNob290RGVyaW5naW5nIjp0cnVlLCJvcHRpbWlzZVNjYW5zIjp0cnVlLCJxdWFudGlzYXRpb25UYWJsZSI6M319fQ=="
                 nombre="Pico Naiguata"
                 nombreGuia="Carlos Sandoval"
                 duracion="9hora 21minutos"
@@ -46,6 +49,13 @@ export function HomePage({ frase }) {
                 dificultad="Alta"
             />
             </div>
+
+            <div className="sobrewehike">
+               <h3 className="wehike">SOBRE WEHIKE</h3>
+            </div>
+            <MisionVision/>
+            <Contacto/>
+
             </div>
         </div>
     );

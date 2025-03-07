@@ -8,7 +8,8 @@
     font-family: Raleway-Regular;
     margin: 0px;
     padding: 0;
-    margin-top: 12px;
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
   
   .imagen-container {
@@ -19,9 +20,10 @@
   }
   
   .imagen {
+    height: 360px;
     width: 100%;
     display: block;
-    object-fit: contain; /* Ajusta la imagen para que cubra el contenedor */
+    object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
     border-radius: 10px;
   }
   

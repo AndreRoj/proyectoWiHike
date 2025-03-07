@@ -1,4 +1,4 @@
-.pagina{
+.HomePage{
   width: 100%;
   height: auto;
 }
@@ -23,7 +23,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items:flex-start;
   justify-content: center;
   height: 100vh; /* Cubre toda la altura de la pantalla */
   background-image: url('https://intothewild.bg/wp-content/uploads/2022/11/bona-lee-BIvkvLqOVEI-unsplash.jpg'); /* Imagen de fondo */
@@ -40,11 +40,30 @@
   padding: 20px;
   border-radius: 10px; /* Bordes redondeados */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  
 }
 
 /* Estilos para el título de RUTAS */
 .rutas-title {
-  font-size: 2rem; /* Tamaño del título de RUTAS */
+  font-family: 'Raleway-bold' ;
+  font-size: 50px;
+  font-weight: bold;
+  color: #4CAF50; /* Color verde para el título de RUTAS */
+}
+
+
+.sobrewehike {
+  background-color: #fff; /* Fondo blanco para la sección de RUTAS */
+  padding: 20px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  
+}
+
+/* Estilos para el título de RUTAS */
+.wehike {
+  font-family: 'Raleway-bold' ;
+  font-size: 50px;
   font-weight: bold;
   color: #4CAF50; /* Color verde para el título de RUTAS */
 }
