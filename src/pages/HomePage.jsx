@@ -1,7 +1,7 @@
 import React from 'react';
 import "./HomePage.css";
-import { RutasPopulares } from './RutasPopulares';
-import { Contacto } from './Contacto';
+import { RutasPopulares } from '../components/RutasPopulares';
+import { Contacto } from '../components/Contacto';
 
 export function HomePage({ frase }) {
     return (

@@ -1,4 +1,5 @@
 .ruta-popular {
+    cursor: pointer;
     width: 350px;
     height: 460px;
     border-radius: 10px;

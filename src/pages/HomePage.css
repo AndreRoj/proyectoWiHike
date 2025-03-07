@@ -18,6 +18,7 @@
 }
 
 .title-container{
+  font-family:'Raleway-bold' ;
   font-size: 20px;
   width: 100%;
   display: flex;
@@ -46,4 +47,19 @@
   font-size: 2rem; /* Tamaño del título de RUTAS */
   font-weight: bold;
   color: #4CAF50; /* Color verde para el título de RUTAS */
+}
+
+
+@font-face {
+  font-family: 'Raleway-bold';
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
