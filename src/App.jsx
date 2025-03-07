@@ -1,10 +1,10 @@
+import React from 'react';
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import {Navbar} from './components/Navbar'
 import  {RutasPopulares}  from './components/RutasPopulares'
 import  {Contacto}  from './components/Contacto'
+import { HomePage } from './components/HomePage';
 
 
 
@@ -12,13 +12,9 @@ function App() {
 
   return (
     <>
-
-
-    <HomePage
-      frase='EXPLORA NUEVAS AVENTURAS EN LA NATURALEZA.'
-      />
-     
-
+    <Navbar/>
+    <HomePage frase='EXPLORA NUEVAS AVENTURAS EN LA NATURALEZA.'/> 
+    <Contacto />
     </>
   )
 }

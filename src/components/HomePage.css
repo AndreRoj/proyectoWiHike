@@ -1,14 +1,49 @@
-@font-face {
-    font-family: 'REM';
-    src: url('./assets/fonts/REM-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'REM';
-    src: url('./assets/fonts/REM-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-  }
-  
+.pagina{
+  width: 100%;
+  height: auto;
+}
+
+
+.rutas{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.titulo{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+ margin-top: 20px;
+}
+
+.title-container{
+  font-size: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Cubre toda la altura de la pantalla */
+  background-image: url('https://intothewild.bg/wp-content/uploads/2022/11/bona-lee-BIvkvLqOVEI-unsplash.jpg'); /* Imagen de fondo */
+  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  color: white; /* Color del texto (blanco para contrastar con la imagen) */
+  text-align: center;
+  padding: 20px;
+}
+
+.rutas-section {
+  background-color: #fff; /* Fondo blanco para la sección de RUTAS */
+  padding: 20px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos para el título de RUTAS */
+.rutas-title {
+  font-size: 2rem; /* Tamaño del título de RUTAS */
+  font-weight: bold;
+  color: #4CAF50; /* Color verde para el título de RUTAS */
+}
