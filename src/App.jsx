@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import {Navbar} from './components/Navbar'
 import  {RutasPopulares}  from './components/RutasPopulares'
+import  {Contacto}  from './components/Contacto'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         duracion="1hora 30minutos"
         dificultad= "Alta"
     />
+    <Contacto/>
     
 
       <h2>Hi Bestieeeeeeeeeeee</h2>

@@ -1,0 +1,81 @@
+.contacto-container {
+    font-family: 'Raleway-Regular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    width: 100%;
+    height: 20%;
+}
+
+.contacto-content {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+.columna {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center; /* Centra el contenido de la columna */
+}
+
+.contactanos {
+    font-family: 'Raleway-Bold';
+    font-size: 40px;
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.seguido {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.contacto-logo {
+    width: 30%;
+    margin-right: 20px; /* Ajusta el margen entre el logo y la información */
+}
+
+.flex-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info {
+    font-family: 'Raleway-Regular';
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.info i {
+    margin-right: 10px;
+    color: #4CAF50;
+}
+
+@font-face {
+    font-family: 'Raleway-bold';
+    src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
