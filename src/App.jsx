@@ -4,7 +4,7 @@ import './App.css'
 import {Navbar} from './components/Navbar'
 import  {RutasPopulares}  from './components/RutasPopulares'
 import  {Contacto}  from './components/Contacto'
-import { HomePage } from './components/HomePage';
+import { HomePage } from './pages/HomePage';
 
 
 
