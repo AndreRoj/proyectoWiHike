@@ -27,7 +27,7 @@ export function Navbar() {
           <IoSearch />
         </li>
         <li className="options">Cuenta</li>
-        <li className="options">Contactanos</li>
+        <li className="options">Contáctanos</li>
       </ul>
     </div>
       // <div className="Navbar" >
