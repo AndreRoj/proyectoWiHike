@@ -4,37 +4,39 @@ import { FaStar } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { FaRegMap } from "react-icons/fa";
 
-export function Ruta({ imagen }) {
+export function Ruta({ imagen, nombre, descripcion, nombreguia, duracion, kilometros, estrellas }) {
     return (
+        <div className='rutaflex'>
         <div className='ruta-container'>
 
             <div className='seguidoruta'>
             <div className='ruta-image'>
-                <img src={imagen} alt="Ruta Sabas Nieves" />
+                <img src={imagen} alt="Imagen de la ruta" />
             </div>
 
             <div className='ruta-content'>
                 <div className='ruta-header'>
-                    <h1><strong>SABAS NIEVES</strong></h1>
+                    <h1><strong>{nombre}</strong></h1>
                     <div className='rating'>
                         <FaStar />
-                        <span>4.5</span>
+                        <span>{estrellas}</span>
                     </div>
                 </div>
                 <p className='ruta-description'>
-                    Ruta de ida y vuelta cerca de Municipio Sucre, Miranda. Se considera una ruta moderada. Es una región muy popular para el senderismo y pasear por lo que es probable encontrarse con otras personas mientras se está por la zona.
+                    {descripcion}
                 </p>
             </div>
 
             </div>
 
             <div className='ruta-footer'>
-                <p><strong>Jose Fernandez</strong> Guia de senderismo</p>
+                <p><strong>{nombreguia}</strong> Guia de senderismo</p>
                 <div className='ruta-details'>
-                    <span><FaRegClock /> 1 h 55 min</span>
-                    <span><FaRegMap />39 km</span>
+                    <span><FaRegClock />{duracion}</span>
+                    <span><FaRegMap />{kilometros} km</span>
                 </div>
             </div>
+        </div>
         </div>
     );
 }
