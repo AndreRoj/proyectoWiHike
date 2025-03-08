@@ -1,7 +1,7 @@
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import {app} from '../firebase';
 import {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const auth = getAuth(app);
 export default function Register() {

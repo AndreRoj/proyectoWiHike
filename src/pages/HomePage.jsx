@@ -1,4 +1,3 @@
-import React from 'react';
 import "./HomePage.css";
 import { RutasPopulares } from '../components/RutasPopulares';
 import { Contacto } from '../components/Contacto';
