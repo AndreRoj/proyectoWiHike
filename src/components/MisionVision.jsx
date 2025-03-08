@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/MisionVision.css'; // Importa el archivo CSS
+import '../styles/MisionVision.css';
 
 export function MisionVision() {
   return (
@@ -8,7 +8,7 @@ export function MisionVision() {
       <div className="mision-section">
         <h2 className="section-title">MISIÓN</h2>
         <p className="section-text">
-          En busca de ayudar a los estudiantes de la Universidad Metropolitana, a conectar con la naturaleza y prácticas sostenibles para el medio ambiente, a través de WeHike se busca brindar experiencias únicas en excursiones ecológicas y educativas en el Parque Nacional El Ávila, que permita promover la conexión con la naturaleza, la conservación del medio ambiente y el bienestar personal.
+          En busca de ayudar a los estudiantes de la Universidad Metropolitana, a conectar con la naturaleza y prácticas sostenibles para el medio ambiente, a través de WeHike se busca brindar experiencias únicas en excursiones ecológicas y educativas en el Parque Nacional El Ávila, que permita promover la conexión con la naturaleza, la conservación del medio ambiente y el bienestar personal. 
         </p>
       </div>
 

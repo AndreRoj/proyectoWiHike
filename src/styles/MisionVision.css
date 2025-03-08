@@ -1,42 +1,57 @@
 /* Estilos para el contenedor principal */
 .mision-vision-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 40px 20px;
-    background-color: #f0f0f0; /* Fondo claro */
-    font-family: 'Arial', sans-serif; /* Fuente predeterminada */
-    text-align: center;
-    height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Alinea las secciones en la parte superior */
+  justify-content: space-evenly;
+  padding: 40px 20px;
+  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  height: auto; /* Permite que el contenedor crezca según el contenido */
+}
 
-  }
-  
-  /* Estilos para las secciones de Misión y Visión */
-  .mision-section, .vision-section {
-    background-color: white; /* Fondo blanco para las secciones */
-    padding: 20px;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    margin-bottom: 30px; /* Espacio entre las secciones */
-    max-width: 800px; /* Ancho máximo para mejor legibilidad */
-    width: 100%;
-    height: 70%;
-  }
-  
-  /* Estilos para el título de las secciones */
-  .section-title {
-    font-size: 2rem; /* Tamaño del título */
-    font-weight: bold;
-    color: #4CAF50; /* Color verde para el título */
-    margin-bottom: 15px; /* Espacio entre el título y el texto */
-  }
-  
-  /* Estilos para el texto de las secciones */
-  .section-text {
-    font-size: 1rem; /* Tamaño del texto */
-    color: #333; /* Color del texto */
-    line-height: 1.6; /* Espaciado entre líneas para mejor legibilidad */
-    text-align: justify; /* Texto justificado */
-  }
+/* Estilos para las secciones de Misión y Visión */
+.mision-section, .vision-section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  width: 45%; /* Reduce el ancho para crear espacio entre ellas */
+  height: auto; /* Permite que las secciones crezcan según el contenido */
+}
+
+/* Estilos para el título de las secciones */
+.section-title {
+  font-family: 'Raleway-Bold' ;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 15px;
+}
+
+/* Estilos para el texto de las secciones */
+.section-text {
+  font-family: 'Raleway-Regular' ;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+
+@font-face {
+  font-family: 'Raleway-Regular'; /* Nombre que le darás a la fuente */
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype'); /* Ruta al archivo de fuente */
+  font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+  font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+}
+
+@font-face {
+  font-family: 'Raleway-Bold'; /* Nombre que le darás a la fuente */
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype'); /* Ruta al archivo de fuente */
+  font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+  font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+} 
