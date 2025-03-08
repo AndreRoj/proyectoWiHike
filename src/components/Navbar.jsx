@@ -4,12 +4,13 @@ import "../styles/Navbar.css";
 import { IoSearch } from "react-icons/io5";
 
 
+
 export function Navbar() {
     return (
       <div className="Navbar">
       {/* Elementos a la izquierda */}
       <ul>
-        <li className="options">Rutas</li>
+        <li className="options">Rutas</li> 
         <li className="options">Galeria</li>
         <li className="options">Foro</li>
       </ul>

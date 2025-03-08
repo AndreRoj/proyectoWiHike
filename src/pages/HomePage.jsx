@@ -4,7 +4,7 @@ import { RutasPopulares } from '../components/RutasPopulares';
 import { Contacto } from '../components/Contacto';
 import { MisionVision } from '../components/MisionVision';
 import { Navbar } from '../components/Navbar';
-import { Ruta } from '../components/Ruta';
+import  {Ruta}  from '../components/Ruta';
 
 
 export default function HomePage({ frase }) {
@@ -63,9 +63,9 @@ export default function HomePage({ frase }) {
             nombre = 'Sabas Nieves'
             descripcion= 'Ruta de ida y vuelta cerca de Municipio Sucre, Miranda. Se considera una ruta moderada. Es una región muy popular para el senderismo y pasear. por lo que es probable encontrarse con otras personas mientras se está por la zona. '
             nombreguia= 'Jose Fernandes'
-            duracion= '1H 35M'
-            kilometros= '3.9Km'
-            estrellas = '5'
+            duracion= '1h 35m'
+            kilometros= '3.9'
+            estrellas = '4.9'
             />
 
             </div>
