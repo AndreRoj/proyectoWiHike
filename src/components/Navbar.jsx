@@ -8,7 +8,7 @@ import { Link } from "react-router";
 
 export function Navbar() {
 
-  
+
     return (
       <div className="Navbar">
       {/* Elementos a la izquierda */}
@@ -38,8 +38,8 @@ export function Navbar() {
         <li className="options">
           <IoSearch />
         </li>
-        <li className="options">Iniciar sesion</li>
-        <li className="options">Registrate</li>
+        <li className="options">login</li>
+        <li className="options">sign up</li>
         <li className="options">Contáctanos</li>
       </ul>
     </div>
