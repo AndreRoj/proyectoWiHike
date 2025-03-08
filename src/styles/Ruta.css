@@ -1,0 +1,124 @@
+.ruta-container {
+    background-color: #E1E1E1;
+    width: 100%;
+    max-width: 85%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+
+
+.seguidoruta{
+    gap: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+
+.ruta-image img {
+    width: 333px; /* La imagen ocupa el ancho completo del contenedor */
+    height: 200px; /* Altura fija para la imagen */
+    border-radius: 10px;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+
+.ruta-content {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.ruta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ruta-header h1 {
+    font-family: 'Raleway-Bold';
+    margin: 0;
+    font-size: 40px;
+    color: #333;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #000000;
+}
+
+.rating span {
+    margin-left: 5px;
+}
+
+.ruta-description {
+    font-size: 20px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0; /* Elimina el margen predeterminado */
+}
+
+.ruta-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: #333;
+    margin-top: auto; /* Empuja el footer hacia la parte inferior */
+    font-family: 'Raleway-Regular' ;
+}
+
+.ruta-footer strong {
+    font-weight: bold;
+}
+
+.ruta-details {
+    display: flex;
+    gap: 16px;
+}
+
+.ruta-details span {
+    top: 15px;
+    left: 25px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+
+
+
+@font-face {
+    font-family: 'Raleway-Regular'; /* Nombre que le darás a la fuente */
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype'); /* Ruta al archivo de fuente */
+    font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+    font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+  }
+  
+  @font-face {
+    font-family: 'Raleway-Bold'; /* Nombre que le darás a la fuente */
+    src: url('/fonts/Raleway-Bold.ttf') format('truetype'); /* Ruta al archivo de fuente */
+    font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+    font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+  } 

@@ -30,16 +30,5 @@ export function Navbar() {
         <li className="options">Contáctanos</li>
       </ul>
     </div>
-      // <div className="Navbar" >
-      //   <ul>
-      //       <li className="options"> Rutas </li>
-      //       <li className="options"> Galeria </li>
-      //       <li className="options"> Foro </li>
-      //       <li > <img src={logo} alt="Logo" style={{ width: '70%', height: 'auto'}}  /> </li>
-      //       <li className="options" style={{ marginTop: '0px' }} ><IoSearch /></li>
-      //       <li className="options"> Cuenta </li>
-      //       <li className="options"> Contactanos </li>
-      //   </ul>
-      // </div>
     );
   }

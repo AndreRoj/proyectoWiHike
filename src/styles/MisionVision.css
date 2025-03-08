@@ -25,6 +25,7 @@
 
 /* Estilos para el título de las secciones */
 .section-title {
+  font-family: 'Raleway-Bold' ;
   font-size: 2rem;
   font-weight: bold;
   color: #4CAF50;
@@ -33,8 +34,24 @@
 
 /* Estilos para el texto de las secciones */
 .section-text {
+  font-family: 'Raleway-Regular' ;
   font-size: 1rem;
   color: #333;
   line-height: 1.6;
   text-align: justify;
 }
+
+
+@font-face {
+  font-family: 'Raleway-Regular'; /* Nombre que le darás a la fuente */
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype'); /* Ruta al archivo de fuente */
+  font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+  font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+}
+
+@font-face {
+  font-family: 'Raleway-Bold'; /* Nombre que le darás a la fuente */
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype'); /* Ruta al archivo de fuente */
+  font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
+  font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+} 
