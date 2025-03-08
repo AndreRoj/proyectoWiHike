@@ -1,15 +1,10 @@
-import React from 'react';
-import { useState } from 'react'
 import './App.css'
-import {Navbar} from './components/Navbar'
-import  {RutasPopulares}  from './components/RutasPopulares'
-import  {Contacto}  from './components/Contacto'
 import HomePage from './pages/HomePage';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import NotFound from './pages/NotFound';
 import Rutas from './pages/Rutas';
 import { BrowserRouter, Routes, Route } from 'react-router';
-
-
-
 
 function App() {
 
@@ -19,16 +14,15 @@ function App() {
 
     <Routes>
       <Route path='/' element = {<HomePage frase={'Hello'}/>} />
-      
-
+      <Route path='login' element = {<Login/>}/>
+      <Route path='register' element = {<Register/>}/>
+      <Route path='*' element = {<NotFound/>}/>
       <Route path='rutas' element = {<Rutas/>} />
 
 
     </Routes>
     
     </BrowserRouter>
-
-  
   )
 }
 

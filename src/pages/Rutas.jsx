@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Contacto } from '../components/Contacto';
 import { Navbar } from '../components/Navbar';
 import {Ruta} from '../components/Ruta';
