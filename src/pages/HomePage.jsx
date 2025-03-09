@@ -4,9 +4,16 @@ import { Contacto } from '../components/Contacto';
 import { MisionVision } from '../components/MisionVision';
 import { Navbar } from '../components/Navbar';
 import  {Ruta}  from '../components/Ruta';
+import { use } from "react";
+import { UserContext } from '../Context/UserContext';
 
 
 export default function HomePage({ frase }) {
+
+    const contextUser = use(UserContext);
+    const {user,  setUser} = contextUser
+    console.log(user)
+    
     return (
         <div className='HomePage'> 
         <Navbar/>
