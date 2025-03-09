@@ -3,6 +3,7 @@ import '../styles/Ruta.css';
 import { FaStar } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { FaRegMap } from "react-icons/fa";
+import { Link } from 'react-router';
 
 export function Ruta({ imagen, nombre, descripcion, nombreguia, duracion, kilometros, estrellas }) {
     return (
@@ -36,6 +37,10 @@ export function Ruta({ imagen, nombre, descripcion, nombreguia, duracion, kilome
                     <span><FaRegMap />{kilometros} km</span>
                 </div>
             </div>
+            <Link to="/info_rutas">
+                <button className='button'>Mas informacion</button>
+            </Link>
+            
         </div>
         </div>
     );

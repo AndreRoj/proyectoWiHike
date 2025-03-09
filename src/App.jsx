@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 import Rutas from './pages/Rutas';
+import InfoRutas from './pages/InfoRutas';
 import { BrowserRouter, Routes, Route } from 'react-router';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='register' element = {<Register/>}/>
       <Route path='*' element = {<NotFound/>}/>
       <Route path='rutas' element = {<Rutas/>} />
+      <Route path='info_rutas' element ={<InfoRutas/>} />
 
 
     </Routes>

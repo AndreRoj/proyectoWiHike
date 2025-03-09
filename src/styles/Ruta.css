@@ -111,6 +111,22 @@
     gap: 5px; 
 }
 
+.button {
+    font-family: Arial;
+    font-size: 12px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 64px;
+
+    width: 200px;
+    height: 30px;
+
+    background: linear-gradient(0deg, #4CAF50, #4CAF50), #081E29;
+    border-radius: 8px;
+}
 
 
 

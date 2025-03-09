@@ -1,0 +1,74 @@
+.rutaInfo-container {
+    font-family: 'Raleway-Regular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    width: 100%;
+    height: auto;
+}
+
+.rutaInfo-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    text-align: left;
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.nombreRuta {
+    font-family: 'PaytoneOne';
+    color: rgb(0, 0, 0);
+    font-size: 2.5em;
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px; /* Espacio entre las imágenes */
+  }
+  
+  .main-imag {
+    flex: 2; /* La imagen principal ocupará el doble de espacio que las imágenes laterales */
+  }
+  
+  .main-imag img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Bordes redondeados */
+  }
+  
+  .side-imag {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las imágenes laterales */
+    flex: 1;
+  }
+  
+  .side-imag img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Bordes redondeados */
+  }
+
+
+@font-face {
+    font-family: 'Raleway-bold';
+    src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
