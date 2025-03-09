@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 import Rutas from './pages/Rutas';
 import { BrowserRouter, Routes, Route } from 'react-router';
+import { Navbar } from './components/Navbar';
 
 function App() {
 
@@ -13,12 +14,17 @@ function App() {
     <BrowserRouter>
 
     <Routes>
-      <Route path='/' element = {<HomePage frase={'Hello'}/>} />
-      <Route path='login' element = {<Login/>}/>
-      <Route path='register' element = {<Register/>}/>
-      <Route path='*' element = {<NotFound/>}/>
-      <Route path='rutas' element = {<Rutas/>} />
 
+
+      <Route element = {<Navbar/>}>
+
+        <Route path='/' element = {<HomePage frase={'Hello'}/>} />
+        <Route path='login' element = {<Login/>}/>
+        <Route path='register' element = {<Register/>}/>
+        <Route path='*' element = {<NotFound/>}/>
+        <Route path='rutas' element = {<Rutas/>} />
+        
+      </Route>
 
     </Routes>
     
