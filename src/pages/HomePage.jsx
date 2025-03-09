@@ -2,70 +2,87 @@ import "./HomePage.css";
 import { RutasPopulares } from '../components/RutasPopulares';
 import { Contacto } from '../components/Contacto';
 import { MisionVision } from '../components/MisionVision';
-import { Navbar } from '../components/Navbar';
-import  {Ruta}  from '../components/Ruta';
 import { use } from "react";
 import { UserContext } from '../Context/UserContext';
-
+import { db } from '../firebase'; // Importa la instancia de Firestore
+import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
+import React, { useEffect, useState } from 'react';
 
 export default function HomePage({ frase }) {
+  const contextUser = use(UserContext);
+  const { user, setUser } = contextUser;
+  console.log(user);
 
-    const contextUser = use(UserContext);
-    const {user,  setUser} = contextUser
-    console.log(user)
-    
-    return (
-        <div className='HomePage'> 
-        
-          <div className='pagina'>
+  const [rutas, setRutas] = useState([]); // Estado para almacenar las rutas
+  const [loading, setLoading] = useState(true); // Estado para manejar la carga
+  const [error, setError] = useState(null); // Estado para manejar errores
 
-            <div className="title-container">
+  // Función para obtener rutas de Firestore
+  const fetchRutas = async () => {
+    try {
+      const rutasRef = collection(db, "rutas");
+      const q = query(rutasRef, orderBy("estrellas", "desc"), limit(3)); // Ordena por "estrellas" y limita a 3
+      const querySnapshot = await getDocs(q);
 
-              <h1 className='titulo1' >EXPLORA NUEVAS AVENTURAS</h1>
-              <h1 className='titulo2' >EN LA NATURALEZA.</h1>
+      const rutasList = querySnapshot.docs.map((doc) => ({
+        id: doc.id, // ID del documento
+        ...doc.data(), // Resto de los datos de la ruta
+      }));
 
-            </div>
+      setRutas(rutasList); // Almacena las rutas en el estado
+    } catch (error) {
+      console.error("Error fetching documents: ", error);
+      setError("Error al cargar las rutas"); // Establece un mensaje de error
+    } finally {
+      setLoading(false); // Finaliza la carga
+    }
+  };
 
+  // Llama a fetchRutas cuando el componente se monta
+  useEffect(() => {
+    fetchRutas();
+  }, []); // El array vacío [] asegura que solo se ejecute una vez
 
-            <div className="rutas-section">
-               <h3 className="rutas-title">RUTAS</h3>
-            </div>
+  // Muestra un mensaje de carga mientras se obtienen los datos
+  if (loading) {
+    return <div>Cargando rutas...</div>;
+  }
 
+  // Muestra un mensaje de error si algo falla
+  if (error) {
+    return <div>{error}</div>;
+  }
 
-          <div className='rutas'>
-            <RutasPopulares
-                link="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvOTIzNjEwNTMvZGQ1M2RmMDM2N2RmYjJlZTgxOTdmNWQwZmRhZTBiYjAuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJ3ZWJwIiwicmVzaXplIjp7IndpZHRoIjoyMDQ4LCJoZWlnaHQiOjIwNDgsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsImpwZWciOnsidHJlbGxpc1F1YW50aXNhdGlvbiI6dHJ1ZSwib3ZlcnNob290RGVyaW5naW5nIjp0cnVlLCJvcHRpbWlzZVNjYW5zIjp0cnVlLCJxdWFudGlzYXRpb25UYWJsZSI6M319fQ=="
-                nombre="Sabas Nieves"
-                nombreGuia="Jose Fernandez"
-                duracion="1hora 30minutos"
-                dificultad="Alta"
-            />
-
-            <RutasPopulares
-                link="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvODk5MTU2ODAvZDRlYjUyZjU5NTg1YWI4OTQxZWFhNmI1NDkxODM2OTMuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJ3ZWJwIiwicmVzaXplIjp7IndpZHRoIjoyMDQ4LCJoZWlnaHQiOjIwNDgsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsImpwZWciOnsidHJlbGxpc1F1YW50aXNhdGlvbiI6dHJ1ZSwib3ZlcnNob290RGVyaW5naW5nIjp0cnVlLCJvcHRpbWlzZVNjYW5zIjp0cnVlLCJxdWFudGlzYXRpb25UYWJsZSI6M319fQ=="
-                nombre="Pico Naiguata"
-                nombreGuia="Carlos Sandoval"
-                duracion="9hora 21minutos"
-                dificultad="Alta"
-            />
-
-            <RutasPopulares
-                link="https://caracashermosadotcom.wordpress.com/wp-content/uploads/2016/05/hotel-humboldt-caracas.jpg"
-                nombre="Humboltd"
-                nombreGuia="Jose Fernandez"
-                duracion="5hora 30minutos"
-                dificultad="Alta"
-            />
-            </div>
-
-            <div className="sobrewehike">
-               <h3 className="wehike">SOBRE WEHIKE</h3>
-            </div>
-            <MisionVision/>
-            <Contacto/>
-
-
-            </div>
+  return (
+    <div className='HomePage'>
+      <div className='pagina'>
+        <div className="title-container">
+          <h1 className='titulo1'>EXPLORA NUEVAS AVENTURAS</h1>
+          <h1 className='titulo2'>EN LA NATURALEZA.</h1>
         </div>
-    );
+
+        <div className="rutas-section">
+          <h3 className="rutas-title">RUTAS</h3>
+        </div>
+
+        <div className='rutas'>
+          {rutas.map((ruta) => (
+            <RutasPopulares
+              link={ruta.imagen}
+              nombre={ruta.nombre}
+              nombreGuia={ruta.nombreguia}
+              duracion={ruta.duracion}
+              dificultad= "Alta"
+            />
+          ))}
+        </div>
+
+        <div className="sobrewehike">
+          <h3 className="wehike">SOBRE WEHIKE</h3>
+        </div>
+        <MisionVision />
+        <Contacto />
+      </div>
+    </div>
+  );
 }
