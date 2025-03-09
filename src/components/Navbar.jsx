@@ -2,14 +2,16 @@ import React from "react";
 import logo from '../assets/Logo.png'
 import "../styles/Navbar.css";
 import { IoSearch } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, Outlet } from "react-router";
 
 
 
 export function Navbar() {
 
-  
+
     return (
+
+      <>
       <div className="Navbar">
       {/* Elementos a la izquierda */}
       <ul>
@@ -38,10 +40,19 @@ export function Navbar() {
         <li className="options">
           <IoSearch />
         </li>
-        <li className="options">Iniciar sesion</li>
-        <li className="options">Registrate</li>
+
+        <li> 
+          <Link className="options" to = '/login'>Login</Link>
+        </li>
+
+        <li> 
+          <Link className="options" to = '/register'>sign up</Link>
+        </li>
+
         <li className="options">Contáctanos</li>
       </ul>
     </div>
+      <Outlet/>
+    </>
     );
   }

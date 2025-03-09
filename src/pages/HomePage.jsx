@@ -16,7 +16,7 @@ export default function HomePage({ frase }) {
     
     return (
         <div className='HomePage'> 
-        <Navbar/>
+        
           <div className='pagina'>
 
             <div className="title-container">
@@ -64,15 +64,6 @@ export default function HomePage({ frase }) {
             <MisionVision/>
             <Contacto/>
 
-            <Ruta
-            imagen= 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcYT1YiGz88bsI5D1hh_KazCEBb9LEfIsxrly2FaXHD67uyWkSdQC52-58NmqoGStOAxXXZL61vpKo3ZX9GIpB7kBbm_fMSRmBInH3AAkrxOzLF7sVfv290Np35EjabjDvBfGR43vMQ7w/s1600/IMG_3310.JPG'
-            nombre = 'Sabas Nieves'
-            descripcion= 'Ruta de ida y vuelta cerca de Municipio Sucre, Miranda. Se considera una ruta moderada. Es una región muy popular para el senderismo y pasear. por lo que es probable encontrarse con otras personas mientras se está por la zona. '
-            nombreguia= 'Jose Fernandes'
-            duracion= '1h 35m'
-            kilometros= '3.9'
-            estrellas = '4.9'
-            />
 
             </div>
         </div>
