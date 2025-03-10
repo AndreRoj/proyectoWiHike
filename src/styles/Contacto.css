@@ -39,6 +39,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    justify-items: center;
     gap: 20px; /* Agrega un espacio de 20px entre los componentes */
 }
 

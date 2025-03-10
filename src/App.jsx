@@ -6,6 +6,8 @@ import NotFound from './pages/NotFound';
 import Rutas from './pages/Rutas';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
+import { UserProvider } from './Context/UserContext';
+
 
 function App() {
 
@@ -13,9 +15,11 @@ function App() {
 
     <BrowserRouter>
 
+    <UserProvider>
+
     <Routes>
 
-
+    
       <Route element = {<Navbar/>}>
 
         <Route path='/' element = {<HomePage frase={'Hello'}/>} />
@@ -27,6 +31,8 @@ function App() {
       </Route>
 
     </Routes>
+    </UserProvider>
+  
     
     </BrowserRouter>
   )
