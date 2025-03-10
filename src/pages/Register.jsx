@@ -1,15 +1,16 @@
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { app } from '../firebase';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './Register.css'; // Importa el archivo CSS
 import { db } from '../firebase';
-import { setDoc, doc } from "firebase/firestore"; // Importa addDoc para Firestore
+import {addDoc, collection, setDoc, doc } from "firebase/firestore"; // Importa addDoc para Firestore
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos predeterminados
 import './DatePicker.css'; // Estilos personalizados (deben ir después)
 
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 export default function Register() {
     const navigation = useNavigate();
@@ -66,32 +67,27 @@ export default function Register() {
             return;
         }
 
-        try {
-            setLoading(true)
-            const usuarioRegistrado = await createUserWithEmailAndPassword(auth, email, password) 
+        // Validación del dominio del correo
+        if (!email.endsWith('@correo.unimet.edu.ve')) {
+            setError('Solo se permiten correos con el dominio @correo.unimet.edu.ve');
+            return;
+        }
 
-            console.log(usuarioRegistrado)
-            setEmail("")
-            setPassword("")
-            setName("")
-            setLastName("")
-            setCedula("")
-            setPhone("")
-            setBirthDate("")
-            navigation('/')
-            setLoading(false)
+        try {
+            setLoading(true);
+            const usuarioRegistrado = await createUserWithEmailAndPassword(auth, email, password);
 
             console.log("Usuario registrado: ", usuarioRegistrado.user.uid);
 
-            // 2. Guarda la información adicional del usuario en Firestore
+            // Guarda la información adicional del usuario en Firestore
             const userData = {
                 uid: usuarioRegistrado.user.uid, // ID único del usuario
                 nombre: name,
-                apellido: lastName, // Nuevo campo: apellido
+                apellido: lastName,
                 email: email,
-                cedula: cedula, // Nuevo campo: cédula
-                telefono: phone, // Nuevo campo: teléfono
-                fechaNacimiento: birthDate, // Nuevo campo: fecha de nacimiento
+                cedula: cedula,
+                telefono: phone,
+                fechaNacimiento: birthDate,
                 fechaRegistro: new Date(), // Fecha de registro
             };
 
@@ -111,16 +107,52 @@ export default function Register() {
 
             // Redirige al usuario a la página principal
             navigation('/');
-            
         } catch (error) {
             setLoading(false);
             console.log(error);
-            //hacer manejo de errores, solo esta correo en uso
             if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
                 setError('El correo ya está en uso');
             } else {
                 setError('Ocurrió un error al registrarse');
             }
+        }
+    };
+
+    const handleGoogleRegister = async () => {
+        try {
+            setLoading(true);
+            const result = await signInWithPopup(auth, provider); // Inicia sesión con Google
+            const user = result.user;
+
+            // Validación del dominio del correo
+            if (!user.email.endsWith('@correo.unimet.edu.ve')) {
+                setError('Solo se permiten correos con el dominio @correo.unimet.edu.ve');
+                await auth.signOut(); // Cierra la sesión del usuario
+                return;
+            }
+
+            console.log("Usuario registrado con Google: ", user.uid);
+
+            // Guarda la información adicional del usuario en Firestore
+            const userData = {
+                uid: user.uid, // ID único del usuario
+                nombre: user.displayName?.split(" ")[0] || "", // Nombre del usuario
+                apellido: user.displayName?.split(" ")[1] || "", // Apellido del usuario
+                email: user.email,
+                fechaRegistro: new Date(), // Fecha de registro
+            };
+
+            // Agrega el documento a la colección "users"
+            await addDoc(collection(db, "users"), userData);
+
+            console.log("Usuario guardado en Firestore");
+
+            // Redirige al usuario a la página principal
+            navigation('/');
+        } catch (error) {
+            setLoading(false);
+            console.error("Error al registrarse con Google: ", error);
+            setError('Ocurrió un error al registrarse con Google');
         }
     };
 
@@ -231,6 +263,18 @@ export default function Register() {
                 </div>
 
                 <button type="submit" className="register-button">Registrarse</button>
+                <button
+                    type="button"
+                    onClick={handleGoogleRegister}
+                    className="google-register-button"
+                >
+                    <img
+                        src="https://yt3.googleusercontent.com/K8WVrQAQHTTwsHEtisMYcNai7p7XIlyEAdZg86qYw78ye57r5DRemHQ9Te4PcD_v98HB-ZvQjQ=s900-c-k-c0x00ffffff-no-rj"
+                        alt="Google Logo"
+                        className="google-logo"
+                    />
+                    Registrarse con Google
+                </button>
                 <p className="login-link">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
             </form>
         </div>
