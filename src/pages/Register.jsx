@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './Register.css'; // Importa el archivo CSS
 import { db } from '../firebase';
-import { collection, addDoc } from "firebase/firestore"; // Importa addDoc para Firestore
+import { setDoc, doc } from "firebase/firestore"; // Importa addDoc para Firestore
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos predeterminados
 import './DatePicker.css'; // Estilos personalizados (deben ir después)
@@ -23,9 +23,49 @@ export default function Register() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
+    const validateName = (value) => {
+        const regex = /^[A-Za-z\s]+$/
+        return regex.test(value)
+    }
+
+    const validateLastName = (value) => {
+        const regex = /^[A-Za-z\s]+$/
+        return regex.test(value)
+    }
+
+    const validateCedula = (value) => {
+        const regex = /^\d{6,8}$/
+        return regex.test(value)
+    }
+
+    const validatePhone = (value) => {
+        const regex =/^\d{11}$/
+        return regex.test(value)
+    }
+
     const handleRegister = async (e) =>{
         e.preventDefault()
         
+        if(!validateName(name)){
+            setError('El nombre solo puede contener letras y espacios');
+            return;
+        }
+
+        if(!validateLastName(lastName)){
+            setError('El apellido solo puede contener letras y espacios');
+            return;
+        }
+
+        if(!validateCedula(cedula)){
+            setError('Error en la cédula');
+            return;
+        }
+
+        if(!validatePhone(phone)){
+            setError('El teléfono debe contener 11 dígitos');
+            return;
+        }
+
         try {
             setLoading(true)
             const usuarioRegistrado = await createUserWithEmailAndPassword(auth, email, password) 
@@ -56,7 +96,7 @@ export default function Register() {
             };
 
             // Agrega el documento a la colección "users"
-            await addDoc(collection(db, "users"), userData);
+            await setDoc(doc(db, "users", usuarioRegistrado.user.uid), userData);
 
             console.log("Usuario guardado en Firestore");
 
