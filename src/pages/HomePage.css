@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+  flex-wrap: wrap; 
 }
 
 .title-container {
@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  min-height: 100vh; /* Usa min-height para mejor adaptabilidad */
+  min-height: 100vh; 
   background-image: url('https://intothewild.bg/wp-content/uploads/2022/11/bona-lee-BIvkvLqOVEI-unsplash.jpg');
   background-size: cover;
   background-position: center;
@@ -59,22 +59,22 @@
 /* Media Queries */
 @media (max-width: 768px) {
   .title-container {
-      font-size: 16px; /* Ajusta el tamaño de fuente */
-      padding: 10px; /* Reduce el padding */
+      font-size: 16px;
+      padding: 10px; 
   }
 
   .rutas-title, .wehike {
-      font-size: 30px; /* Ajusta el tamaño de fuente */
+      font-size: 30px; 
   }
 
   .rutas {
-      flex-direction: column; /* Cambia a columna en móviles */
-      align-items: center; /* Centra los elementos */
+      flex-direction: column; 
+      align-items: center; 
   }
 
   .rutas > * {
       width: 100%;
       display: block;
-      margin: 10px 0; /* Agrega margen entre los elementos */
+      margin: 10px 0; 
   }
 }
