@@ -1,73 +1,46 @@
-.HomePage{
+.HomePage {
   width: 100%;
   height: auto;
 }
 
-
-.rutas{
+.rutas {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  flex-wrap: wrap; 
 }
 
-.titulo{
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
- margin-top: 20px;
-}
-
-.title-container{
-  font-family:'Raleway-bold' ;
+.title-container {
+  font-family: 'Raleway-bold';
   font-size: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
+  align-items: flex-start;
   justify-content: center;
-  height: 100vh; /* Cubre toda la altura de la pantalla */
-  background-image: url('https://intothewild.bg/wp-content/uploads/2022/11/bona-lee-BIvkvLqOVEI-unsplash.jpg'); /* Imagen de fondo */
-  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-  background-position: center; /* Centra la imagen */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  color: white; /* Color del texto (blanco para contrastar con la imagen) */
+  min-height: 100vh; 
+  background-image: url('https://intothewild.bg/wp-content/uploads/2022/11/bona-lee-BIvkvLqOVEI-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
   text-align: center;
   padding: 20px;
 }
 
-.rutas-section {
-  background-color: #fff; /* Fondo blanco para la sección de RUTAS */
+.rutas-section, .sobrewehike {
+  background-color: #fff;
   padding: 20px;
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el título de RUTAS */
-.rutas-title {
-  font-family: 'Raleway-bold' ;
+.rutas-title, .wehike {
+  font-family: 'Raleway-bold';
   font-size: 50px;
   font-weight: bold;
-  color: #4CAF50; /* Color verde para el título de RUTAS */
+  color: #4CAF50;
 }
-
-
-.sobrewehike {
-  background-color: #fff; /* Fondo blanco para la sección de RUTAS */
-  padding: 20px;
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  
-}
-
-/* Estilos para el título de RUTAS */
-.wehike {
-  font-family: 'Raleway-bold' ;
-  font-size: 50px;
-  font-weight: bold;
-  color: #4CAF50; /* Color verde para el título de RUTAS */
-}
-
 
 @font-face {
   font-family: 'Raleway-bold';
@@ -81,4 +54,27 @@
   src: url('/fonts/Raleway-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .title-container {
+      font-size: 16px;
+      padding: 10px; 
+  }
+
+  .rutas-title, .wehike {
+      font-size: 30px; 
+  }
+
+  .rutas {
+      flex-direction: column; 
+      align-items: center; 
+  }
+
+  .rutas > * {
+      width: 100%;
+      display: block;
+      margin: 10px 0; 
+  }
 }

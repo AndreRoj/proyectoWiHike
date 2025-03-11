@@ -10,12 +10,13 @@
     padding: 0;
     margin-top: 24px;
     margin-bottom: 24px;
+    background-color: rgb(255, 255, 255);
   }
   
   .imagen-container {
     position: relative;
-    max-height: 360px; /* Ajusta la altura máxima según sea necesario */
-    overflow: hidden; /* Recorta la imagen si excede la altura */
+    max-height: 360px; 
+    overflow: hidden; 
     border-radius: 10px;
   }
   
@@ -23,7 +24,7 @@
     height: 360px;
     width: 100%;
     display: block;
-    object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
+    object-fit: cover; 
     border-radius: 10px;
   }
   
@@ -70,15 +71,15 @@
 
 
   @font-face {
-    font-family: 'Raleway-Regular'; /* Nombre que le darás a la fuente */
-    src: url('/fonts/Raleway-Regular.ttf') format('truetype'); /* Ruta al archivo de fuente */
-    font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
-    font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+    font-family: 'Raleway-Regular'; 
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
   }
 
   @font-face {
-    font-family: 'PaytoneOne'; /* Nombre que le darás a la fuente */
-    src: url('/fonts/PaytoneOne.ttf') format('truetype'); /* Ruta al archivo de fuente */
-    font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
-    font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+    font-family: 'PaytoneOne'; 
+    src: url('/fonts/PaytoneOne.ttf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
   } 
