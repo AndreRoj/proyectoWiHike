@@ -202,7 +202,7 @@ export default function Register() {
                         selected={birthDate}
                         onChange={(date) => setBirthDate(date)}
                         dateFormat="dd/MM/yyyy"
-                        placeholderText="Selecciona tu fecha de nacimiento"
+                        placeholderText="fecha de nacimiento"
                         showYearDropdown
                         dropdownMode="select"
                         required
