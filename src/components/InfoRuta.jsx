@@ -19,6 +19,7 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3})
                     <img src={imagen3} alt="Imagen lateral 2" />
                 </div>
             </div>
+            
         </div>
     );
 }

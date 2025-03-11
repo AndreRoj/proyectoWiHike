@@ -37,10 +37,11 @@ export function Ruta({ imagen, nombre, descripcion, nombreguia, duracion, kilome
                     <span><FaRegMap />{kilometros} km</span>
                 </div>
             </div>
-            <Link to="/info_rutas">
-                <button className='button'>Mas informacion</button>
-            </Link>
-            
+            <div className='button-container'>
+                <Link to="/info_rutas">
+                    <button className='button'>Mas informacion</button>
+                </Link>
+            </div>
         </div>
         </div>
     );
