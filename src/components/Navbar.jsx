@@ -18,7 +18,7 @@ export function Navbar() {
 
   // Función para detectar si es móvil
   const checkIsMobile = () => {
-    return window.innerWidth <= 768; // Devuelve true si es móvil (ancho <= 768px)
+    return window.innerWidth <= 768; 
   };
 
   // Efecto para actualizar el estado cuando cambia el tamaño de la pantalla

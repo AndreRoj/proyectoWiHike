@@ -27,9 +27,9 @@
 }
 
 .ruta-image {
-    max-width: 333px; /* Ajusta este valor según tus preferencias */
+    max-width: 333px; 
     width: 100%;
-    margin: 0 auto; /* Centra el contenedor de la imagen */
+    margin: 0 auto; 
 }
 
 .ruta-image img {
@@ -46,7 +46,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    text-align: left; /* Alinea el texto a la izquierda */
+    text-align: left; 
 }
 
 .ruta-header {
@@ -77,7 +77,7 @@
     font-size: 20px;
     color: #666;
     line-height: 1.5;
-    margin: 0; /* Elimina el margen predeterminado */
+    margin: 0; 
 }
 
 .ruta-footer {
@@ -87,7 +87,7 @@
     align-items: center;
     font-size: 18px;
     color: #333;
-    margin-top: auto; /* Empuja el footer hacia la parte inferior */
+    margin-top: auto; 
     font-family: 'Raleway-Regular';
 }
 
@@ -112,46 +112,46 @@
     gap: 5px;
 }
 
-/* Media queries para dispositivos móviles */
+
 @media (max-width: 768px) {
     .ruta-container {
-        padding: 15px; /* Menos padding en móviles */
+        padding: 15px; 
     }
 
     .seguidoruta {
-        flex-direction: column; /* Apila los elementos verticalmente */
-        align-items: center; /* Centra los elementos */
+        flex-direction: column; 
+        align-items: center; 
     }
 
     .ruta-image {
-        width: 100%; /* El contenedor ocupa todo el ancho en móviles */
+        width: 100%; 
     }
 
     .ruta-image img {
-        aspect-ratio: 16 / 9; /* Ajusta la proporción de aspecto */
+        aspect-ratio: 16 / 9; 
     }
 
     .ruta-header h1 {
-        font-size: 24px; /* Tamaño de fuente más pequeño en móviles */
+        font-size: 24px; 
     }
 
     .ruta-description {
-        font-size: 16px; /* Tamaño de fuente más pequeño en móviles */
+        font-size: 16px; 
     }
 
     .ruta-footer {
-        flex-direction: column; /* Apila los elementos del footer */
-        gap: 10px; /* Espacio entre elementos */
-        text-align: center; /* Centra el texto */
+        flex-direction: column; 
+        gap: 10px; 
+        text-align: center; 
     }
 
     .ruta-details {
-        flex-direction: column; /* Apila los detalles */
-        gap: 10px; /* Espacio entre elementos */
+        flex-direction: column; 
+        gap: 10px; 
     }
 
     .ruta-details span {
-        font-size: 14px; /* Tamaño de fuente más pequeño en móviles */
+        font-size: 14px; 
     }
 }
 

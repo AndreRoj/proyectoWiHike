@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: center; /* Centra el contenido de la columna */
+    align-items: center;
 }
 
 .contactanos {
@@ -41,13 +41,13 @@
     justify-content: center;
     align-items: center;
     justify-items: center;
-    gap: 20px; /* Agrega un espacio de 20px entre los componentes */
+    gap: 20px; 
 }
 
 .contacto-logo {
    
     width: 30%;
-    margin-right: 20px; /* Ajusta el margen entre el logo y la información */
+    margin-right: 20px; 
 }
 
 
