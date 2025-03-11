@@ -55,14 +55,14 @@ export default function HomePage({ frase }) {
 
   return (
     <div className='HomePage'>
-      <div className='pagina'>
+      <div className='pagina' data-aos="fade-down">
         <div className="title-container">
-          <h1 className='titulo1'>EXPLORA NUEVAS AVENTURAS</h1>
-          <h1 className='titulo2'>EN LA NATURALEZA.</h1>
+          <h1 className='titulo1' data-aos="fade-right">EXPLORA NUEVAS AVENTURAS</h1>
+          <h1 className='titulo2' data-aos="fade-right">EN LA NATURALEZA.</h1>
         </div>
 
         <div className="rutas-section">
-          <h3 className="rutas-title">RUTAS</h3>
+          <h3 className="rutas-title" data-aos="slide-up">RUTAS</h3>
         </div>
 
         <div className='rutas'>
@@ -78,7 +78,7 @@ export default function HomePage({ frase }) {
         </div>
 
         <div className="sobrewehike">
-          <h3 className="wehike">SOBRE WEHIKE</h3>
+          <h3 className="wehike" data-aos="slide-up">SOBRE WEHIKE</h3>
         </div>
         <MisionVision />
         <Contacto />

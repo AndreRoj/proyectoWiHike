@@ -6,7 +6,7 @@ import { FaRegMap } from "react-icons/fa";
 
 export function Ruta({ imagen, nombre, descripcion, nombreguia, duracion, kilometros, estrellas }) {
     return (
-        <div className='rutaflex'>
+        <div className='rutaflex' data-aos="fade-right">
         <div className='ruta-container'>
 
             <div className='seguidoruta'>

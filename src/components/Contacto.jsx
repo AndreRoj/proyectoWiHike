@@ -7,7 +7,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 
 export function Contacto() {
     return (
-        <div className="contacto-container">
+        <div className="contacto-container" data-aos="slide-up">
         <div className="contacto-content">
           <div className="columna"> 
           <h2 className="contactanos"  >CONTÁCTANOS</h2>

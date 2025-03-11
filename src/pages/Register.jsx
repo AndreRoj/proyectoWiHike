@@ -6,6 +6,7 @@ import './Register.css'; // Importa el archivo CSS
 import { db } from '../firebase';
 import {addDoc, collection, setDoc, doc } from "firebase/firestore"; // Importa addDoc para Firestore
 import DatePicker from 'react-datepicker';
+import { setDoc, doc } from "firebase/firestore";
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos predeterminados
 import './DatePicker.css'; // Estilos personalizados (deben ir después)
 
@@ -143,7 +144,7 @@ export default function Register() {
             };
 
             // Agrega el documento a la colección "users"
-            await addDoc(collection(db, "users"), userData);
+            await setDoc(doc(db, "users", usuarioRegistrado.user.uid), userData);
 
             console.log("Usuario guardado en Firestore");
 
@@ -157,7 +158,7 @@ export default function Register() {
     };
 
     return (
-        <div className="register-container">
+        <div className="register-container" data-aos="slide-up">
             <form onSubmit={handleRegister} className="register-form">
                 <h1 className="tituloRegister">Crea una cuenta</h1>
                 {loading && <div className="loading-message">Cargando...</div>}

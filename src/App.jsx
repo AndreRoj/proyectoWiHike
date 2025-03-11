@@ -6,16 +6,31 @@ import NotFound from './pages/NotFound';
 import Rutas from './pages/Rutas';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
+import { UserProvider } from './Context/UserContext';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Importa los estilos de AOS
+import React, { useEffect } from 'react';
+
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duración de la animación en milisegundos
+      once: true, // Si la animación solo se ejecuta una vez
+    });
+  }, []);
+
+
 
   return (
 
     <BrowserRouter>
 
+    <UserProvider>
+
     <Routes>
 
-
+    
       <Route element = {<Navbar/>}>
 
         <Route path='/' element = {<HomePage frase={'Hello'}/>} />
@@ -27,6 +42,8 @@ function App() {
       </Route>
 
     </Routes>
+    </UserProvider>
+  
     
     </BrowserRouter>
   )

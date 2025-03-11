@@ -6,6 +6,7 @@ import "./Rutas.css";
 import { db } from '../firebase'; // Importa la instancia de Firestore
 import { getDocs, collection } from "firebase/firestore";
 
+
 export default function Rutas() {
   const [rutas, setRutas] = useState([]); // Estado para almacenar las rutas
   const [loading, setLoading] = useState(true); // Estado para manejar la carga
@@ -43,8 +44,9 @@ export default function Rutas() {
     return <div>{error}</div>;
   }
 
+
   return (
-    <div className="listadorutas">
+    <div className="listadorutas" >
       <div className="ll">
         {/* Mapea las rutas y crea un componente Ruta por cada una */}
         {rutas.map((ruta) => (

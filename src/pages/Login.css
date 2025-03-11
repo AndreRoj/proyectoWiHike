@@ -88,6 +88,35 @@ body, html {
   text-decoration: underline;
 }
 
+
+
+
+
+
+.google-register-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.google-register-button:hover {
+  background-color: #f1f1f1;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
 @font-face {
   font-family: 'Raleway-Regular';
   src: url('/fonts/Raleway-Regular.ttf') format('truetype');
