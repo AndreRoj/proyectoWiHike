@@ -1,0 +1,17 @@
+.listadorutas{
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    position: relative;
+    background-color: #f0f2f5;
+}
+
+
+.ll{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
