@@ -10,12 +10,7 @@
   justify-content: space-evenly;
 }
 
-.titulo{
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
- margin-top: 20px;
-}
+
 
 .title-container{
   font-family:'Raleway-bold' ;

@@ -44,7 +44,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container" data-aos="slide-up">
       <form onSubmit={handleLogin} className="login-form">
         <h1 className="tituloLogin">Bienvenido de vuelta</h1>
         {error && <p className="error-message">{error}</p>}

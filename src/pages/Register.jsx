@@ -118,7 +118,7 @@ export default function Register() {
     };
 
     return (
-        <div className="register-container">
+        <div className="register-container" data-aos="slide-up">
             <form onSubmit={handleRegister} className="register-form">
                 <h1 className="tituloRegister">Crea una cuenta</h1>
                 {loading && <div className="loading-message">Cargando...</div>}

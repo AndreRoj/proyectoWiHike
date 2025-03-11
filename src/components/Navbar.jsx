@@ -22,6 +22,7 @@ export function Navbar() {
     try {
       await signOut(auth); // Cierra la sesión del usuario
       console.log("Usuario cerró sesión");
+      window.location.reload();
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
@@ -29,7 +30,7 @@ export function Navbar() {
 
   return (
     <>
-      <div className="Navbar">
+      <div className="Navbar" data-aos="fade-down">
         {/* Elementos a la izquierda */}
         <ul>
           <li>
@@ -57,7 +58,7 @@ export function Navbar() {
             // Si el usuario está logueado
             <>
               <li>
-                <Link className="options" to="/profile">
+                <Link className="options" to="/profile" style={{ color: '#4CAF50' }}>
                   {profile?.nombre || profile?.email || 'Perfil'} {/* Muestra el nombre o el correo del usuario */}
                 </Link>
               </li>
