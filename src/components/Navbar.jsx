@@ -8,6 +8,13 @@ import { Link } from "react-router";
 
 export function Navbar() {
 
+<<<<<<< HEAD
+=======
+  // Función para detectar si es móvil
+  const checkIsMobile = () => {
+    return window.innerWidth <= 768; // Devuelve true si es móvil (ancho <= 768px)
+  };
+>>>>>>> parent of eeb42a9 (.)
 
     return (
       <div className="Navbar">

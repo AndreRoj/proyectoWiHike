@@ -29,6 +29,14 @@
     justify-content: space-evenly;
 }
 
+<<<<<<< HEAD
+=======
+.ruta-image {
+    max-width: 333px; /* Ajusta este valor según tus preferencias */
+    width: 100%;
+    margin: 0 auto; /* Centra el contenedor de la imagen */
+}
+>>>>>>> parent of eeb42a9 (.)
 
 .ruta-image img {
     width: 333px; /* La imagen ocupa el ancho completo del contenedor */
@@ -85,7 +93,11 @@
     font-size: 18px;
     color: #333;
     margin-top: auto; /* Empuja el footer hacia la parte inferior */
+<<<<<<< HEAD
     font-family: 'Raleway-Regular' ;
+=======
+    font-family: 'Raleway-Regular';
+>>>>>>> parent of eeb42a9 (.)
 }
 
 .ruta-footer strong {
@@ -109,6 +121,7 @@
     gap: 5px; 
 }
 
+<<<<<<< HEAD
 .button {
     font-family: Arial;
     font-size: 12px;
@@ -134,6 +147,49 @@
     display: flex;
     justify-content: flex-end; /* Alinea el botón a la derecha */
     margin-top: 20px; /* Espacio arriba del botón */
+=======
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .ruta-container {
+        padding: 15px; /* Menos padding en móviles */
+    }
+
+    .seguidoruta {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        align-items: center; /* Centra los elementos */
+    }
+
+    .ruta-image {
+        width: 100%; /* El contenedor ocupa todo el ancho en móviles */
+    }
+
+    .ruta-image img {
+        aspect-ratio: 16 / 9; /* Ajusta la proporción de aspecto */
+    }
+
+    .ruta-header h1 {
+        font-size: 24px; /* Tamaño de fuente más pequeño en móviles */
+    }
+
+    .ruta-description {
+        font-size: 16px; /* Tamaño de fuente más pequeño en móviles */
+    }
+
+    .ruta-footer {
+        flex-direction: column; /* Apila los elementos del footer */
+        gap: 10px; /* Espacio entre elementos */
+        text-align: center; /* Centra el texto */
+    }
+
+    .ruta-details {
+        flex-direction: column; /* Apila los detalles */
+        gap: 10px; /* Espacio entre elementos */
+    }
+
+    .ruta-details span {
+        font-size: 14px; /* Tamaño de fuente más pequeño en móviles */
+    }
+>>>>>>> parent of eeb42a9 (.)
 }
 
 @font-face {
