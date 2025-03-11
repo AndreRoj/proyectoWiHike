@@ -61,7 +61,58 @@
     border-radius: 8px; /* Bordes redondeados */
   }
 
-  
+  .infoRuta-description {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Raleway-Regular';
+    font-size: 32px;
+    color: #000000;
+    line-height: 1.5;
+    
+}
+
+.metricas-container {
+  display: flex;
+  justify-content: space-around; /* Distribuye las métricas de manera uniforme */
+  background-color: #f9f9f9; /* Color de fondo */
+  gap: 60px; /* Espacio entre métricas */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.metrica {
+  text-align: center; /* Centra el contenido */
+}
+
+.valor {
+  font-family: 'Raleway-Bold';
+  font-size: 80px; /* Tamaño grande para el valor */
+  font-weight: bold; /* Texto en negrita */
+  color: #161616; /* Color del valor */
+}
+
+.unidad {
+  font-size: 36px; /* Tamaño más pequeño para la unidad */
+  color: #666; /* Color de la unidad */
+  margin-left: 4px; /* Espacio entre el valor y la unidad */
+}
+
+.detalles {
+  font-family: 'Raleway-Regular';
+  font-size: 24px; /* Tamaño para la descripción */
+  color: #777; /* Color de la descripción */
+  display: block; /* Hace que la descripción esté en una línea separada */
+  margin-top: 8px; /* Espacio entre el valor y la descripción */
+}
+
+.separador {
+  height: 150px; /* Grosor de la línea */
+  background: #2e2e2e; /* Color de la línea */
+  width: 3px; /* Ancho completo */
+  margin: 10px 0; /* Espacio alrededor de la línea */
+  border-radius: 8px;
+}
 
 @font-face {
     font-family: 'Raleway-bold';
