@@ -2,13 +2,12 @@ import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWith
 import { app } from '../firebase';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './Register.css'; // Importa el archivo CSS
+import './Register.css'; 
 import { db } from '../firebase';
 import {setDoc, doc } from "firebase/firestore"; // Importa addDoc para Firestore
 import DatePicker from 'react-datepicker';
-import { setDoc, doc } from "firebase/firestore";
-import 'react-datepicker/dist/react-datepicker.css'; // Estilos predeterminados
-import './DatePicker.css'; // Estilos personalizados (deben ir después)
+import 'react-datepicker/dist/react-datepicker.css'; 
+import './DatePicker.css'; 
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -16,11 +15,11 @@ const provider = new GoogleAuthProvider();
 export default function Register() {
     const navigation = useNavigate();
     const [name, setName] = useState('');
-    const [lastName, setLastName] = useState(''); // Nuevo campo: apellido
+    const [lastName, setLastName] = useState(''); 
     const [email, setEmail] = useState('');
-    const [cedula, setCedula] = useState(''); // Nuevo campo: cédula
-    const [phone, setPhone] = useState(''); // Nuevo campo: teléfono
-    const [birthDate, setBirthDate] = useState(null); // Nuevo campo: fecha de nacimiento
+    const [cedula, setCedula] = useState(''); 
+    const [phone, setPhone] = useState(''); 
+    const [birthDate, setBirthDate] = useState(null); 
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -80,24 +79,24 @@ export default function Register() {
 
             console.log("Usuario registrado: ", usuarioRegistrado.user.uid);
 
-            // Guarda la información adicional del usuario en Firestore
+            
             const userData = {
-                uid: usuarioRegistrado.user.uid, // ID único del usuario
+                uid: usuarioRegistrado.user.uid, 
                 nombre: name,
                 apellido: lastName,
                 email: email,
                 cedula: cedula,
                 telefono: phone,
                 fechaNacimiento: birthDate,
-                fechaRegistro: new Date(), // Fecha de registro
+                fechaRegistro: new Date(), 
             };
 
-            // Agrega el documento a la colección "users"
+          
             await setDoc(doc(db, "users", usuarioRegistrado.user.uid), userData);
 
             console.log("Usuario guardado en Firestore");
 
-            // Limpia los campos del formulario
+          
             setEmail("");
             setPassword("");
             setName("");
@@ -106,7 +105,7 @@ export default function Register() {
             setPhone("");
             setBirthDate(null);
 
-            // Redirige al usuario a la página principal
+            
             navigation('/');
         } catch (error) {
             setLoading(false);
@@ -122,33 +121,33 @@ export default function Register() {
     const handleGoogleRegister = async () => {
         try {
             setLoading(true);
-            const result = await signInWithPopup(auth, provider); // Inicia sesión con Google
+            const result = await signInWithPopup(auth, provider); 
             const user = result.user;
 
-            // Validación del dominio del correo
+           
             if (!user.email.endsWith('@correo.unimet.edu.ve')) {
                 setError('Solo se permiten correos con el dominio @correo.unimet.edu.ve');
-                await auth.signOut(); // Cierra la sesión del usuario
+                await auth.signOut(); 
                 return;
             }
 
             console.log("Usuario registrado con Google: ", user.uid);
 
-            // Guarda la información adicional del usuario en Firestore
+       
             const userData = {
-                uid: user.uid, // ID único del usuario
-                nombre: user.displayName?.split(" ")[0] || "", // Nombre del usuario
-                apellido: user.displayName?.split(" ")[1] || "", // Apellido del usuario
+                uid: user.uid, 
+                nombre: user.displayName?.split(" ")[0] || "", 
+                apellido: user.displayName?.split(" ")[1] || "", 
                 email: user.email,
-                fechaRegistro: new Date(), // Fecha de registro
+                fechaRegistro: new Date(), 
             };
 
-            // Agrega el documento a la colección "users"
+     
             await setDoc(doc(db, "users", usuarioRegistrado.user.uid), userData);
 
             console.log("Usuario guardado en Firestore");
 
-            // Redirige al usuario a la página principal
+         
             navigation('/');
         } catch (error) {
             setLoading(false);
@@ -242,7 +241,7 @@ export default function Register() {
                         selected={birthDate}
                         onChange={(date) => setBirthDate(date)}
                         dateFormat="dd/MM/yyyy"
-                        placeholderText="Selecciona tu fecha de nacimiento"
+                        placeholderText="fecha de nacimiento"
                         showYearDropdown
                         dropdownMode="select"
                         required

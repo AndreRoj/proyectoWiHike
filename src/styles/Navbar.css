@@ -48,7 +48,7 @@
   text-transform: uppercase;
   color: black;
   text-decoration: none;
-  font-size: 1.2vw; /* Tamaño de fuente responsive */
+  font-size: 1.2vw; 
   cursor: pointer;
   line-height: 117px;
   margin-top: 0;
@@ -59,14 +59,14 @@
   margin: 0 auto;
 }
 
-/* Estilos para el menú desplegable en móviles */
+
 .menu-icon {
-  display: none; /* Oculta el ícono por defecto */
+  display: none; 
   font-size: 24px;
   cursor: pointer;
 }
 
-/* Media query para pantallas pequeñas */
+
 @media (max-width: 768px) {
   .Navbar ul {
     display: none;
@@ -74,16 +74,16 @@
 
   .menu-icon {
     display: block;
-    z-index: 1001; /* Asegura que el ícono esté encima del menú */
+    z-index: 1001; 
   }
 
   .mobile-menu {
     position: absolute;
-    top: 117px; /* Ajusta la posición para que esté debajo del Navbar */
+    top: 117px; 
     left: 0;
     width: 100%;
     background-color: #F6F6F6;
-    z-index: 1000; /* Asegura que el menú esté encima del contenido */
+    z-index: 1000; 
   }
 
   .mobile-menu ul {
@@ -102,10 +102,10 @@
     line-height: normal;
   }
 
-  /* Ajusta el tamaño del logo en móviles */
+
   .Navbar img {
     margin: 0 auto;
-    width: 50%; /* Ajusta el ancho según sea necesario */
+    width: 50%; 
     height: 50%;
   }
 }

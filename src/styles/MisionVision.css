@@ -1,29 +1,29 @@
-/* Estilos para el contenedor principal */
+
 .mision-vision-container {
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: flex-start; /* Alinea las secciones en la parte superior */
+  align-items: flex-start; 
   justify-content: space-evenly;
   padding: 40px 20px;
   background-color: #f0f0f0;
   font-family: 'Arial', sans-serif;
   text-align: center;
-  height: auto; /* Permite que el contenedor crezca según el contenido */
+  height: auto; 
 }
 
-/* Estilos para las secciones de Misión y Visión */
+
 .mision-section, .vision-section {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
-  width: 45%; /* Reduce el ancho para crear espacio entre ellas */
-  height: auto; /* Permite que las secciones crezcan según el contenido */
+  width: 45%; 
+  height: auto; 
 }
 
-/* Estilos para el título de las secciones */
+
 .section-title {
   font-family: 'Raleway-Bold' ;
   font-size: 2rem;
@@ -32,7 +32,7 @@
   margin-bottom: 15px;
 }
 
-/* Estilos para el texto de las secciones */
+
 .section-text {
   font-family: 'Raleway-Regular' ;
   font-size: 1rem;
@@ -43,15 +43,15 @@
 
 
 @font-face {
-  font-family: 'Raleway-Regular'; /* Nombre que le darás a la fuente */
-  src: url('/fonts/Raleway-Regular.ttf') format('truetype'); /* Ruta al archivo de fuente */
-  font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
-  font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+  font-family: 'Raleway-Regular'; 
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype'); 
+  font-weight: normal; 
+  font-style: normal; 
 }
 
 @font-face {
-  font-family: 'Raleway-Bold'; /* Nombre que le darás a la fuente */
-  src: url('/fonts/Raleway-Bold.ttf') format('truetype'); /* Ruta al archivo de fuente */
-  font-weight: normal; /* Peso de la fuente (normal, bold, etc.) */
-  font-style: normal; /* Estilo de la fuente (normal, italic, etc.) */
+  font-family: 'Raleway-Bold'; 
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype'); 
+  font-weight: normal; 
+  font-style: normal; 
 } 

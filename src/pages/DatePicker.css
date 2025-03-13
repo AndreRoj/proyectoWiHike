@@ -1,15 +1,12 @@
 
-
-/* Encabezado del calendario */
 .react-datepicker__header {
-    background-color: #4CAF50; /* Color verde */
+    background-color: #4CAF50; 
 
 }
 
 
-/* Días del mes */
 .react-datepicker__day {
-    color: #333; /* Texto oscuro */
+    color: #333; 
     border-radius: 50%;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin: 0.166rem;
@@ -18,41 +15,41 @@
     text-align: center;
 }
 
-/* Día seleccionado */
+
 .react-datepicker__day--selected {
-    background-color: #4CAF50; /* Color verde */
+    background-color: #4CAF50;
     color: white;
 }
 
-/* Día al pasar el mouse */
+
 .react-datepicker__day:hover {
-    background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+    background-color: #45a049; 
     color: white;
 }
 
-/* Flechas de navegación */
+
 .react-datepicker__navigation {
     top: 10px;
     border: 0.45rem solid transparent;
 }
 
 .react-datepicker__navigation--previous {
-    border-right-color: white; /* Flecha izquierda */
+    border-right-color: white; 
 }
 
 .react-datepicker__navigation--next {
-    border-left-color: white; /* Flecha derecha */
+    border-left-color: white; 
 }
 
-/* Año y mes desplegables */
+
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-    color: white; /* Texto blanco */
+    color: white; 
     font-size: 1rem;
 }
 
-/* Input del calendario */
+
 .react-datepicker__input-container input {
     width: 100%;
     padding: 0.75rem;
@@ -66,18 +63,18 @@
 
 .react-datepicker__input-container input:focus {
     outline: none;
-    border-color: #4CAF50; /* Borde verde al enfocar */
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Sombra verde */
+    border-color: #4CAF50; 
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); 
 }
 
-/* Contenedor del calendario */
+
 .react-datepicker-popper {
-    z-index: 9999; /* Asegura que el calendario esté por encima de otros elementos */
+    z-index: 9999; 
 }
 
-/* Estilos para el desplegable de años */
+
 .react-datepicker__year-dropdown {
-    background-color: white; /* Fondo blanco */
+    background-color: white; 
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 5px;
@@ -87,22 +84,22 @@
 .react-datepicker__year-option {
     padding: 5px;
     cursor: pointer;
-    color: #333; /* Texto oscuro */
+    color: #333; 
 }
 
 .react-datepicker__year-option:hover {
-    background-color: #f0f2f5; /* Fondo gris claro al pasar el mouse */
+    background-color: #f0f2f5; 
 }
 
-/* Año seleccionado en el desplegable */
+
 .react-datepicker__year-option--selected {
-    background-color: #4CAF50; /* Fondo verde */
-    color: white; /* Texto blanco */
+    background-color: #4CAF50; 
+    color: white; 
 }
 
-/* Estilos para el desplegable de meses */
+
 .react-datepicker__month-dropdown {
-    background-color: white; /* Fondo blanco */
+    background-color: white; 
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 5px;
@@ -112,15 +109,15 @@
 .react-datepicker__month-option {
     padding: 5px;
     cursor: pointer;
-    color: #333; /* Texto oscuro */
+    color: #333; 
 }
 
 .react-datepicker__month-option:hover {
-    background-color: #f0f2f5; /* Fondo gris claro al pasar el mouse */
+    background-color: #f0f2f5; 
 }
 
-/* Mes seleccionado en el desplegable */
+
 .react-datepicker__month-option--selected {
-    background-color: #4CAF50; /* Fondo verde */
-    color: white; /* Texto blanco */
+    background-color: #4CAF50; 
+    color: white; 
 }

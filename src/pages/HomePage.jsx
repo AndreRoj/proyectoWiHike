@@ -4,7 +4,7 @@ import { Contacto } from '../components/Contacto';
 import { MisionVision } from '../components/MisionVision';
 import { use } from "react";
 import { UserContext } from '../Context/UserContext';
-import { db } from '../firebase'; // Importa la instancia de Firestore
+import { db } from '../firebase'; 
 import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
 import React, { useEffect, useState } from 'react';
 
@@ -26,7 +26,7 @@ export default function HomePage({ frase }) {
 
       const rutasList = querySnapshot.docs.map((doc) => ({
         id: doc.id, // ID del documento
-        ...doc.data(), // Resto de los datos de la ruta
+        ...doc.data(), 
       }));
 
       setRutas(rutasList); // Almacena las rutas en el estado
