@@ -10,6 +10,7 @@ import { UserProvider } from './Context/UserContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import React, { useEffect } from 'react';
+import ForoPrincipal from './pages/ForoPrincipal';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path='register' element = {<Register/>}/>
         <Route path='*' element = {<NotFound/>}/>
         <Route path='rutas' element = {<Rutas/>} />
+        <Route path='foro' element = {<ForoPrincipal/>} />
         
       </Route>
 

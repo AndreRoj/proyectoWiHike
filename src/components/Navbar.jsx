@@ -70,7 +70,11 @@ export function Navbar() {
               </Link>
             </li>
             <li className="options" onClick={toggleMenu}>Galeria</li>
-            <li className="options" onClick={toggleMenu}>Foro</li>
+            <li> 
+              <Link className="options" to="/foro" onClick={toggleMenu}>
+                Foro
+              </Link> 
+            </li>
             <li className="options">
               <IoSearch />
             </li>
@@ -117,7 +121,11 @@ export function Navbar() {
           </Link>
         </li>
         <li className="options">Galeria</li>
-        <li className="options">Foro</li>
+        <li> 
+          <Link className="options" to="/foro">
+            Foro
+          </Link>
+        </li>
       </ul>
 
       {/* Logo en el centro */}
