@@ -8,7 +8,7 @@ import { db } from '../firebase';
 import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
 import React, { useEffect, useState } from 'react';
 
-export default function HomePage({ frase }) {
+export default function HomePage() {
   const contextUser = use(UserContext);
   const { user, setUser } = contextUser;
   console.log(user);

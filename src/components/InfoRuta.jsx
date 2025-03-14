@@ -1,8 +1,10 @@
 import React from "react";
 import "../styles/InfoRuta.css"
 import { FaStar } from "react-icons/fa";
+import { FaMapSigns } from "react-icons/fa"; /*icono de letreritos */
+import { FaHiking } from "react-icons/fa"; /*icono de persona camiando */
 
-export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, descripcion, distancia, desnivel_positivo, horas, minutos}) {
+export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, descripcion, distancia, desnivel_positivo, horas, minutos, dificultad}) {
     return (
         <div className="rutaInfo-content" syte>
                 <h1 className="nombreRuta">{nombre}</h1>
@@ -42,7 +44,28 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
                     <span className="unidad">min</span>
                     <span className="detalles">Tiempo Estimado</span>
                 </div>
+                <div className="separador"></div>
+                <div className="metrica">
+                    <span className="valor">{dificultad}</span>
+                    <span className="detalles">Nivel de Dificultad</span>
+                </div>
             </div>
+            <div className="InfoRuta-title">
+                <FaMapSigns style={{color: 'black',fontSize: '50px',justifyContent: 'center',alignItems: 'center'}}/>
+                <span>Actividades</span>
+            </div>
+            <div className="metricas-container">
+                <div className="metrica">
+                    <FaHiking style={{color: 'black',fontSize: '50px',justifyContent: 'center',alignItems: 'center'}}/>
+                    <span className="detalles">Senderismo</span>
+                </div>
+                <div className="separador"></div>
+                <div className="metrica">
+                    <FaHiking style={{color: 'black',fontSize: '50px',justifyContent: 'center',alignItems: 'center'}}/>
+                    <span className="detalles">Paseo</span>
+                </div>
+            </div>
+            
         </div>
     );
 }

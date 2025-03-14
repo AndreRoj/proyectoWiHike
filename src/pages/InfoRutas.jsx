@@ -5,7 +5,6 @@ import "./HomePage.css";
 export default function InfoRutas() {
     return (
         <div className='HomePage'>
-            <Navbar/>
             <InfoRuta
             nombre="Sabas Nieves"
             estrellas="5"
@@ -18,6 +17,7 @@ export default function InfoRutas() {
             // duracion dividido colocando las horas y los minutos por separado
             horas="1"
             minutos="55"
+            dificultad="Alta"
             />
         </div>
         

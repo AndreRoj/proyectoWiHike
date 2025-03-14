@@ -62,8 +62,8 @@
   }
 
   .infoRuta-description {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 30px; /*para colocar espacio antes del parrafo*/
+    margin-bottom: 30px; /*para colocar espacio despues del parrafo*/
     font-family: 'Raleway-Regular';
     font-size: 32px;
     color: #000000;
@@ -71,13 +71,13 @@
 }
 
 .metricas-container {
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-around; /* Distribuye las métricas de manera uniforme */
   background-color: #f9f9f9;
   gap: 60px; /* Espacio entre métricas */
   padding: 20px;
   border-radius: 8px;
-  margin-bottom: 30px;
 }
 
 .metrica {
@@ -111,6 +111,21 @@
   width: 3px; /* Ancho completo */
   margin: 10px 0; /* Espacio alrededor de la línea */
   border-radius: 8px;
+}
+
+.InfoRuta-title {
+  font-family: 'Raleway-bold';
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+  background-color: #4CAF50;
+  border-radius: 8px;
+  padding: 20px;
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin-bottom: 5px;
 }
 
 @font-face {
