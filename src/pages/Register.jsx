@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './Register.css'; 
 import { db } from '../firebase';
-import {setDoc, doc } from "firebase/firestore"; // Importa addDoc para Firestore
+//import { collection, addDoc } from "firebase/firestore"; 
 import DatePicker from 'react-datepicker';
+import { setDoc, doc } from "firebase/firestore";
 import 'react-datepicker/dist/react-datepicker.css'; 
 import './DatePicker.css'; 
 

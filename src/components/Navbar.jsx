@@ -116,7 +116,11 @@ export function Navbar() {
             Rutas
           </Link>
         </li>
-        <li className="options">Galeria</li>
+        {/* <li className="options">Galeria</li> */}
+        <li>  <Link className="options" to="/Perfil">
+            Perfil
+          </Link>
+          </li>
         <li className="options">Foro</li>
       </ul>
 
@@ -158,7 +162,11 @@ export function Navbar() {
           </>
         )}
 
-        <li className="options">Contáctanos</li>
+        <li> 
+          <Link className="options" to = '/contactanos'>
+          Contáctanos
+          </Link>
+        </li>
       </ul>
     </div>
   );
