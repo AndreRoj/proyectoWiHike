@@ -1,0 +1,80 @@
+.HomePage {
+  width: 100%;
+  height: auto;
+}
+
+.rutas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap; 
+}
+
+.title-container {
+  font-family: 'Raleway-bold';
+  font-size: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh; 
+  background-image: url('https://intothewild.bg/wp-content/uploads/2022/11/bona-lee-BIvkvLqOVEI-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.rutas-section, .sobrewehike {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rutas-title, .wehike {
+  font-family: 'Raleway-bold';
+  font-size: 50px;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+@font-face {
+  font-family: 'Raleway-bold';
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .title-container {
+      font-size: 16px;
+      padding: 10px; 
+  }
+
+  .rutas-title, .wehike {
+      font-size: 30px; 
+  }
+
+  .rutas {
+      flex-direction: column; 
+      align-items: center; 
+  }
+
+  .rutas > * {
+      width: 100%;
+      display: block;
+      margin: 10px 0; 
+  }
+}

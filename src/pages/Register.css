@@ -1,0 +1,165 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Raleway-Regular', sans-serif;
+  }
+  
+  .register-container {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh; 
+  padding: 20px; 
+  }
+  
+  .register-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .tituloRegister {
+    font-family: 'Raleway-Bold', sans-serif;
+  color: #4CAF50;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem; 
+  }
+  
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 1rem; 
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .register-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-button:hover {
+    background-color: #45a049;
+  }
+  
+  .error-message {
+    color: #ff6b6b;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem; 
+  }
+  
+  .loading-message {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #4CAF50;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem; 
+  }
+  
+  .login-link a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+
+
+
+
+  .google-register-button {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 1rem; 
+}
+
+.google-register-button:hover {
+    background-color: #f1f1f1;
+}
+
+.google-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+  
+  @font-face {
+    font-family: 'Raleway-Regular';
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Raleway-Bold';
+    src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @media (max-width: 768px) {
+    .login-form {
+      padding: 1.5rem; /* Menos padding en móviles */
+    }
+  
+    .tituloLogin {
+      font-size: 1.5rem; /* Tamaño de fuente más pequeño en móviles */
+    }
+  
+    .input-group input {
+      padding: 0.5rem; /* Padding más pequeño en móviles */
+    }
+  
+    .login-button, .google-register-button {
+      padding: 0.5rem; /* Padding más pequeño en móviles */
+    }
+  
+    .google-logo {
+      width: 16px; /* Logo más pequeño en móviles */
+      height: 16px;
+    }
+  }
