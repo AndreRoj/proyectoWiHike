@@ -2,7 +2,9 @@ import React from "react";
 import "../styles/InfoRuta.css"
 import { FaStar } from "react-icons/fa";
 import { FaMapSigns } from "react-icons/fa"; /*icono de letreritos */
-import { FaHiking } from "react-icons/fa"; /*icono de persona camiando */
+import { FaHiking } from "react-icons/fa"; /*icono de persona caminando */
+import { BsPersonWalking } from "react-icons/bs"; /*icono de persona caminando2 */
+import { GiCampingTent } from "react-icons/gi"; /*campamento*/
 
 export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, descripcion, distancia, desnivel_positivo, horas, minutos, dificultad}) {
     return (
@@ -50,21 +52,26 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
                     <span className="detalles">Nivel de Dificultad</span>
                 </div>
             </div>
-            <div className="InfoRuta-title">
+            <div className="Actividad-title">
                 <FaMapSigns style={{color: 'black',fontSize: '50px',justifyContent: 'center',alignItems: 'center'}}/>
                 <span>Actividades</span>
             </div>
-            <div className="metricas-container">
-                <div className="metrica">
-                    <FaHiking style={{color: 'black',fontSize: '50px',justifyContent: 'center',alignItems: 'center'}}/>
+            <div className="Actividad-container">
+                <div className="Act-metrica">
+                    <FaHiking style={{color: 'black',fontSize: '50px', justifyContent: 'center'}}/>
                     <span className="detalles">Senderismo</span>
                 </div>
-                <div className="separador"></div>
-                <div className="metrica">
-                    <FaHiking style={{color: 'black',fontSize: '50px',justifyContent: 'center',alignItems: 'center'}}/>
+                <div className="Act-metrica">
+                    <BsPersonWalking style={{color: 'black',fontSize: '50px',justifyContent: 'center'}}/>
                     <span className="detalles">Paseo</span>
                 </div>
+                <div className="Act-metrica">
+                    <GiCampingTent style={{color: 'black',fontSize: '50px',justifyContent: 'center'}}/>
+                    <span className="detalles">Acampada</span>
+                </div>
             </div>
+            
+
             
         </div>
     );

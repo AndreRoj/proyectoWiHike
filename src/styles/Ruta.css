@@ -112,33 +112,6 @@
     gap: 5px;
 }
 
-.button {
-    font-family: Arial;
-    font-size: 12px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 64px;
-
-    width: 200px;
-    height: 30px;
-
-    background: linear-gradient(0deg, #4CAF50, #4CAF50), #081E29;
-    border-radius: 8px;
-}
-
-.button:hover {
-    background: linear-gradient(0deg, #45a049, #45a049); /* Cambia el color al pasar el mouse */
-}
-
-.button-container {
-    display: flex;
-    justify-content: flex-end; /* Alinea el botón a la derecha */
-    margin-top: 20px; /* Espacio arriba del botón */
-}
-
 @media (max-width: 768px) {
     .ruta-container {
         padding: 15px; 
