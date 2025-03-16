@@ -1,0 +1,10 @@
+
+
+
+
+.separador {
+    width: 100%; /* Ancho completo */
+    height: 1px; /* Grosor del separador */
+    background-color: #0f0f0f; /* Color del separador */
+    margin: 20px 0; /* Espacio arriba y abajo */
+  }
