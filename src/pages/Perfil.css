@@ -13,7 +13,7 @@
   }
   
   .Izquierda {
-  
+height: fit-content;
     flex: 2;
     padding: 1rem;
     border-radius: 0.5rem;
@@ -69,7 +69,7 @@
   
   .ProfileCard h2 {
     font-size: 48px;
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     color: #009000;
     text-align: center;
     margin-bottom: 0.5rem;
@@ -118,7 +118,7 @@
   }
   
   .Imagenperfil p {
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: 400;
     font-size: 1rem;
     text-align: center;
@@ -141,15 +141,14 @@
   }
   
   .Label {
-    width: 120px;
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: 500;
     font-size: 1rem;
     color: #009000;
   }
   
   .Value {
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: 500;
     font-size: 1rem;
     color: black;
@@ -169,7 +168,7 @@
     height: 50px;
     width: 40%;
     padding: 0 1.25rem;
-    font-family: 'Poppins', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -194,7 +193,7 @@
   .Estadisticas h2 {
     font-size: 3.5em;
     font-weight: 500;
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     color: #009000;
     text-align: center;
     margin-bottom: 2rem;
@@ -223,14 +222,14 @@
   .Label1 {
     font-weight: 400;
     font-size: 1em;
-    font-family: 'Lato', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     color: rgb(255, 255, 255);
   }
   
   .Value1 {
     font-weight: 600;
     font-size: 2em;
-    font-family: 'Montserrat-Regular', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular-Regular', Helvetica, sans-serif;
     color: rgb(255, 255, 255);
   }
   
@@ -259,7 +258,7 @@
   .Ultimas-Rutas {
     font-size: 38px;
     font-weight: 500;
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     color: #009000;
     text-align: center;
     margin-bottom: 2rem;
@@ -312,7 +311,7 @@
   
   .Rutainfo h3 {
     font-size: 20px;
-    font-family: 'Paytone One', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular One', Helvetica, sans-serif;
     color: white;
   }
   
@@ -323,7 +322,7 @@
   .guide-info,
   .route-info {
     font-size: 0.85rem;
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     margin-bottom: 0.25rem;
     text-align: left;
     color: black;
@@ -331,7 +330,7 @@
   
   .nombreguia {
     font-size: 16px;
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: bold;
   }
   
@@ -339,7 +338,7 @@
     display: flex;
     justify-content: center;
     font-size: 0.75rem;
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: bold;
     margin-bottom: 0.25rem;
   }
@@ -422,4 +421,12 @@
     .route-info {
       font-size: 14px;
     }
+  }
+
+
+  @font-face {
+    font-family: 'Raleway-Regular';
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
   }
