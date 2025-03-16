@@ -1,4 +1,4 @@
- function Usuario({nombre, apellido, correo, telefono, fechadenacimiento, cedula}) {
+function Usuario({nombre, apellido, correo, telefono, fechadenacimiento, cedula}) {
     return (
         <li className="usuario">
             <p> Nombre:{nombre} </p>

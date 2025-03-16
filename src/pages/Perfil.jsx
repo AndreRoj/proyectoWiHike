@@ -1,70 +1,23 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { getAuth } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase';
-import Usuario from '../components/Usuario';
-import { UserContext } from '../Context/UserContext';
-import './Perfil.css';
+import React, { useContext } from 'react';
 import { BiEdit } from 'react-icons/bi';
+import './Perfil.css';
 import "../styles/RutasPopulares.css";
 
-function Perfil() {
- {/* const { user } = useContext(UserContext);
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-        const fetchUserData = async () => {
-        if (user) {
-            try {
-            const userDocRef = doc(db, 'users', user.uid);
-            const userDoc = await getDoc(userDocRef);
-
-            if (userDoc.exists()) {
-                setUserData(userDoc.data());
-            } else {
-                console.log('No such document!');
-            }
-            } catch (error) {
-            console.error('Error fetching user data:', error);
-            setError('Error al cargar los datos del usuario');
-            } finally {
-            setLoading(false);
-            }
-        }
-        };
-
-        fetchUserData();
-    }, [user]);
-
-    if (loading) {
-        return <div>Cargando datos del usuario...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
-        */}
-      // User profile data
+export default function Perfil() {
   const userData1 = {
     name: "Nicole Tolve",
     role: "Estudiante",
     phone: "+58 4241392205",
     email: "Nicole@correo.unimet.edu.ve",
-    profileImage: "https://c.animaapp.com/tTE84wI0/img/image@2x.png",
+    profileImage: "https://i.pinimg.com/236x/35/f6/71/35f6716adc65383508eca7cfda5b5594.jpg",
   };
 
-  // Activity stats data
-  const activityStats = { 
-    Tiemposenderismo: "5h 10m", 
+  const activityStats = {
+    Tiemposenderismo: "5h 10m",
     Kmrecorridos: "10,3 KM",
     Rutasrealizadas: "2",
-    };
-    
-  
+  };
 
-  // Upcoming routes data
   const upcomingRoutes = [
     {
       name: "Humboldt",
@@ -74,116 +27,113 @@ function Perfil() {
       duration: "3 hora 14 min",
       startTime: "10:00am",
       endTime: "1:14pm (aprox)",
-      image:
-        "https://c.animaapp.com/tTE84wI0/img/eyjidwnrzxqioijhc3nldhmuywxsdhjhawxzlmnvbsisimtlesi6invwbg9hzhmv-2@2x.png",
+      image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
     },
   ];
 
-  // Latest routes data
   const latestRoutes = [
-    {
-      name: "SABAS NIEVES",
-      guide: "Jose Fernandez",
-      guideRole: "Guía de senderismo",
-      difficulty: "baja",
-      duration: "1 hora 55 min",
-      image:
-        "https://c.animaapp.com/tTE84wI0/img/eyjidwnrzxqioijhc3nldhmuywxsdhjhawxzlmnvbsisimtlesi6invwbg9hzhmv-1@2x.png",
-    },
-    {
-      name: "PICO NAIGUATÁ",
-      guide: "Jose Fernandez",
-      guideRole: "Guía de senderismo",
-      difficulty: "alta",
-      duration: "9 hora 21 min",
-      image:
-        "https://c.animaapp.com/tTE84wI0/img/eyjidwnrzxqioijhc3nldhmuywxsdhjhawxzlmnvbsisimtlesi6invwbg9hzhmv@2x.png",
-    },
+   
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      
   ];
-    return (
-        <div className='perfil'>
-            <div className='Izquierda'>
-               {/* <ul>
-                    {userData && (
-                        <Usuario
-                        nombre={userData.nombre}
-                        apellido={userData.apellido}
-                        correo={userData.email}
-                        telefono={userData.telefono}
-                        fechadenacimiento={userData.fechaNacimiento.toDate().toLocaleDateString()}
-                        cedula={userData.cedula}
-                        />
-                    )}
-                </ul> */}
-                <div className='ProfileCard'>
-                <h2>Perfil</h2>
-                    <div className='EditButton'>
-                        <button  className="editIcon">
-                        <BiEdit />
-                        </button>
-                    </div>
-                    <div className='Info'>
-                        <div className='Imagenperfil'>
-                            <img className="Imagen" 
-                            src={userData1.profileImage} 
-                            alt="ProfileImage" />
-                            <p className='Rolusuario'>{userData1.role}</p>
-                        </div>
-                        <div className='Infousuario' >
-                            <div className='Columna'>
-                            <span className="Label" style={{ textAlign: 'left' }}> Nombre: </span>
-                            <span className='Value'>{userData1.name}</span>
-                            </div>
-                            <div className='Columna'>
-                            <span className="Label" style={{ textAlign: 'left' }} > Telefono:</span>
-                            <span className="Value">{userData1.phone}</span>
-                            </div>
-                            <div className='Columna'>
-                            <span className="Label" style={{ textAlign: 'left' }}> Correo:</span>
-                            <span className="Value" style={{ fontSize:'18px'}}>{userData1.email}</span>
-                            </div>
-                        </div>
-                        <div className="Cerrasesion">
-                            <button className="logout">Cerrar sesion</button>
-                        </div>
-                    </div>
+
+  return (
+    <div className='perfil'>
+      {/* Renderiza el perfil */}
+      <div className='Izquierda'>
+        <div className='ProfileCard'>
+          <h2>Perfil</h2>
+          <div className='EditButton'>
+            <button className="editIcon">
+              <BiEdit />
+            </button>
+          </div>
+          <div className='Info'>
+                <div className='Imagenperfil'>
+                <img className="Imagenperfilz" src={userData1.profileImage} alt="ProfileImage" />
+                <p className='Rolusuario'>{userData1.role}</p>
                 </div>
+            <div className='Infousuario'>
+              <div className='Columna'>
+                <span className="Label">Nombre:</span>
+                <span className='Value'>{userData1.name}</span>
+              </div>
+              <div className='Columna'>
+                <span className="Label">Teléfono:</span>
+                <span className="Value">{userData1.phone}</span>
+              </div>
+              <div className='Columna'>
+                <span className="Label">Correo:</span>
+                <span className="Value">{userData1.email}</span>
+              </div>
             </div>
-            <div className='Derecha'>
-                <div className='Estadisticas'>
-                    <h2>Tu Actividad</h2>
-                    <div className='EstadisticasActividad'>
-                        <div className='StatCards'>
-                            <span className='Value1'>{activityStats.Tiemposenderismo}</span>
-                            <span className='Label1'> Horas de senderismo </span>
-                        </div>
-                        <div className='StatCards'>
-                            <span className='Value1'>{activityStats.Kmrecorridos}</span>
-                            <span className='Label1'> Kilometros recorridos </span>
-                        </div>
-                        <div className='StatCards'>
-                            <span className='Value1'>{activityStats.Rutasrealizadas}</span>
-                            <span className='Label1'> Rutas realizadas </span>
-                        </div> 
-                    </div>
-                </div>
-                <div className='Proximas-Rutas'>
-                    <h2>Proximas Rutas Programadas</h2>
-                    <div className='Rutascontainer1'>
-                       {/*Aqui van las proximas rutas del usuario. No se como hacerlo todavia*/ }
-                       {/* La idea es que todo se haga desde el prop de rutas*/ }
-                       {/* {rutas.map((ruta) => (
-                                <RutasPopulares
-                                    key={ruta.id}
-                                    link={ruta.imagen}
-                                    nombre={ruta.nombre}
-                                    nombreGuia={ruta.nombreguia}
-                                    duracion={ruta.duracion}
-                                    dificultad= "Alta"
-                                />
-                                ))}*/}
-                        <div className='Wrapcard'>
-                        {upcomingRoutes.map((route, index) => (
+          </div>
+        </div>
+      </div>
+      {/* Renderiza las estadísticas y rutas */}
+      <div className='Derecha'>
+        <div className='Estadisticas'>
+          <h2>Tu Actividad</h2>
+          <div className='EstadisticasActividad'>
+            {Object.entries(activityStats).map(([key, value]) => (
+              <div key={key} className='StatCards'>
+                <span className='Value1'>{value}</span>
+                <span className='Label1'>{key}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className='Proximas-Rutas'>
+          <h2>Próximas Rutas Programadas</h2>
+          <div className='Rutascontainer1'>
+          {upcomingRoutes.map((route, index) => (
                             <div key={index} className="InfoRutas1">
                             <div className="imagen-ruta">
                             <img
@@ -207,14 +157,12 @@ function Perfil() {
                             </div>
                         </div>
                         ))}
-                        </div>
-                    </div>
-                    </div>
-                <div className='Ultimas-Rutas'>
-                    <h2> Ultimas Rutas </h2>
-                     {/*Aqui van las proximas rutas del usuario. No se como hacerlo todavia*/ }
-                     <div className="Rutascontainer2">
-                        {latestRoutes.map((route, index) => (
+          </div>
+        </div>
+        <div className='Ultimas-Rutas' >
+          <h2>Últimas Rutas</h2>
+          <div className="Rutascontainer2" >
+          {latestRoutes.map((route, index) => (
                             <div key={index} className="InfoRutas2">
                             <div className="imagen-ruta">
                                 <img
@@ -236,12 +184,9 @@ function Perfil() {
                             </div>
                             </div>
                             ))}
-                    </div>
-                </div>
-            </div>
-            
-            
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-export default Perfil;
