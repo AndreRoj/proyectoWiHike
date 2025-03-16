@@ -11,6 +11,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import React, { useEffect } from 'react';
 import ForoPrincipal from './pages/ForoPrincipal';
+import Galeria from './pages/Galeria';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path='*' element = {<NotFound/>}/>
         <Route path='rutas' element = {<Rutas/>} />
         <Route path='foro' element = {<ForoPrincipal/>} />
+        <Route path='galeria' element = {<Galeria/>}/>
         
       </Route>
 

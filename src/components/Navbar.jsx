@@ -120,7 +120,11 @@ export function Navbar() {
             Rutas
           </Link>
         </li>
-        <li className="options">Galeria</li>
+        <li> 
+          <Link className="options" to='/galeria'>
+          Galeria
+          </Link>
+        </li>
         <li> 
           <Link className="options" to="/foro">
             Foro

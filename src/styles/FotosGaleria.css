@@ -1,0 +1,40 @@
+/* Contenedor del carrusel */
+.fotos-galeria-container {
+  width: 80%;  /* Ajusta el ancho del carrusel */
+  max-width: 1300px; /* Evita que se haga demasiado grande en pantallas grandes */
+  margin: 50px auto; /* Centra el carrusel en la pantalla */
+}
+
+/* Cada slide del carrusel */
+.fotos-galeria-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Imágenes dentro del carrusel */
+.fotos-galeria-item img {
+  width: 100%; /* Ajusta el ancho de la imagen */
+  max-width: 1000x; /* Evita que la imagen sea demasiado grande */
+  height: 650px; /* Mantiene la proporción */
+  border-radius: 10px; /* Bordes redondeados para mejor estética */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+}
+
+/* Ajustes para los puntos de navegación */
+.slick-dots {
+  visibility: hidden;
+}
+
+/* Ajustes para las flechas de navegación */
+.slick-prev,
+.slick-next {
+ visibility: hidden;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px; /* Ajusta el tamaño de las flechas */
+  color: #333; /* Color de las flechas */
+}
