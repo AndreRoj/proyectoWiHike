@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
+import { Link } from 'react-router-dom'; // Importa Link para la navegación
 import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
@@ -18,7 +19,6 @@ export default function Perfil() {
         profileImage: "",
         latestRoutes: [],
         upcomingRoutes: [],
-    
     });
 
     // Estado para las estadísticas
@@ -70,10 +70,10 @@ export default function Perfil() {
             if (profile) { // Solo ejecuta si profile no es null o undefined
                 // Obtén los detalles de las últimas rutas
                 const latestRoutes = await getRouteDetails(profile.ultimasrutas || []);
-                console.log(latestRoutes)
+                console.log(latestRoutes);
                 // Obtén los detalles de las próximas rutas
                 const upcomingRoutes = await getRouteDetails(profile.proximasrutas || []);
-                console.log(upcomingRoutes)
+                console.log(upcomingRoutes);
 
                 // Actualiza userData1 con los datos del perfil y las rutas
                 const updatedUserData = {
@@ -96,10 +96,6 @@ export default function Perfil() {
 
         fetchData();
     }, [profile]); // Este efecto se ejecuta cuando profile cambia
-
-
-
-
 
     return (
         <div className='perfil'>
@@ -131,12 +127,13 @@ export default function Perfil() {
                                 <span className="Value"> {userData1.email}</span>
                             </div>
                             {profile?.guia && (
-                        <div className='GuideDashboardButton'>
-                            <button link to = '/guia' className="guideDashboardBtn">
-                                Ir al Dashboard de Guía
-                            </button>
-                        </div>
-                    )}
+                                <div className='GuideDashboardButton'>
+                                    {/* Usa Link para redirigir al dashboard del guía */}
+                                    <Link to="/guia" className="guideDashboardBtn">
+                                        Ir al Dashboard de Guía
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -212,6 +209,37 @@ export default function Perfil() {
                         </div>
                     )}
                 </div>
+
+                  <div className='Ultimas-Rutas'>
+                    <h2>Últimas Rutas</h2>
+                    {userData1.latestRoutes.length > 0 && (
+                        <div className="Rutascontainer2">
+                            {userData1.latestRoutes.map((route, index) => (
+                                <div key={index} className="InfoRutas2">
+                                    <div className="imagen-ruta">
+                                        <img
+                                            src={route.imagen || "https://via.placeholder.com/150"}
+                                            alt={route.nombre}
+                                            className="pngruta"
+                                        />
+                                        <div className="Rutainfo">
+                                            <h3>{route.nombre}</h3>
+                                        </div>
+                                    </div>
+                                    <div className="detallesruta">
+                                        <p>
+                                            <span className="nombreguia">{route.guia} </span>
+                                            <span className='rol'>{route.guia}</span>
+                                        </p>
+                                        <p className="route-info">Dificultad: {route.dificultad}</p>
+                                        <p className="route-info">Duración: {route.duracion}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
             </div>
         </div>
     );
