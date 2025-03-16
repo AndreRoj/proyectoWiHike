@@ -64,20 +64,53 @@
     gap: 1rem;
 }
 .PagoPaypal{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 2rem;
-    
-}
-.PagoPaypal button{
-    background-color: transparent;
-    color:#009000;
-    padding: 10px 20px;
+    overflow: hidden;
     border: none;
-    border-radius: 5px;
+    padding: 0;
     cursor: pointer;
-    font-size: 6rem;
-    
+    background: none;
+    box-sizing: border-box;
+    position: relative;
+    width: 275px;
+    height: 60px;
+    margin: 0 auto;
+
+}
+.rectangulo{
+    position: absolute;
+    width: 275px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    background: #fdb103;
+    border-radius: 8px;
+}
+.icon{
+    position: absolute;
+    width: 5rem; /* Increased width */
+    height: 3rem; /* Increased height */
+    top: 6px; /* Adjusted position */
+    left: 17px;
+    font-size: 3rem;
+    color: #1a0af8;
+    background-size: cover;
+    z-index: 1;
+}
+.PagoPaypal span{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 41px;
+    top: 11px;
+    left: 104px;
+    color: #000000;
+    font-family:'Raleway-Bold', Helvetica, sans-serif;
+    font-size: 2.2rem;
+    line-height: 41px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 2;
 }
 .Derecha{
     flex: 0.5;

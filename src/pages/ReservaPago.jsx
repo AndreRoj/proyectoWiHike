@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { FaCcPaypal } from 'react-icons/fa';
+import { FaPaypal } from "react-icons/fa";
 import './ReservaPago.css';
 
 
@@ -34,9 +34,11 @@ function ReservaPago(){
                     </div>
                 </div>
                 <div className='separador1'></div> {/* Separador */}
-                <div className="PagoPaypal">
-                    <button> <FaCcPaypal /> </button>
-                </div>
+                <button className="PagoPaypal">
+                    <div className='rectangulo'></div>
+                    <div className='icon'> <FaPaypal/></div>
+                    <span>PayPal</span>
+                </button>
 
               </div>
               <div className="Derecha">
