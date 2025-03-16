@@ -116,8 +116,9 @@ export function Navbar() {
             Rutas
           </Link>
         </li>
-        <li>  <Link className="options" to="/Perfil">
-            Perfil
+        <li>  
+          <Link className="options" to="/reserva">
+            Reserva
           </Link>
           </li>
         <li className="options">Foro</li>

@@ -5,7 +5,7 @@ import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 import Rutas from './pages/Rutas';
 import Contactanos from './pages/Contactanos'; 
-import Perfil from './pages/Perfil';
+import ReservaPago from './pages/ReservaPago';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import { UserProvider } from './Context/UserContext';
@@ -42,7 +42,7 @@ function App() {
         <Route path='*' element = {<NotFound/>}/>
         <Route path='rutas' element = {<Rutas/>} />
         <Route path='contactanos' element = {<Contactanos/>} />
-        <Route path='perfil' element = {<Perfil/>} />
+        <Route path='reserva' element = {<ReservaPago/>} />
 
 
         
