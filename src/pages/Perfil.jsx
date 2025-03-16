@@ -32,22 +32,56 @@ export default function Perfil() {
   ];
 
   const latestRoutes = [
-    {
-      name: "SABAS NIEVES",
-      guide: "Jose Fernandez",
-      guideRole: "Guía de senderismo",
-      difficulty: "baja",
-      duration: "1 hora 55 min",
-      image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-    },
-    {
-      name: "PICO NAIGUATÁ",
-      guide: "Jose Fernandez",
-      guideRole: "Guía de senderismo",
-      difficulty: "alta",
-      duration: "9 hora 21 min",
-      image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-    },
+   
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      {
+        name: "SABAS NIEVES",
+        guide: "Jose Fernandez",
+        guideRole: "Guía de senderismo",
+        difficulty: "baja",
+        duration: "1 hora 55 min",
+        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      },
+      
   ];
 
   return (
@@ -125,9 +159,9 @@ export default function Perfil() {
                         ))}
           </div>
         </div>
-        <div className='Ultimas-Rutas'>
+        <div className='Ultimas-Rutas' >
           <h2>Últimas Rutas</h2>
-          <div className="Rutascontainer2">
+          <div className="Rutascontainer2" >
           {latestRoutes.map((route, index) => (
                             <div key={index} className="InfoRutas2">
                             <div className="imagen-ruta">

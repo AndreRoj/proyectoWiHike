@@ -1,59 +1,88 @@
-/* Estilo CSS para la seccion de perfil*/ 
-.perfil{
-    
-    display: flex;
+/* Estilo CSS para la seccion de perfil*/
+* {
+    box-sizing: border-box; /* Asegura que el padding y el borde no aumenten el ancho total */
+    margin: 0;
+    padding: 0;
   }
-  .Izquierda{
-    flex: 1;
+  
+  .perfil {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%; /* Asegura que el contenedor no exceda el ancho de la página */
+    overflow: hidden; /* Evita el desbordamiento horizontal */
+  }
+  
+  .Izquierda {
+  
+    flex: 2;
     padding: 1rem;
     border-radius: 0.5rem;
-    width: 50vw;
+    max-width: 30%; /* Ajusta el ancho máximo del contenedor izquierdo */
+    width: 100%; /* Ocupa todo el ancho disponible */
   }
-
+  
   .ProfileCard {
-  width: 100%; /* Ancho relativo al contenedor padre */
-  max-width: 458px; /* Ancho máximo para pantallas grandes */
-  height: 32%;
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.2), 0 4px 8px -2px rgba(0, 0, 0, 0.1);
-  position: relative;
-  padding: 1.5rem;
-  margin: 0.5rem auto; /* Centrar la tarjeta horizontalmente */
-}
-
-/* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
-@media (max-width: 768px) {
-  .ProfileCard {
-    width: 95%; /* Aumentar el ancho relativo en pantallas medianas */
-    padding: 1rem; /* Reducir el padding */
+    width: 100%; /* Ancho relativo al contenedor padre */
+    max-width: 458px; /* Ancho máximo para pantallas grandes */
+    height: 32%;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.2), 0 4px 8px -2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 1.5rem;
+    margin: 0.5rem auto; /* Centrar la tarjeta horizontalmente */
   }
+  
+  /* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
+  @media (max-width: 768px) {
+    .perfil {
+        flex-direction: column;
+    }
+
+    .Izquierda,
+    .Derecha {
+        max-width: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
+        width: 100%;
+    }
+
+    .ProfileCard {
+        padding: 1rem; /* Reducir el padding */
+    }
 }
 
 @media (max-width: 480px) {
-  .ProfileCard {
-    width: 100%; /* Ocupar todo el ancho disponible en móviles */
-    padding: 0.75rem; /* Reducir aún más el padding */
-    margin: 0.25rem; /* Reducir el margen */
-    border-radius: 0.25rem; /* Reducir el radio de las esquinas */
-  }
+    .ProfileCard {
+        padding: 0.75rem; /* Reducir aún más el padding */
+        margin: 0.25rem; /* Reducir el margen */
+        border-radius: 0.25rem; /* Reducir el radio de las esquinas */
+    }
 }
-
-
-  .ProfileCard h2{
- 
+  
+  @media (max-width: 480px) {
+    .ProfileCard {
+      max-width: 100%; /* Limita el ancho del contenedor izquierdo */
+      width: 100%; /* Ocupar todo el ancho disponible en móviles */
+      padding: 0.75rem; /* Reducir aún más el padding */
+      margin: 0.25rem; /* Reducir el margen */
+      border-radius: 0.25rem; /* Reducir el radio de las esquinas */
+    }
+  }
+  
+  .ProfileCard h2 {
     font-size: 48px;
     font-family: 'Raleway', Helvetica, sans-serif;
     color: #009000;
     text-align: center;
     margin-bottom: 0.5rem;
   }
+  
   .EditButton {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
     width: 25%;
   }
-  .editIcon{
+  
+  .editIcon {
     color: black;
     font-size: 1.5rem;
     width: 125px;
@@ -64,42 +93,40 @@
     align-items: center;
     justify-content: center;
   }
-.Info{
-
+  
+  .Info {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 2.5rem;
-}
-
-
-.Imagenperfil{
+  }
+  
+  .Imagenperfil {
     border-radius: 50%;
     width: 10rem;
     height: 10rem;
     object-fit: cover;
     margin-bottom: 1.5rem;
-    overflow: hidden
-}
-
-
-.Imagenperfilz{
+    overflow: hidden; /* Asegura que la imagen no sobresalga del contenedor */
+  }
+  
+  .Imagenperfilz {
     object-fit: cover;
     width: 100%;
     height: 100%;
     border-radius: 100%;
-}
-
-.Imagenperfil p {
+  }
+  
+  .Imagenperfil p {
     font-family: 'Raleway', Helvetica, sans-serif;
     font-weight: 400;
     font-size: 1rem;
     text-align: center;
     color: black;
     margin-top: 0.5rem;
-}
-
-.Infousuario{
+  }
+  
+  .Infousuario {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
@@ -107,30 +134,34 @@
     white-space: nowrap;
     gap: 10px;
     margin-bottom: 2rem;
-    
-}
-.Columna{
+  }
+  
+  .Columna {
     display: flex;
-}
-.Label{
+  }
+  
+  .Label {
     width: 120px;
     font-family: 'Raleway', Helvetica, sans-serif;
     font-weight: 500;
     font-size: 1rem;
-    color:  #009000;
-}
-.Value{
+    color: #009000;
+  }
+  
+  .Value {
     font-family: 'Raleway', Helvetica, sans-serif;
     font-weight: 500;
     font-size: 1rem;
     color: black;
-}
-.Cerrasesion{
+  }
+  
+  .Cerrasesion {
     display: flex;
     justify-content: flex-end;
     margin-top: 2rem;
-}
-.Cerrasesion button{
+  }
+  
+  .Cerrasesion button {
     background-color: #4caf50;
     color: white;
     border: none;
@@ -142,59 +173,63 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-.logout-button:hover {
+  }
+  
+  .logout-button:hover {
     background-color: #3d8b40;
   }
-/* Estilo CSS para la seccion de actividades*/  
-.Derecha{
+  
+  /* Estilo CSS para la seccion de actividades*/
+  .Derecha {
     flex: 2;
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.2), 0 4px 8px -2px rgba(0, 0, 0, 0.1);
-    margin-top: 1.5rem;
+    margin: 1.5rem auto; /* Centrar el contenedor y agregar margen superior e inferior */
+    width: 95%; /* Reducir el ancho para dejar espacio a los lados */
+    overflow: hidden; /* Evita el desbordamiento horizontal */
+    margin-right: 20px;
   }
-.Estadisticas h2{
+  
+  .Estadisticas h2 {
     font-size: 3.5em;
     font-weight: 500;
     font-family: 'Raleway', Helvetica, sans-serif;
     color: #009000;
     text-align: center;
     margin-bottom: 2rem;
-}
-.EstadisticasActividad{
+  }
+  
+  .EstadisticasActividad {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     margin-bottom: 4rem;
-}
-
-
-.StatCards{
-  border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  background-color: #4caf50;
-  width: 5vw ;
-  height: 8vw;
-}
-
-
-.Label1 {
+  }
+  
+  .StatCards {
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: #4caf50;
+    width: 5vw;
+    height: 8vw;
+  }
+  
+  .Label1 {
     font-weight: 400;
-    font-size: 1em; /* Usamos "em" para que sea relativo al tamaño de la tarjeta */
+    font-size: 1em;
     font-family: 'Lato', Helvetica, sans-serif;
     color: rgb(255, 255, 255);
-
   }
   
   .Value1 {
     font-weight: 600;
-    font-size: 2em; /* Usamos "em" para que sea relativo al tamaño de la tarjeta */
+    font-size: 2em;
     font-family: 'Montserrat-Regular', Helvetica, sans-serif;
     color: rgb(255, 255, 255);
   }
@@ -202,184 +237,186 @@
   /* Media queries para ajustar el tamaño de la fuente en pantallas pequeñas */
   @media (max-width: 768px) {
     .Label1 {
-      font-size: 0.9em; /* Reducimos el tamaño de la fuente en pantallas medianas */
+      font-size: 0.9em;
     }
   
     .Value1 {
-      font-size: 2em; /* Reducimos el tamaño de la fuente en pantallas medianas */
+      font-size: 2em;
     }
   }
   
   @media (max-width: 480px) {
     .Label1 {
-      font-size: 0.8em; /* Reducimos aún más el tamaño de la fuente en móviles */
+      font-size: 0.8em;
     }
   
     .Value1 {
-      font-size: 1.5em; /* Reducimos aún más el tamaño de la fuente en móviles */
+      font-size: 1.5em;
     }
   }
-
-
-
-
-.Proximas-Rutas,
-.Ultimas-Rutas{
+  
+  .Proximas-Rutas,
+  .Ultimas-Rutas {
     font-size: 38px;
     font-weight: 500;
     font-family: 'Raleway', Helvetica, sans-serif;
     color: #009000;
     text-align: center;
     margin-bottom: 2rem;
-}
-.Rutascontainer1{
+    width: 100%; /* Asegura que no exceda el ancho de la página */
+    overflow: hidden; /* Evita el desbordamiento horizontal */
+  }
+  
+  .Rutascontainer1,
+  .Rutascontainer2 {
     display: flex;
     gap: 2rem;
-}
-.Wrapcard{
-    flex: 1;
-}
-
-
-.InfoRutas1,
-.InfoRutas2{
-  overflow: hidden;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  background-color: white;
-  width: 50%;
-  height: 30vw;
-
-}
-.imagen-ruta{
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    overflow-y: hidden; /* Evita el desplazamiento vertical */
+    white-space: nowrap; /* Evita que los elementos se envuelvan */
+    padding-bottom: 1rem; /* Espacio para la barra de desplazamiento */
+    max-width: 100%; /* Limita el ancho al 100% del contenedor padre */
+  }
+  
+  .InfoRutas1,
+  .InfoRutas2 {
+    flex: 0 0 auto; /* Evita que las tarjetas se compriman */
+    width: 300px; /* Ancho fijo para las tarjetas */
+    height: auto; /* Altura automática */
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: white;
+  }
+  
+  .imagen-ruta {
     position: relative;
-}
-.pngruta{
+  }
+  
+  .pngruta {
     width: 100%;
     height: 200px;
     object-fit: cover;
-}
-
-.Rutainfo{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.5rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-}
-
-.Rutainfo h3{
-  font-size: 20px;
-  font-family: 'Paytone One', Helvetica, sans-serif;
-  color: white;
-}
-.detallesruta{
+  }
+  
+  .Rutainfo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  }
+  
+  .Rutainfo h3 {
+    font-size: 20px;
+    font-family: 'Paytone One', Helvetica, sans-serif;
+    color: white;
+  }
+  
+  .detallesruta {
     padding: 0.75rem;
-}
-.guide-info,
-.route-info {
+  }
+  
+  .guide-info,
+  .route-info {
     font-size: 0.85rem;
     font-family: 'Raleway', Helvetica, sans-serif;
     margin-bottom: 0.25rem;
     text-align: left;
     color: black;
-}
-.nombreguia{
+  }
+  
+  .nombreguia {
     font-size: 16px;
     font-family: 'Raleway', Helvetica, sans-serif;
     font-weight: bold;
-}
-.rol{
-  display: flex;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-family: 'Raleway', Helvetica, sans-serif;
-  font-weight: bold;
-  margin-bottom: 0.25rem;
-
-}
-.route-info{
-    font-size: 14px;
-}
-.Rutascontainer2{
+  }
+  
+  .rol {
     display: flex;
-    gap: 2rem;
     justify-content: center;
-}
-
-/* Media Queries para hacer la página responsive */
-@media (max-width: 1200px) {
-  .perfil {
-    flex-direction: column;
+    font-size: 0.75rem;
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
   }
-
-  .Izquierda,
-  .Derecha {
-    flex: 1;
-    width: 100%;
-  }
-
-  .ProfileCard {
-    width: 100%;
-    max-width: none;
-  }
-
-  .EstadisticasActividad {
-    flex-direction: column;
-  }
-
-  .StatCards {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .Rutascontainer1,
-  .Rutascontainer2 {
-    flex-direction: column;
-  }
-
-  .InfoRutas1,
-  .InfoRutas2 {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .ProfileCard h2 {
-    font-size: 36px;
-  }
-
-  .Estadisticas h2,
-  .Proximas-Rutas h2,
-  .Ultimas-Rutas h2 {
-    font-size: 28px;
-  }
-
-  .Label,
-  .Value {
-    font-size: 1rem;
-  }
-
-  .Label1,
-  .Value1 {
-    font-size: 1.25rem;
-  }
-
-  .Rutainfo h3 {
-    font-size: 24px;
-  }
-
-  .guide-info,
-  .route-info {
-    font-size: 0.875rem;
-  }
-
-  .nombreguia {
-    font-size: 16px;
-  }
-
+  
   .route-info {
     font-size: 14px;
   }
-}
+  
+  /* Media Queries para hacer la página responsive */
+  @media (max-width: 1200px) {
+    .perfil {
+      flex-direction: column;
+    }
+  
+    .Izquierda,
+    .Derecha {
+      flex: 1;
+      width: 100%;
+    }
+  
+    .ProfileCard {
+      width: 100%;
+      max-width: none;
+    }
+  
+    .EstadisticasActividad {
+      flex-direction: column;
+    }
+  
+    .StatCards {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .Rutascontainer1,
+    .Rutascontainer2 {
+      flex-direction: column;
+    }
+  
+    .InfoRutas1,
+    .InfoRutas2 {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .ProfileCard h2 {
+      font-size: 36px;
+    }
+  
+    .Estadisticas h2,
+    .Proximas-Rutas h2,
+    .Ultimas-Rutas h2 {
+      font-size: 28px;
+    }
+  
+    .Label,
+    .Value {
+      font-size: 1rem;
+    }
+  
+    .Label1,
+    .Value1 {
+      font-size: 1.25rem;
+    }
+  
+    .Rutainfo h3 {
+      font-size: 24px;
+    }
+  
+    .guide-info,
+    .route-info {
+      font-size: 0.875rem;
+    }
+  
+    .nombreguia {
+      font-size: 16px;
+    }
+  
+    .route-info {
+      font-size: 14px;
+    }
+  }
