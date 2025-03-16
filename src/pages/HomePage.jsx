@@ -68,6 +68,7 @@ export default function HomePage({ frase }) {
         <div className='rutas'>
           {rutas.map((ruta) => (
             <RutasPopulares
+              key = {ruta.id}
               link={ruta.imagen}
               nombre={ruta.nombre}
               nombreGuia={ruta.nombreguia}
