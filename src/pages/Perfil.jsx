@@ -27,6 +27,15 @@ export default function Perfil() {
         Kmrecorridos: "0 KM",
         Rutasrealizadas: "0",
     });
+ 
+    //borrar
+    const [isEditing, setIsEditing] = useState(false); // Estado para controlar la visibilidad del formulario de edición
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        profileImage: "",
+    });
 
     // Función para obtener los detalles de las rutas
     const getRouteDetails = async (routeIds) => {
@@ -65,6 +74,69 @@ export default function Perfil() {
         };
     };
 
+
+    //borrar
+    const handleEditClick = () => {
+      setIsEditing(true);
+      setFormData({
+          name: userData1.name,
+          phone: userData1.phone,
+          email: userData1.email,
+          profileImage: userData1.profileImage,
+      });
+  };
+
+  // Función para manejar cambios en el formulario
+  const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+          ...formData,
+          [name]: value,
+      });
+  };
+
+  // Función para manejar la subida de la imagen de perfil
+  const handleImageUpload = async (e) => {
+      const file = e.target.files[0];
+      if (file) {
+          const storageRef = ref(storage, `profileImages/${profile.uid}/${file.name}`);
+          await uploadBytes(storageRef, file);
+          const downloadURL = await getDownloadURL(storageRef);
+          setFormData({
+              ...formData,
+              profileImage: downloadURL,
+          });
+      }
+  };
+
+  // Función para guardar los cambios
+  const handleSave = async () => {
+      try {
+          const userDocRef = doc(db, 'users', profile.uid); // Asegúrate de que 'users' es el nombre de tu colección
+          await updateDoc(userDocRef, {
+              nombre: formData.name,
+              telefono: formData.phone,
+              email: formData.email,
+              image: formData.profileImage,
+          });
+
+          // Actualiza el estado local
+          setUserData1({
+              ...userData1,
+              name: formData.name,
+              phone: formData.phone,
+              email: formData.email,
+              profileImage: formData.profileImage,
+          });
+
+          setIsEditing(false); // Cierra el formulario de edición
+          alert('Perfil actualizado correctamente.');
+      } catch (error) {
+          console.error('Error al actualizar el perfil:', error);
+          alert('Hubo un error al actualizar el perfil.');
+      }
+  };
+
     useEffect(() => {
         const fetchData = async () => {
             if (profile) { // Solo ejecuta si profile no es null o undefined
@@ -98,46 +170,77 @@ export default function Perfil() {
     }, [profile]); // Este efecto se ejecuta cuando profile cambia
 
     return (
-        <div className='perfil'>
-            {/* Renderiza el perfil */}
-            <div className='Izquierda'>
-                <div className='ProfileCard'>
-                    <h2>Perfil</h2>
-                    <div className='EditButton'>
-                        <button className="editIcon">
-                            <BiEdit />
-                        </button>
-                    </div>
-                    <div className='Info'>
-                        <div className='Imagenperfil'>
-                            <img className="Imagenperfilz" src={userData1.profileImage} alt="ProfileImage" />
-                            <p className='Rolusuario'>{userData1.role}</p>
-                        </div>
-                        <div className='Infousuario'>
-                            <div className='Columna'>
-                                <span className="Label">Nombre: </span>
-                                <span className='Value'> {userData1.name}</span>
-                            </div>
-                            <div className='Columna'>
-                                <span className="Label">Teléfono: </span>
-                                <span className="Value"> {userData1.phone}</span>
-                            </div>
-                            <div className='Columna'>
-                                <span className="Label">Correo: </span>
-                                <span className="Value"> {userData1.email}</span>
-                            </div>
-                            {profile?.guia && (
-                                <div className='GuideDashboardButton'>
-                                    {/* Usa Link para redirigir al dashboard del guía */}
-                                    <Link to="/guia" className="guideDashboardBtn">
-                                        Ir al Dashboard de Guía
-                                    </Link>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div className='perfil'>
+          <div className='Izquierda'>
+              <div className='ProfileCard'>
+                  <h2>Perfil</h2>
+                  <div className='EditButton'>
+                      <button className="editIcon" onClick={handleEditClick}>
+                          <BiEdit />
+                      </button>
+                  </div>
+                  <div className='Info'>
+                      <div className='Imagenperfil'>
+                          <img className="Imagenperfilz" src={userData1.profileImage} alt="ProfileImage" />
+                          <p className='Rolusuario'>{userData1.role}</p>
+                      </div>
+                      {isEditing ? (
+                          <div className='EditForm'>
+                              <input
+                                  type="text"
+                                  name="name"
+                                  value={formData.name}
+                                  onChange={handleInputChange}
+                                  placeholder="Nombre"
+                              />
+                              <input
+                                  type="text"
+                                  name="phone"
+                                  value={formData.phone}
+                                  onChange={handleInputChange}
+                                  placeholder="Teléfono"
+                              />
+                              <input
+                                  type="email"
+                                  name="email"
+                                  value={formData.email}
+                                  onChange={handleInputChange}
+                                  placeholder="Correo"
+                              />
+                              <input
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={handleImageUpload}
+                              />
+                              <button onClick={handleSave}>Guardar</button>
+                              <button onClick={() => setIsEditing(false)}>Cancelar</button>
+                          </div>
+                      ) : (
+                          <div className='Infousuario'>
+                              <div className='Columna'>
+                                  <span className="Label">Nombre: </span>
+                                  <span className='Value'> {userData1.name}</span>
+                              </div>
+                              <div className='Columna'>
+                                  <span className="Label">Teléfono: </span>
+                                  <span className="Value"> {userData1.phone}</span>
+                              </div>
+                              <div className='Columna'>
+                                  <span className="Label">Correo: </span>
+                                  <span className="Value"> {userData1.email}</span>
+                              </div>
+                              {profile?.guia && (
+                                  <div className='GuideDashboardButton'>
+                                      <Link to="/guia" className="guideDashboardBtn">
+                                          Ir al Dashboard de Guía
+                                      </Link>
+                                  </div>
+                              )}
+                          </div>
+                      )}
+                  </div>
+              </div>
+          </div>
             {/* Renderiza las estadísticas y rutas */}
             <div className='Derecha'>
                 <div className='Estadisticas'>
