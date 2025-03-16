@@ -18,6 +18,9 @@ export default function InfoRutas() {
             horas="1"
             minutos="55"
             dificultad="Alta"
+            paseo= {true}
+            acampada= {true}
+            URLmap='https://maps.app.goo.gl/HQEkU29bpPdawtue7'
             />
         </div>
         
