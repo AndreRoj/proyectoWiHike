@@ -79,7 +79,7 @@ export function Navbar() {
               // Si el usuario está logueado
               <>
                 <li>
-                  <Link className="options" to="/profile" style={{ color: '#4CAF50' }} onClick={toggleMenu}>
+                  <Link className="options" to="/perfil" style={{ color: '#4CAF50' }} onClick={toggleMenu}>
                     {profile?.nombre || profile?.email || 'Perfil'}
                   </Link>
                 </li>
@@ -141,7 +141,7 @@ export function Navbar() {
           // Si el usuario está logueado
           <>
             <li>
-              <Link className="options" to="/profile" style={{ color: '#4CAF50' }}>
+              <Link className="options" to="/perfil" style={{ color: '#4CAF50' }}>
                 {profile?.nombre || profile?.email || 'Perfil'}
               </Link>
             </li>

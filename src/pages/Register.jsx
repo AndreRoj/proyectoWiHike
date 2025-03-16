@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './Register.css'; 
 import { db } from '../firebase';
-import { collection, addDoc } from "firebase/firestore"; 
+//import { collection, addDoc } from "firebase/firestore"; 
 import DatePicker from 'react-datepicker';
 import { setDoc, doc } from "firebase/firestore";
 import 'react-datepicker/dist/react-datepicker.css'; 
@@ -25,8 +25,48 @@ export default function Register() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
+    const validateName = (value) => {
+        const regex = /^[A-Za-z\s]+$/
+        return regex.test(value)
+    }
+
+    const validateLastName = (value) => {
+        const regex = /^[A-Za-z\s]+$/
+        return regex.test(value)
+    }
+
+    const validateCedula = (value) => {
+        const regex = /^\d{6,8}$/
+        return regex.test(value)
+    }
+
+    const validatePhone = (value) => {
+        const regex =/^\d{11}$/
+        return regex.test(value)
+    }
+
+    const handleRegister = async (e) =>{
+        e.preventDefault()
+        
+        if(!validateName(name)){
+            setError('El nombre solo puede contener letras y espacios');
+            return;
+        }
+
+        if(!validateLastName(lastName)){
+            setError('El apellido solo puede contener letras y espacios');
+            return;
+        }
+
+        if(!validateCedula(cedula)){
+            setError('Error en la cédula');
+            return;
+        }
+
+        if(!validatePhone(phone)){
+            setError('El teléfono debe contener 11 dígitos');
+            return;
+        }
 
         // Validación del dominio del correo
         if (!email.endsWith('@correo.unimet.edu.ve')) {
