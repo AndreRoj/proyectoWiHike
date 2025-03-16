@@ -291,6 +291,9 @@
   .imagen-ruta {
     position: relative;
   }
+  .imagen-ruta img {
+    border-radius: 0.5rem;
+  }
   
   .pngruta {
     width: 100%;

@@ -2,15 +2,41 @@ import React, { useContext } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import './Perfil.css';
 import "../styles/RutasPopulares.css";
+import { UserContext } from '../Context/UserContext';
 
 export default function Perfil() {
-  const userData1 = {
-    name: "Nicole Tolve",
-    role: "Estudiante",
-    phone: "+58 4241392205",
-    email: "Nicole@correo.unimet.edu.ve",
-    profileImage: "https://i.pinimg.com/236x/35/f6/71/35f6716adc65383508eca7cfda5b5594.jpg",
-  };
+    const profileContext = React.useContext(UserContext);
+    const { logged, profile } = profileContext;
+
+
+    console.log(logged, profile)
+
+    const userData1 = {
+        name: "",
+        role: "",
+        phone: "",
+        email: "",
+        profileImage: "",
+      };
+    
+      // Actualiza userData1 según el valor de profile.guia
+      if (profile?.guia === false) {
+        userData1.name = profile.nombre ?? "Nombre no disponible";
+        userData1.role = "Estudiante";
+        userData1.phone = profile.telefono ?? "Teléfono no disponible";
+        userData1.email = profile.email ?? "Email no disponible";
+        userData1.profileImage = profile.image ?? "https://img.freepik.com/vector-premium/icono-perfil-avatar-predeterminado-imagen-usuario-redes-sociales-icono-avatar-gris-silueta-perfil-blanco-ilustracion-vectorial_561158-3383.jpg?semt=ais_hybrid";
+      } else if (profile?.guia === true) {
+        userData1.name = profile.nombre ?? "Nombre no disponible";
+        userData1.role = "Guía";
+        userData1.phone = profile.telefono ?? "Teléfono no disponible";
+        userData1.email = profile.email ?? "Email no disponible";
+        userData1.profileImage = profile.image ?? "https://img.freepik.com/vector-premium/icono-perfil-avatar-predeterminado-imagen-usuario-redes-sociales-icono-avatar-gris-silueta-perfil-blanco-ilustracion-vectorial_561158-3383.jpg?semt=ais_hybrid";
+      }
+
+    
+
+
 
   const activityStats = {
     Tiemposenderismo: "5h 10m",
@@ -28,7 +54,7 @@ export default function Perfil() {
       startTime: "10:00am",
       endTime: "1:14pm (aprox)",
       image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-    },
+    }
   ];
 
   const latestRoutes = [
@@ -40,47 +66,7 @@ export default function Perfil() {
         difficulty: "baja",
         duration: "1 hora 55 min",
         image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-      },
-      {
-        name: "SABAS NIEVES",
-        guide: "Jose Fernandez",
-        guideRole: "Guía de senderismo",
-        difficulty: "baja",
-        duration: "1 hora 55 min",
-        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-      },
-      {
-        name: "SABAS NIEVES",
-        guide: "Jose Fernandez",
-        guideRole: "Guía de senderismo",
-        difficulty: "baja",
-        duration: "1 hora 55 min",
-        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-      },
-      {
-        name: "SABAS NIEVES",
-        guide: "Jose Fernandez",
-        guideRole: "Guía de senderismo",
-        difficulty: "baja",
-        duration: "1 hora 55 min",
-        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-      },
-      {
-        name: "SABAS NIEVES",
-        guide: "Jose Fernandez",
-        guideRole: "Guía de senderismo",
-        difficulty: "baja",
-        duration: "1 hora 55 min",
-        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-      },
-      {
-        name: "SABAS NIEVES",
-        guide: "Jose Fernandez",
-        guideRole: "Guía de senderismo",
-        difficulty: "baja",
-        duration: "1 hora 55 min",
-        image: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-      },
+      }
       
   ];
 
