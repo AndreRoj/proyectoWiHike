@@ -40,8 +40,7 @@ function App() {
         <Route path='rutas' element = {<Rutas/>} />
         <Route path='perfil' element = {<Perfil/>} />
         <Route path='guia' element = {<Guia/>} />
-        
-        <Route path='info_rutas' element ={<InfoRutas/>} />
+        <Route path="/info_rutas/:rutaId" element={<InfoRutas />} /> {/* Ruta dinámica */}
       
       </Route>
 

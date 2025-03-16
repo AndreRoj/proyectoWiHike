@@ -1,29 +1,111 @@
-import React from "react";
-import "../styles/InfoRuta.css"
+import React, { useState, useEffect } from "react";
+import "../styles/InfoRuta.css";
 import { FaStar } from "react-icons/fa";
-import { FaMapSigns } from "react-icons/fa"; /*icono de letreritos */
-import { FaHiking } from "react-icons/fa"; /*icono de persona caminando */
-import { BsPersonWalking } from "react-icons/bs"; /*icono de persona caminando2 */
-import { GiCampingTent } from "react-icons/gi"; /*campamento*/
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";/*icono de check */
-import { GoPerson } from "react-icons/go";/*icono de persona */
-import { FaMapMarkerAlt } from "react-icons/fa";/*icono de marquita de mapa */
-import { VscTriangleDown } from "react-icons/vsc";/*triangulo hacia abajo */
+import { FaMapSigns } from "react-icons/fa";
+import { FaHiking } from "react-icons/fa";
+import { BsPersonWalking } from "react-icons/bs";
+import { GiCampingTent } from "react-icons/gi";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { GoPerson } from "react-icons/go";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { VscTriangleDown } from "react-icons/vsc";
+import { db } from '../firebase'; // Importa tu configuración de Firebase
+import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import Calendar from 'react-calendar'; // Importa un componente de calendario
+import 'react-calendar/dist/Calendar.css'; // Estilos del calendario
 
-export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, descripcion, distancia, desnivel_positivo, horas, minutos, dificultad, paseo, acampada, URLmap}) {
+export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, descripcion, kilometros, desnivel_positivo, duracion, dificultad, paseo, acampada, URLmap }) {
+    const [showCalendar, setShowCalendar] = useState(false); // Estado para mostrar/ocultar el calendario
+    const [availableDates, setAvailableDates] = useState([]); // Estado para almacenar las fechas disponibles
+    const [loading, setLoading] = useState(false); // Estado para manejar la carga
+    const [error, setError] = useState(null); // Estado para manejar errores
+
+    // Función para obtener las fechas disponibles
+    const handleCheckAvailability = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            console.log("Obteniendo documento de la ruta...");
+            console.log("ID de la ruta:", id);
+
+            // Validar que el ID no sea undefined
+            if (!id) {
+                throw new Error('El ID de la ruta no está definido.');
+            }
+
+            // Crear la referencia al documento usando el ID como nombre del documento
+            const rutaDocRef = doc(db, 'rutas', id);
+            const rutaDoc = await getDoc(rutaDocRef);
+
+            if (!rutaDoc.exists()) {
+                throw new Error('No se encontró la ruta');
+            }
+
+            const rutaData = rutaDoc.data();
+            console.log("Datos de la ruta:", rutaData);
+
+            const rutasCalendarIds = rutaData.rutascalendar || [];
+            console.log("IDs de rutas calendar:", rutasCalendarIds);
+
+            if (rutasCalendarIds.length === 0) {
+                setShowCalendar(false);
+                setError('No hay rutas disponibles en este momento.');
+                return;
+            }
+
+            // Obtener los documentos de la colección 'programado' usando los IDs de rutascalendar
+            const programadoCollection = collection(db, 'programado');
+            const availableDates = [];
+
+            console.log("Obteniendo fechas disponibles...");
+            for (const programadoId of rutasCalendarIds) {
+                console.log("Obteniendo documento de programado con ID:", programadoId);
+                const programadoDocRef = doc(programadoCollection, programadoId);
+                const programadoDoc = await getDoc(programadoDocRef);
+
+                if (programadoDoc.exists()) {
+                    const programadoData = programadoDoc.data();
+                    console.log("Datos de programado:", programadoData);
+
+                    if (programadoData.dia) {
+                        console.log("Fecha encontrada:", programadoData.dia.toDate());
+                        availableDates.push(programadoData.dia.toDate()); // Convierte Timestamp a Date
+                    } else {
+                        console.warn("El campo 'dia' no existe en el documento de programado:", programadoId);
+                    }
+                } else {
+                    console.warn("No se encontró el documento de programado con ID:", programadoId);
+                }
+            }
+
+            if (availableDates.length === 0) {
+                setError('No hay fechas disponibles para esta ruta.');
+            } else {
+                setAvailableDates(availableDates);
+                setShowCalendar(true);
+            }
+        } catch (error) {
+            console.error('Error al obtener la disponibilidad:', error);
+            setError('Hubo un error al obtener la disponibilidad.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
-        <div className="rutaInfo-content" syte>
-                <div className="nombreRuta">{nombre}</div>
+        <div className="rutaInfo-content">
+            <div className="nombreRuta">{nombre}</div>
             <div className='rating'>
-                <FaStar style={{color: 'black',fontSize: '30px'}} />
-                <span style={{color: 'black',fontSize: '20px'}}>{estrellas}</span>
+                <FaStar style={{ color: 'black', fontSize: '30px' }} />
+                <span style={{ color: 'black', fontSize: '20px' }}>{estrellas}</span>
             </div>
             <div className="gallery">
                 <div className="main-imag">
-                    <img src={imagenPrincipal} alt="Imagen principal" />
+                    <img src={imagen} alt="Imagen principal" />
                 </div>
                 <div className="side-imag">
-                    <img src={imagen2} alt="Imagen lateral 1" />   
+                    <img src={imagen2} alt="Imagen lateral 1" />
                     <img src={imagen3} alt="Imagen lateral 2" />
                 </div>
             </div>
@@ -32,7 +114,7 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
             </p>
             <div className="metricas-container">
                 <div className="metrica">
-                    <span className="valor">{distancia}</span>
+                    <span className="valor">{kilometros}</span>
                     <span className="unidad">km</span>
                     <span className="detalles">Distancia</span>
                 </div>
@@ -44,9 +126,7 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
                 </div>
                 <div className="separador"></div>
                 <div className="metrica">
-                    <span className="valor">{horas}</span>
-                    <span className="unidad">h</span>
-                    <span className="valor">{minutos}</span>
+                    <span className="valor">{duracion}</span>
                     <span className="unidad">min</span>
                     <span className="detalles">Tiempo Estimado</span>
                 </div>
@@ -57,27 +137,27 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
                 </div>
             </div>
             <div className="Actividad-title">
-                <FaMapSigns style={{color: 'black',fontSize: '50px',justifyContent: 'center',alignItems: 'center'}}/>
+                <FaMapSigns style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
                 <span>Actividades</span>
             </div>
             <div className="Actividad-container">
                 {paseo && (
-                <div className="Act-metrica">
-                    <FaHiking style={{color: 'black',fontSize: '50px', justifyContent: 'center'}}/>
-                    <span className="detalles">Senderismo</span>
-                </div>
+                    <div className="Act-metrica">
+                        <FaHiking style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
+                        <span className="detalles">Senderismo</span>
+                    </div>
                 )}
                 {paseo && (
-                <div className="Act-metrica">
-                    <BsPersonWalking style={{color: 'black',fontSize: '50px',justifyContent: 'center'}}/>
-                    <span className="detalles">Paseo</span>
-                </div>
+                    <div className="Act-metrica">
+                        <BsPersonWalking style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
+                        <span className="detalles">Paseo</span>
+                    </div>
                 )}
                 {acampada && (
-                <div className="Act-metrica">
-                    <GiCampingTent style={{color: 'black',fontSize: '50px',justifyContent: 'center'}}/>
-                    <span className="detalles">Acampada</span>
-                </div>
+                    <div className="Act-metrica">
+                        <GiCampingTent style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
+                        <span className="detalles">Acampada</span>
+                    </div>
                 )}
             </div>
             <div className="container2">
@@ -87,16 +167,16 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
                     </div>
                     <div className="container3">
                         <div className="metrica2">
-                            <IoMdCheckmarkCircleOutline style={{color: 'black',fontSize: '90px',justifyContent: 'center',alignItems: 'center'}}/>
+                            <IoMdCheckmarkCircleOutline style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
                         <div className="metrica2">
                             <span><strong>Cancela sin cargos</strong></span>
-                            <span className="informacion">Cancela hasta 3 hrs antes para obtener el reebolso completo</span>
+                            <span className="informacion">Cancela hasta 3 hrs antes para obtener el reembolso completo</span>
                         </div>
                     </div>
                     <div className="container3">
                         <div className="metrica2">
-                            <GoPerson style={{color: 'black',fontSize: '90px', justifyContent: 'center',alignItems: 'center'}}/>
+                            <GoPerson style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
                         <div className="metrica2">
                             <span><strong>Grupo Reducido</strong></span>
@@ -105,28 +185,40 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
                     </div>
                     <div className="container3">
                         <div className="metrica2">
-                            <FaMapMarkerAlt style={{color: 'black',fontSize: '90px', justifyContent: 'center',alignItems: 'center'}}/>
+                            <FaMapMarkerAlt style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
-                    <div className="metrica2">
-                        <span><strong>Punto de encuentro</strong></span>
-                        <a href={URLmap} target="_blank" rel="noopener noreferrer">
-                            <span className="tipolink">Abre en Google Maps</span>
-                        </a>
-                    </div>
+                        <div className="metrica2">
+                            <span><strong>Punto de encuentro</strong></span>
+                            <a href={URLmap} target="_blank" rel="noopener noreferrer">
+                                <span className="tipolink">Abre en Mapa</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div className="metrica2">
                     <div className="InfoR-button-container">
-                        <div className="InfoR-button">
+                        <div className="InfoR-button" onClick={handleCheckAvailability}>
                             Ver disponibilidad
-                            <VscTriangleDown style={{color: 'white',fontSize: '30px', justifyContent: 'flex-end',alignItems: 'flex-end'}}/>
+                            <VscTriangleDown style={{ color: 'white', fontSize: '30px', justifyContent: 'flex-end', alignItems: 'flex-end' }} />
                         </div>
                     </div>
                 </div>
             </div>
-            
 
-            
+            {/* Mostrar el calendario si hay fechas disponibles */}
+            {showCalendar && (
+                <div className="calendar-container">
+                    <h3>Fechas disponibles:</h3>
+                    <Calendar
+                        value={availableDates}
+                        tileDisabled={({ date }) => !availableDates.some(d => d.toDateString() === date.toDateString())}
+                    />
+                </div>
+            )}
+
+            {/* Mostrar mensajes de error o carga */}
+            {loading && <p>Cargando disponibilidad...</p>}
+            {error && <p className="error-message">{error}</p>}
         </div>
     );
 }
