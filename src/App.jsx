@@ -9,12 +9,14 @@ import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
 import Contactanos from './pages/Contactanos'; 
 import ReservaPago from './pages/ReservaPago';
+import PPrincipal1 from './admin/PPrincipal1';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import { UserProvider } from './Context/UserContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import React, { useEffect } from 'react';
+
 
 function App() {
   useEffect(() => {
@@ -46,6 +48,13 @@ function App() {
         <Route path='contactanos' element = {<Contactanos/>} />
         <Route path='reserva' element = {<ReservaPago/>} />
       
+      </Route>
+
+      <Route >
+        <Route path='*' element = {<NotFound/>}/>
+        <Route path='admin' element={<PPrincipal1/>} />
+      
+
       </Route>
 
     </Routes>
