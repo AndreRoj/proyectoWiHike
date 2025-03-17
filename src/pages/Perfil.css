@@ -361,6 +361,16 @@
     font-size: 14px;
   }
   
+  .perfilEditForm {
+    font-family: 'Raleway-Regular';
+    font-size: 15px;
+    justify-content: flex-start;
+    align-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+    color:#868686;
+  }
+
   /* Media Queries para hacer la página responsive */
   @media (max-width: 1200px) {
     .perfilperfil {
@@ -436,7 +446,7 @@
       font-size: 14px;
     }
   }
-
+  
 
   @font-face {
     font-family: 'Raleway-Regular';

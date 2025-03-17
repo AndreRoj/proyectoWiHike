@@ -185,7 +185,9 @@ export default function Perfil() {
                           <p className='perfilRolusuario'>{userData1.role}</p>
                       </div>
                       {isEditing ? (
-                          <div className='perfilEditForm'>
+                          <div className='container'>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Nombre: </span>
                               <input
                                   type="text"
                                   name="name"
@@ -193,6 +195,9 @@ export default function Perfil() {
                                   onChange={handleInputChange}
                                   placeholder="Nombre"
                               />
+                            </div>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Telefono: </span>  
                               <input
                                   type="text"
                                   name="phone"
@@ -200,6 +205,9 @@ export default function Perfil() {
                                   onChange={handleInputChange}
                                   placeholder="Teléfono"
                               />
+                            </div>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Email: </span>   
                               <input
                                   type="email"
                                   name="email"
@@ -207,14 +215,21 @@ export default function Perfil() {
                                   onChange={handleInputChange}
                                   placeholder="Correo"
                               />
+                            </div>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Foto de perfil: </span> 
                               <input
                                   type="file"
                                   accept="image/*"
                                   onChange={handleImageUpload}
                               />
+                            </div>
+                            <div style={{marginTop: '30px'}}>
                               <button onClick={handleSave}>Guardar</button>
                               <button onClick={() => setIsEditing(false)}>Cancelar</button>
-                          </div>
+                            </div>
+                        </div>
+                          
                       ) : (
                           <div className='perfilInfousuario'>
                               <div className='perfilColumna'>

@@ -120,110 +120,110 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
     };
 
     return (
-        <div className="rutaInfo-content">
-            <div className="nombreRuta">{nombre}</div>
+        <div className="InfoRuta-content">
+            <div className="InfoRutanombre">{nombre}</div>
             <div className='rating'>
                 <FaStar style={{ color: 'black', fontSize: '30px' }} />
                 <span style={{ color: 'black', fontSize: '20px' }}>{estrellas}</span>
             </div>
-            <div className="gallery">
-                <div className="main-imag">
+            <div className="InfoRutagallery">
+                <div className="InfoRutamain-imag">
                     <img src={imagen} alt="Imagen principal" />
                 </div>
-                <div className="side-imag">
+                <div className="InfoRutaside-imag">
                     <img src={imagen2} alt="Imagen lateral 1" />
                     <img src={imagen3} alt="Imagen lateral 2" />
                 </div>
             </div>
-            <p className="infoRuta-description">
+            <p className="InfoRuta-description">
                 {descripcion}
             </p>
-            <div className="metricas-container">
-                <div className="metrica">
-                    <span className="valor">{kilometros}</span>
-                    <span className="unidad">km</span>
-                    <span className="detalles">Distancia</span>
+            <div className="InfoRutametricas-container">
+                <div className="InfoRutametrica">
+                    <span className="InfoRutavalor">{kilometros}</span>
+                    <span className="InfoRutaunidad">km</span>
+                    <span className="InfoRutadetalles">Distancia</span>
                 </div>
-                <div className="separador"></div>
-                <div className="metrica">
-                    <span className="valor">{desnivel_positivo}</span>
-                    <span className="unidad">m</span>
-                    <span className="detalles">Desnivel Positivo</span>
+                <div className="InfoRuta-separador"></div>
+                <div className="InfoRutametrica">
+                    <span className="InfoRutavalor">{desnivel_positivo}</span>
+                    <span className="InfoRutaunidad">m</span>
+                    <span className="InfoRutadetalles">Desnivel Positivo</span>
                 </div>
-                <div className="separador"></div>
-                <div className="metrica">
-                    <span className="valor">{duracion}</span>
-                    <span className="unidad">min</span>
-                    <span className="detalles">Tiempo Estimado</span>
+                <div className="InfoRuta-separador"></div>
+                <div className="InfoRutametrica">
+                    <span className="InfoRutavalor">{duracion}</span>
+                    <span className="InfoRutaunidad">min</span>
+                    <span className="InfoRutadetalles">Tiempo Estimado</span>
                 </div>
-                <div className="separador"></div>
-                <div className="metrica">
-                    <span className="valor">{dificultad}</span>
-                    <span className="detalles">Nivel de Dificultad</span>
+                <div className="InfoRuta-separador"></div>
+                <div className="InfoRutametrica">
+                    <span className="InfoRutavalor">{dificultad}</span>
+                    <span className="InfoRutadetalles">Nivel de Dificultad</span>
                 </div>
             </div>
-            <div className="Actividad-title">
+            <div className="InfoRutaActividad-title">
                 <FaMapSigns style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
                 <span>Actividades</span>
             </div>
-            <div className="Actividad-container">
+            <div className="InfoRutaActividad-container">
                 {paseo && (
-                    <div className="Act-metrica">
+                    <div className="InfoRutaAct-metrica">
                         <FaHiking style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
-                        <span className="detalles">Senderismo</span>
+                        <span className="InfoRutadetalles">Senderismo</span>
                     </div>
                 )}
                 {paseo && (
-                    <div className="Act-metrica">
+                    <div className="InfoRutaAct-metrica">
                         <BsPersonWalking style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
-                        <span className="detalles">Paseo</span>
+                        <span className="InfoRutadetalles">Paseo</span>
                     </div>
                 )}
                 {acampada && (
-                    <div className="Act-metrica">
+                    <div className="InfoRutaAct-metrica">
                         <GiCampingTent style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
-                        <span className="detalles">Acampada</span>
+                        <span className="InfoRutadetalles">Acampada</span>
                     </div>
                 )}
             </div>
-            <div className="container2">
-                <div className="metrica2">
-                    <div className="container3">
+            <div className="InfoRutacontainer2">
+                <div className="InfoRutametrica2">
+                    <div className="InfoRutacontainer3">
                         <span>Informacion sobre el Tour</span>
                     </div>
-                    <div className="container3">
-                        <div className="metrica2">
+                    <div className="InfoRutacontainer3">
+                        <div className="InfoRutametrica2">
                             <IoMdCheckmarkCircleOutline style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
-                        <div className="metrica2">
+                        <div className="InfoRutametrica2">
                             <span><strong>Cancela sin cargos</strong></span>
-                            <span className="informacion">Cancela hasta 3 hrs antes para obtener el reembolso completo</span>
+                            <span className="InfoRutainformacion">Cancela hasta 3 hrs antes para obtener el reembolso completo</span>
                         </div>
                     </div>
-                    <div className="container3">
-                        <div className="metrica2">
+                    <div className="InfoRutacontainer3">
+                        <div className="InfoRutametrica2">
                             <GoPerson style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
-                        <div className="metrica2">
-                            <span><strong>Grupo Reducido</strong></span>
-                            <span className="informacion">Excursiones limitadas a 8 personas</span>
+                        <div className="InfoRutametrica2">
+                            <span><strong>Grupo Amplio</strong></span>
+                            <span className="InfoRutainformacion">Sin limite de personas</span>
                         </div>
                     </div>
-                    <div className="container3">
-                        <div className="metrica2">
+                    <div className="InfoRutacontainer3">
+                        <div className="InfoRutametrica2">
                             <FaMapMarkerAlt style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
-                        <div className="metrica2">
+                        <div className="InfoRutametrica2">
                             <span><strong>Punto de encuentro</strong></span>
                             <a href={URLmap} target="_blank" rel="noopener noreferrer">
-                                <span className="tipolink">Abre en Mapa</span>
+                                <span className="InfoRutatipolink">Abre en Mapa</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div className="metrica2">
-                    <div className="InfoR-button-container">
-                        <div className="InfoR-button" onClick={handleCheckAvailability}>
+                <div className="InfoRutametrica2">
+                    <div className="InfoRuta-button-container">
+                        <div className="InfoRuta-button" onClick={handleCheckAvailability}>
                             Ver disponibilidad
                             <VscTriangleDown style={{ color: 'white', fontSize: '30px', justifyContent: 'flex-end', alignItems: 'flex-end' }} />
                         </div>

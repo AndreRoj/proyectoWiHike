@@ -1,4 +1,4 @@
-.rutaInfo-container {
+.InfoRuta-container {
     font-family: 'Raleway-Regular';
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@
     height: auto;
 }
 
-.rutaInfo-content {
+.InfoRuta-content {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -21,13 +21,13 @@
     width: 100%;
 }
 
-.nombreRuta {
+.InfoRutanombre {
     font-family: 'PaytoneOne';
     font-size: 60px;
     color: rgb(0, 0, 0);
   }
 
-  .gallery {
+  .InfoRutagallery {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -36,33 +36,33 @@
     gap: 20px; /* Espacio entre las imágenes */
   }
   
-  .main-imag {
+  .InfoRutamain-imag {
     flex: 2; /* La imagen principal ocupará el doble de espacio que las imágenes laterales */
     height: 600px; /* Ajusta la altura según sea necesario */
   }
   
-  .main-imag img {
+  .InfoRutamain-imag img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
     border-radius: 8px;
   }
   
-  .side-imag {
+  .InfoRutaside-imag {
     display: flex;
     flex-direction: column;
     gap: 20px; /* Espacio entre las imágenes laterales */
     flex: 1;
   }
   
-  .side-imag img {
+  .InfoRutaside-imag img {
     width: 100%;
     height: 290px;
     object-fit: cover; 
     border-radius: 8px;
   }
 
-  .infoRuta-description {
+  .InfoRuta-description {
     margin-top: 30px; /*para colocar espacio antes del parrafo*/
     margin-bottom: 30px; /*para colocar espacio despues del parrafo*/
     font-family: 'Raleway-Regular';
@@ -71,7 +71,7 @@
     line-height: 1.5;
 }
 
-.metricas-container {
+.InfoRutametricas-container {
   margin-bottom: 30px;
   display: flex;
   justify-content: space-around; /* Distribuye las métricas de manera uniforme */
@@ -81,24 +81,24 @@
   border-radius: 8px;
 }
 
-.metrica {
+.InfoRutametrica {
   text-align: center; /* Centra el contenido */
 }
 
-.valor {
+.InfoRutavalor {
   font-family: 'Raleway-Bold';
   font-size: 80px; 
   font-weight: bold; /* Texto en negrita */
   color: #161616;
 }
 
-.unidad {
+.InfoRutaunidad {
   font-size: 36px;
   color: #666; 
   margin-left: 4px; /* Espacio entre el valor y la unidad */
 }
 
-.detalles {
+.InfoRutadetalles {
   font-family: 'Raleway-Regular';
   font-size: 24px;
   color: #777; 
@@ -106,7 +106,7 @@
   margin-top: 8px; /* Espacio entre el valor y la descripción */
 }
 
-.separador {
+.InfoRuta-separador {
   height: 150px; /* Grosor de la línea */
   background: #2e2e2e;
   width: 3px; /* Ancho completo */
@@ -149,7 +149,7 @@
 }
 
 
-.Actividad-title {
+.InfoRutaActividad-title {
   font-family: 'Raleway-bold';
   color: black;
   font-size: 50px;
@@ -163,7 +163,7 @@
   align-items: center; 
 }
 
-.Actividad-container {
+.InfoRutaActividad-container {
   font-family: 'Raleway-bold';
   color: black;
   font-size: 50px;
@@ -178,7 +178,7 @@
   margin-bottom: 10px;
 }
 
-.Act-metrica {
+.InfoRutaAct-metrica {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,7 +186,7 @@
   gap: 1px; /* Espacio entre el icono y el texto */
 }
 
-.container2 {
+.InfoRutacontainer2 {
   font-family: 'Raleway-bold';
   color: black;
   font-size: 50px;
@@ -197,7 +197,7 @@
   display: flex;
 }
 
-.metrica2 {
+.InfoRutametrica2 {
   font-family: 'Raleway-Bold';
   font-size: 22px;
   display: flex;
@@ -207,7 +207,7 @@
   gap: 1px; 
 }
 
-.container3 {
+.InfoRutacontainer3 {
   font-family: 'Raleway-Bold';
   font-size: 30px;
   color: black;
@@ -220,7 +220,7 @@
   margin-bottom: 6px;
 }
 
-.informacion {
+.InfoRutainformacion {
   font-family: 'Raleway-Regular';
   font-size: 16px;
   display: flex;
@@ -230,7 +230,7 @@
   gap: 1px; 
 }
 
-.tipolink {
+.InfoRutatipolink {
   font-family: 'Raleway-Regular';
   text-decoration: underline;
   font-size: 16px;
@@ -241,7 +241,7 @@
   gap: 1px;
 }
 
-.InfoR-button {
+.InfoRuta-button {
   font-family: Arial;
   font-size: 20px;
   color: white;
@@ -258,11 +258,11 @@
   border-radius: 8px;
 }
 
-.InfoR-button:hover {
+.InfoRuta-button:hover {
   background: linear-gradient(0deg, #45a049, #45a049); /* Cambia el color al pasar el mouse */
 }
 
-.InfoR-button-container {
+.InfoRuta-button-container {
   display: flex;
   justify-content: center; /* Alinea el botón a la derecha */
   align-items: center;
