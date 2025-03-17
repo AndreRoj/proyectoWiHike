@@ -7,6 +7,8 @@ import Rutas from './pages/Rutas';
 import Perfil from './pages/Perfil';
 import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
+import Contactanos from './pages/Contactanos'; 
+import ReservaPago from './pages/ReservaPago';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import { UserProvider } from './Context/UserContext';
@@ -41,6 +43,8 @@ function App() {
         <Route path='perfil' element = {<Perfil/>} />
         <Route path='guia' element = {<Guia/>} />
         <Route path="/info_rutas/:rutaId" element={<InfoRutas />} /> {/* Ruta dinámica */}
+        <Route path='contactanos' element = {<Contactanos/>} />
+        <Route path='reserva' element = {<ReservaPago/>} />
       
       </Route>
 
