@@ -122,6 +122,7 @@ export function InfoRuta({nombre, estrellas, imagenPrincipal, imagen2, imagen3, 
                             <VscTriangleDown style={{color: 'white',fontSize: '30px', justifyContent: 'flex-end',alignItems: 'flex-end'}}/>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             
