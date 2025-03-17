@@ -8,7 +8,7 @@ import { db } from '../firebase';
 import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
 import React, { useEffect, useState } from 'react';
 
-export default function HomePage({ frase }) {
+export default function HomePage() {
   const contextUser = use(UserContext);
   const { user, setUser } = contextUser;
   console.log(user);
@@ -68,7 +68,7 @@ export default function HomePage({ frase }) {
         <div className='rutas'>
           {rutas.map((ruta) => (
             <RutasPopulares
-              key = {ruta.id}
+              id = {ruta.id}
               link={ruta.imagen}
               nombre={ruta.nombre}
               nombreGuia={ruta.nombreguia}

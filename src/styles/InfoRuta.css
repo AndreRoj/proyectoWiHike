@@ -1,0 +1,285 @@
+.rutaInfo-container {
+    font-family: 'Raleway-Regular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    width: 100%;
+    height: auto;
+}
+
+.rutaInfo-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    text-align: left;
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.nombreRuta {
+    font-family: 'PaytoneOne';
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+  }
+
+  .gallery {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* Espacio entre las imágenes */
+  }
+  
+  .main-imag {
+    flex: 2; /* La imagen principal ocupará el doble de espacio que las imágenes laterales */
+    height: 600px; /* Ajusta la altura según sea necesario */
+  }
+  
+  .main-imag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    border-radius: 8px;
+  }
+  
+  .side-imag {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las imágenes laterales */
+    flex: 1;
+  }
+  
+  .side-imag img {
+    width: 100%;
+    height: 290px;
+    object-fit: cover; 
+    border-radius: 8px;
+  }
+
+  .infoRuta-description {
+    margin-top: 30px; /*para colocar espacio antes del parrafo*/
+    margin-bottom: 30px; /*para colocar espacio despues del parrafo*/
+    font-family: 'Raleway-Regular';
+    font-size: 32px;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.metricas-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around; /* Distribuye las métricas de manera uniforme */
+  background-color: #f9f9f9;
+  gap: 5px; /* Espacio entre métricas */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.metrica {
+  text-align: center; /* Centra el contenido */
+}
+
+.valor {
+  font-family: 'Raleway-Bold';
+  font-size: 80px; 
+  font-weight: bold; /* Texto en negrita */
+  color: #161616;
+}
+
+.unidad {
+  font-size: 36px;
+  color: #666; 
+  margin-left: 4px; /* Espacio entre el valor y la unidad */
+}
+
+.detalles {
+  font-family: 'Raleway-Regular';
+  font-size: 24px;
+  color: #777; 
+  display: block; /* Hace que la descripción esté en una línea separada */
+  margin-top: 8px; /* Espacio entre el valor y la descripción */
+}
+
+.separador {
+  height: 150px; /* Grosor de la línea */
+  background: #2e2e2e;
+  width: 3px; /* Ancho completo */
+  margin: 10px 0; /* Espacio alrededor de la línea */
+  border-radius: 8px;
+}
+
+
+
+/* Estilo para el día actual */
+.react-calendar__tile--now {
+  background-color: lightgreen !important; /* Fondo verde claro */
+  color: black !important; /* Texto negro */
+}
+
+.reserva-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Estilo para el botón de reserva */
+.reserva-button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.reserva-button:hover {
+  background-color: darkgreen;
+}
+
+
+.Actividad-title {
+  font-family: 'Raleway-bold';
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+  background-color: #4CAF50;
+  border-radius: 8px;
+  padding: 20px; /*para crear el espacio alrededor*/
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.Actividad-container {
+  font-family: 'Raleway-bold';
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 70px; /*para crear el espacio alrededor*/
+  gap: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin-bottom: 10px;
+}
+
+.Act-metrica {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px; /* Espacio entre el icono y el texto */
+}
+
+.container2 {
+  font-family: 'Raleway-bold';
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 40px; /*para crear el espacio alrededor*/
+  gap: 150px;
+  display: flex;
+}
+
+.metrica2 {
+  font-family: 'Raleway-Bold';
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1px; 
+}
+
+.container3 {
+  font-family: 'Raleway-Bold';
+  font-size: 30px;
+  color: black;
+  background-color: #ffffff;
+  padding: 10px; /*para crear el espacio alrededor*/
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+}
+
+.informacion {
+  font-family: 'Raleway-Regular';
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1px; 
+}
+
+.tipolink {
+  font-family: 'Raleway-Regular';
+  text-decoration: underline;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1px;
+}
+
+.InfoR-button {
+  font-family: Arial;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 54px;
+  gap: 45px;
+  width: 380px;
+  height: 50px;
+
+  background: linear-gradient(0deg, #4CAF50, #4CAF50), #081E29;
+  border-radius: 8px;
+}
+
+.InfoR-button:hover {
+  background: linear-gradient(0deg, #45a049, #45a049); /* Cambia el color al pasar el mouse */
+}
+
+.InfoR-button-container {
+  display: flex;
+  justify-content: center; /* Alinea el botón a la derecha */
+  align-items: center;
+  margin-top: 10px; /* Espacio arriba del botón */
+  margin-bottom: 30px;
+}
+
+@font-face {
+    font-family: 'Raleway-bold';
+    src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
