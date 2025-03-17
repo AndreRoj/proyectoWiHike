@@ -39,6 +39,7 @@ export function Navbar() {
       console.log("Usuario cerró sesión");
       window.location.reload();
     } catch (error) {
+      
       console.error("Error al cerrar sesión:", error);
     }
   };
@@ -78,7 +79,7 @@ export function Navbar() {
               // Si el usuario está logueado
               <>
                 <li>
-                  <Link className="options" to="/profile" style={{ color: '#4CAF50' }} onClick={toggleMenu}>
+                  <Link className="options" to="/perfil" style={{ color: '#4CAF50' }} onClick={toggleMenu}>
                     {profile?.nombre || profile?.email || 'Perfil'}
                   </Link>
                 </li>
@@ -116,11 +117,7 @@ export function Navbar() {
             Rutas
           </Link>
         </li>
-        <li>  
-          <Link className="options" to="/reserva">
-            Reserva
-          </Link>
-          </li>
+        <li className="options">Galeria</li>
         <li className="options">Foro</li>
       </ul>
 
@@ -140,7 +137,7 @@ export function Navbar() {
           // Si el usuario está logueado
           <>
             <li>
-              <Link className="options" to="/profile" style={{ color: '#4CAF50' }}>
+              <Link className="options" to="/perfil" style={{ color: '#4CAF50' }}>
                 {profile?.nombre || profile?.email || 'Perfil'}
               </Link>
             </li>
@@ -162,11 +159,7 @@ export function Navbar() {
           </>
         )}
 
-        <li> 
-          <Link className="options" to = '/contactanos'>
-          Contáctanos
-          </Link>
-        </li>
+        <li className="options">Contáctanos</li>
       </ul>
     </div>
   );

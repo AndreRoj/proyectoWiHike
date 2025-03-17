@@ -51,7 +51,7 @@ export default function Rutas() {
         {/* Mapea las rutas y crea un componente Ruta por cada una */}
         {rutas.map((ruta) => (
           <Ruta
-            key={ruta.id} 
+            id={ruta.id} 
             imagen={ruta.imagen} 
             nombre={ruta.nombre} 
             descripcion={ruta.descripcion} 

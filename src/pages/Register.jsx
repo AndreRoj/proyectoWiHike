@@ -81,41 +81,75 @@ export default function Register() {
 
     const handleGoogleRegister = async () => {
         try {
-            setLoading(true);
-            const result = await signInWithPopup(auth, provider); 
+            const result = await signInWithPopup(auth, provider);
             const user = result.user;
-
-           
+    
             if (!user.email.endsWith('@correo.unimet.edu.ve')) {
-                setError('Solo se permiten correos con el dominio @correo.unimet.edu.ve');
-                await auth.signOut(); 
-                return;
+                console.error('Correo no válido');
+                throw new Error('Correo no válido');
             }
-
-            console.log("Usuario registrado con Google: ", user.uid);
-
-       
+    
             const userData = {
-                uid: user.uid, 
-                nombre: user.displayName?.split(" ")[0] || "", 
-                apellido: user.displayName?.split(" ")[1] || "", 
+                uid: user.uid,
+                nombre: user.displayName?.split(' ')[0] || '',
+                apellido: user.displayName?.split(' ')[1] || '',
                 email: user.email,
-                fechaRegistro: new Date(), 
+                fechaRegistro: new Date(),
             };
-
-     
-            await setDoc(doc(db, "users", usuarioRegistrado.user.uid), userData);
-
-            console.log("Usuario guardado en Firestore");
-
-         
-            navigation('/');
+    
+            // Guardar los datos en Firestore usando el UID del usuario como ID del documento
+            await setDoc(doc(db, 'users', user.uid), userData);
+    
+            console.log('Usuario registrado y datos guardados en Firestore:', userData);
+            return userData; // Opcional: devuelve los datos del usuario para usarlos en tu aplicación
         } catch (error) {
-            setLoading(false);
-            console.error("Error al registrarse con Google: ", error);
-            setError('Ocurrió un error al registrarse con Google');
+            console.error('Error al registrar con Google:', error);
+            throw error; // Propaga el error para que puedas manejarlo en tu componente
         }
     };
+
+    // const handleGoogleRegister = async () => {
+    //     try {
+    //         setLoading(true);
+    //         const result = await signInWithPopup(auth, provider); 
+    //         const user = result.user; // Aquí está el usuario registrado con Google
+    
+    //         console.log("Usuario registrado con Google: ", user);
+    
+    //         // Verifica el dominio del correo
+    //         if (!user.email.endsWith('@correo.unimet.edu.ve')) {
+    //             setError('Solo se permiten correos con el dominio @correo.unimet.edu.ve');
+    //             await auth.signOut(); 
+    //             return;
+    //         }
+    
+    //         // Prepara los datos para Firestore
+    //         const userData = {
+    //             uid: user.uid, 
+    //             nombre: user.displayName?.split(" ")[0] || "", 
+    //             apellido: user.displayName?.split(" ")[1] || "", 
+    //             email: user.email,
+    //             fechaRegistro: new Date(), 
+    //         };
+    
+    //         console.log("Datos del usuario para Firestore: ", userData);
+    
+    //         // Intenta guardar en Firestore
+    //         try {
+    //             await setDoc(doc(db, "users", user.uid), userData);
+    //             console.log("Usuario guardado en Firestore correctamente");
+    //             navigation('/');
+    //         } catch (firestoreError) {
+    //             console.error("Error al guardar en Firestore: ", firestoreError);
+    //             setError('Error al guardar en Firestore');
+    //         }
+    
+    //     } catch (error) {
+    //         setLoading(false);
+    //         console.error("Error al registrarse con Google: ", error);
+    //         setError('Ocurrió un error al registrarse con Google');
+    //     }
+    // };
 
     return (
         <div className="register-container" data-aos="slide-up">
