@@ -3,11 +3,12 @@ import '../styles/Ruta.css';
 import { FaStar } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { FaRegMap } from "react-icons/fa";
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom'; // Cambia esta línea
 
-export function Ruta({ imagen, nombre, descripcion, nombreguia, duracion, kilometros, estrellas }) {
+
+export function Ruta({id, imagen, nombre, descripcion, nombreguia, duracion, kilometros, estrellas }) {
     return (
-        <Link to="/info_rutas">
+        <Link to={`/info_rutas/${id}`}> {/* Enlace dinámico usando el ID de la ruta */}
             <div className='rutaflex' data-aos="fade-right">
             <div className='ruta-container'>
 

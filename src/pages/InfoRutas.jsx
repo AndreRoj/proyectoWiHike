@@ -1,28 +1,56 @@
-import {InfoRuta} from '../components/InfoRuta'
-import { Navbar } from '../components/Navbar';
-import "./HomePage.css";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { InfoRuta } from '../components/InfoRuta';
+import { db } from '../firebase'; // Importa tu configuración de Firebase
+import { doc, getDoc } from 'firebase/firestore';
 
 export default function InfoRutas() {
+    const { rutaId } = useParams(); // Obtén el ID de la ruta desde la URL
+    const [ruta, setRuta] = useState(null); // Estado para almacenar los datos de la ruta
+
+    useEffect(() => {
+        const fetchRuta = async () => {
+            try {
+                const rutaDocRef = doc(db, 'rutas', rutaId); // Referencia al documento de la ruta
+                const rutaDoc = await getDoc(rutaDocRef);
+
+                if (rutaDoc.exists()) {
+                    setRuta(rutaDoc.data()); // Guarda los datos de la ruta en el estado
+                } else {
+                    console.log('No se encontró la ruta');
+                }
+            } catch (error) {
+                console.error('Error al obtener la ruta:', error);
+            }
+        };
+
+        fetchRuta();
+    }, [rutaId]);
+
+    if (!ruta) {
+        return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtienen los datos
+    }
+
     return (
-        <div className='HomePage'>
+        <div className='inforutaaa'>
+
             <InfoRuta
-            nombre="Sabas Nieves"
-            estrellas="5"
-            imagenPrincipal="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvNTYxNzU0NzIvZGYzZWZiNmIwZDRmOTZhMDQ5ZDExZGM0NjYyYThmZWUuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJ3ZWJwIiwicmVzaXplIjp7IndpZHRoIjoyMDQ4LCJoZWlnaHQiOjIwNDgsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsImpwZWciOnsidHJlbGxpc1F1YW50aXNhdGlvbiI6dHJ1ZSwib3ZlcnNob290RGVyaW5naW5nIjp0cnVlLCJvcHRpbWlzZVNjYW5zIjp0cnVlLCJxdWFudGlzYXRpb25UYWJsZSI6M319fQ=="
-            imagen2="https://static.wixstatic.com/media/a416cc_266ea48fe572468db584d052383f55fb~mv2.jpeg/v1/fill/w_560,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a416cc_266ea48fe572468db584d052383f55fb~mv2.jpeg"
-            imagen3="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvNzc4ODI2ODgvODAwNTE5MjIxZmU0YTc5NDIxMjVlZjZmNDIyY2RmNmUuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJ3ZWJwIiwicmVzaXplIjp7IndpZHRoIjoyMDQ4LCJoZWlnaHQiOjIwNDgsImZpdCI6Imluc2lkZSJ9LCJyb3RhdGUiOm51bGwsImpwZWciOnsidHJlbGxpc1F1YW50aXNhdGlvbiI6dHJ1ZSwib3ZlcnNob290RGVyaW5naW5nIjp0cnVlLCJvcHRpbWlzZVNjYW5zIjp0cnVlLCJxdWFudGlzYXRpb25UYWJsZSI6M319fQ=="
-            descripcion="Ruta de ida y vuelta de 3,9-km cerca de Municipio Sucre, Miranda. Se considera una ruta moderada con una duracion media de 1 h 55 min. Es una región muy popular para el senderismo y pasear, por lo que es probable encontrarse con otras personas mientras se está por la zona. "
-            distancia="3,9"
-            desnivel_positivo='356'
-            // duracion dividido colocando las horas y los minutos por separado
-            horas="1"
-            minutos="55"
-            dificultad="Alta"
-            paseo= {true}
-            acampada= {true}
-            URLmap='https://maps.app.goo.gl/HQEkU29bpPdawtue7'
+                id = {ruta.id}
+                nombre={ruta.nombre}
+                estrellas={ruta.estrellas}
+                imagen={ruta.imagen}
+                imagen2={ruta.imagen2}
+                imagen3={ruta.imagen3}
+                descripcion={ruta.descripcion}
+                distancia={ruta.distancia}
+                desnivel_positivo={ruta.desnivel_positivo}
+                duracion={ruta.duracion}
+                kilometros={ruta.kilometros}
+                dificultad={ruta.dificultad}
+                paseo={ruta.paseo}
+                acampada={ruta.acampada}
+                URLmap={ruta.URLmap}
             />
         </div>
-        
     );
 }
