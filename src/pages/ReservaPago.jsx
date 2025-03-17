@@ -1,9 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { FaPaypal } from "react-icons/fa";
 import './ReservaPago.css';
+import { UserContext } from '../Context/UserContext';
 
 
-function ReservaPago(){
+function ReservaPago(id, guia, dia){
+
+    const profileContext = React.useContext(UserContext);
+    const { logged, profile } = profileContext;
+
+    
 
     return (
         <div className="ReservaPago">

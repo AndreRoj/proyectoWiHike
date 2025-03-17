@@ -13,6 +13,7 @@ import { db } from '../firebase'; // Importa tu configuración de Firebase
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import Calendar from 'react-calendar'; // Importa un componente de calendario
 import 'react-calendar/dist/Calendar.css'; // Estilos del calendario
+import { Link } from 'react-router-dom'; // Cambia esta línea
 
 export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, descripcion, kilometros, desnivel_positivo, duracion, dificultad, paseo, acampada, URLmap }) {
     const [showCalendar, setShowCalendar] = useState(false); // Estado para mostrar/ocultar el calendario
@@ -251,9 +252,13 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                     <p>Dificultad: {dificultad}</p>
                     <p>Duración: {duracion} minutos</p>
                     <p>Distancia: {kilometros} km</p>
-                    <button className="reserva-button" onClick={() => handleReservar(selectedDate)}>
+
+                    
+                    <Link to={`/reserva/${id}`}> {/* Enlace dinámico usando el ID de la ruta */}  
+                    <button  >
                         Reservar
                     </button>
+                    </Link>
                 </div>
             )}
 

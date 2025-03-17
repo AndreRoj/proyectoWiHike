@@ -6,7 +6,7 @@
   }
   
   .perfil {
-    background-color: white;
+    background-color: #f0f2f5;
     display: flex;
     justify-content: space-evenly;
     width: 100%; /* Asegura que el contenedor no exceda el ancho de la página */
@@ -14,7 +14,8 @@
   }
   
   .perfilIzquierda {
-height: fit-content;
+    
+    height: fit-content;
     flex: 2;
     padding: 1rem;
     border-radius: 0.5rem;
@@ -23,6 +24,7 @@ height: fit-content;
   }
   
   .perfilProfileCard {
+    background-color: white;
     width: 100%; /* Ancho relativo al contenedor padre */
     max-width: 458px; /* Ancho máximo para pantallas grandes */
     height: 32%;
@@ -191,6 +193,7 @@ height: fit-content;
   
   /* Estilo CSS para la seccion de actividades*/
   .perfilDerecha {
+    background-color: white;
     flex: 2;
     padding: 2rem;
     border-radius: 0.5rem;
