@@ -5,7 +5,8 @@ import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
 import { db } from '../firebase'; // Asegúrate de importar tu configuración de Firebase
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, updateDoc} from 'firebase/firestore';
+import { supabase } from '../supabaseClient'
 
 export default function Perfil() {
     const profileContext = useContext(UserContext);
@@ -74,6 +75,26 @@ export default function Perfil() {
         };
     };
 
+    const uploadProfileImage = async (userId, file) => {
+        try{
+            const {data, error } = await supabase.storage.from('avatars').upload(`user_${userId}/profile.png`, file, {
+                upsert: true
+            })
+
+            if(error){
+                console.error('Error subiendo a supabase:', supabase)
+                return null
+            }
+
+            const { data : {publicUrl}} = supabase.storage.from('avatars').getPublicUrl(data.path)
+            return publicUrl
+            
+        }catch (error) {
+            console.error('Error en supabase storage:', error)
+            return null
+        }
+    }
+
 
     //borrar
     const handleEditClick = () => {
@@ -97,17 +118,17 @@ export default function Perfil() {
 
   // Función para manejar la subida de la imagen de perfil
   const handleImageUpload = async (e) => {
-      const file = e.target.files[0];
-      if (file) {
-          const storageRef = ref(storage, `profileImages/${profile.uid}/${file.name}`);
-          await uploadBytes(storageRef, file);
-          const downloadURL = await getDownloadURL(storageRef);
-          setFormData({
-              ...formData,
-              profileImage: downloadURL,
-          });
-      }
-  };
+        const file = e.target.files?.[0]; // Obtiene el archivo del input
+        if (file) {
+            const imageUrl = await uploadProfileImage(profile.uid, file);
+            if (imageUrl) {
+                setFormData({
+                    ...formData,
+                    profileImage: imageUrl,
+                });
+            }
+        }
+    }
 
   // Función para guardar los cambios
   const handleSave = async () => {
