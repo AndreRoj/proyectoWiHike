@@ -28,8 +28,6 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
         setError(null);
     
         try {
-            console.log("Obteniendo documento de la ruta...");
-            console.log("ID de la ruta:", id);
     
             // Validar que el ID no sea undefined
             if (!id) {
@@ -45,10 +43,10 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             }
     
             const rutaData = rutaDoc.data();
-            console.log("Datos de la ruta:", rutaData);
+           
     
             const rutasCalendarIds = rutaData.rutascalendar || [];
-            console.log("IDs de rutas calendar:", rutasCalendarIds);
+           
     
             if (rutasCalendarIds.length === 0) {
                 setShowCalendar(false);
@@ -62,16 +60,16 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
     
             console.log("Obteniendo fechas disponibles...");
             for (const programadoId of rutasCalendarIds) {
-                console.log("Obteniendo documento de programado con ID:", programadoId);
+              
                 const programadoDocRef = doc(programadoCollection, programadoId);
                 const programadoDoc = await getDoc(programadoDocRef);
     
                 if (programadoDoc.exists()) {
                     const programadoData = programadoDoc.data();
-                    console.log("Datos de programado:", programadoData);
+                    
     
                     if (programadoData.dia) {
-                        console.log("Fecha encontrada:", programadoData.dia.toDate());
+                        
                         availableDates.push(programadoData.dia.toDate()); // Convierte Timestamp a Date
                     } else {
                         console.warn("El campo 'dia' no existe en el documento de programado:", programadoId);
@@ -247,6 +245,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
 
                 <div className="reserva-container">
                     <h3>Información de la reserva</h3>
+                    <p>id {id}</p>
                     <p>Fecha seleccionada: {selectedDate.toLocaleDateString()}</p>
                     <p>Ruta: {nombre}</p>
                     <p>Dificultad: {dificultad}</p>
@@ -254,11 +253,29 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                     <p>Distancia: {kilometros} km</p>
 
                     
-                    <Link to={`/reserva/${id}`}> {/* Enlace dinámico usando el ID de la ruta */}  
-                    <button  >
-                        Reservar
-                    </button>
-                    </Link>
+                    <Link
+    to={{
+        pathname: `/reserva/${rutaId}`, // Usa el ID directamente de las props
+        state: {
+            id: id, // Usa el ID directamente de las props
+            nombre: nombre, // Usa el nombre directamente de las props
+            estrellas: estrellas, // Usa las estrellas directamente de las props
+            imagen: imagen, // Usa la imagen directamente de las props
+            descripcion: descripcion, // Usa la descripción directamente de las props
+            distancia: kilometros, // Aquí estás usando "kilometros" en lugar de "distancia"
+            desnivel_positivo: desnivel_positivo, // Usa el desnivel positivo directamente de las props
+            duracion: duracion, // Usa la duración directamente de las props
+            kilometros: kilometros, // Usa los kilómetros directamente de las props
+            dificultad: dificultad, // Usa la dificultad directamente de las props
+            paseo: paseo, // Usa el valor de paseo directamente de las props
+            acampada: acampada, // Usa el valor de acampada directamente de las props
+            URLmap: URLmap, // Usa la URL del mapa directamente de las props
+            selectedDate: selectedDate, // Usa la fecha seleccionada del estado
+        }
+    }}
+>
+    <button>Reservar</button>
+</Link>
                 </div>
             )}
 

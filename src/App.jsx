@@ -44,7 +44,7 @@ function App() {
         <Route path='guia' element = {<Guia/>} />
         <Route path="/info_rutas/:rutaId" element={<InfoRutas />} /> {/* Ruta dinámica */}
         <Route path='contactanos' element = {<Contactanos/>} />
-        <Route path="/reserva/:rutaId" element = {<ReservaPago/>} />
+        <Route path="/reserva/:id" element={<ReservaPago />} />
       
       </Route>
 
