@@ -19,55 +19,56 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
     const [availableDates, setAvailableDates] = useState([]); // Estado para almacenar las fechas disponibles
     const [loading, setLoading] = useState(false); // Estado para manejar la carga
     const [error, setError] = useState(null); // Estado para manejar errores
+    const [selectedDate, setSelectedDate] = useState(null); // Estado para la fecha seleccionada
 
     // Función para obtener las fechas disponibles
     const handleCheckAvailability = async () => {
         setLoading(true);
         setError(null);
-
+    
         try {
             console.log("Obteniendo documento de la ruta...");
             console.log("ID de la ruta:", id);
-
+    
             // Validar que el ID no sea undefined
             if (!id) {
                 throw new Error('El ID de la ruta no está definido.');
             }
-
+    
             // Crear la referencia al documento usando el ID como nombre del documento
             const rutaDocRef = doc(db, 'rutas', id);
             const rutaDoc = await getDoc(rutaDocRef);
-
+    
             if (!rutaDoc.exists()) {
                 throw new Error('No se encontró la ruta');
             }
-
+    
             const rutaData = rutaDoc.data();
             console.log("Datos de la ruta:", rutaData);
-
+    
             const rutasCalendarIds = rutaData.rutascalendar || [];
             console.log("IDs de rutas calendar:", rutasCalendarIds);
-
+    
             if (rutasCalendarIds.length === 0) {
                 setShowCalendar(false);
                 setError('No hay rutas disponibles en este momento.');
                 return;
             }
-
+    
             // Obtener los documentos de la colección 'programado' usando los IDs de rutascalendar
             const programadoCollection = collection(db, 'programado');
             const availableDates = [];
-
+    
             console.log("Obteniendo fechas disponibles...");
             for (const programadoId of rutasCalendarIds) {
                 console.log("Obteniendo documento de programado con ID:", programadoId);
                 const programadoDocRef = doc(programadoCollection, programadoId);
                 const programadoDoc = await getDoc(programadoDocRef);
-
+    
                 if (programadoDoc.exists()) {
                     const programadoData = programadoDoc.data();
                     console.log("Datos de programado:", programadoData);
-
+    
                     if (programadoData.dia) {
                         console.log("Fecha encontrada:", programadoData.dia.toDate());
                         availableDates.push(programadoData.dia.toDate()); // Convierte Timestamp a Date
@@ -78,11 +79,16 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                     console.warn("No se encontró el documento de programado con ID:", programadoId);
                 }
             }
-
-            if (availableDates.length === 0) {
+    
+            // Filtrar las fechas disponibles para excluir las fechas pasadas
+            const today = new Date(); // Fecha actual
+            const futureDates = availableDates.filter(date => date >= today);
+    
+            if (futureDates.length === 0) {
+                setShowCalendar(false);
                 setError('No hay fechas disponibles para esta ruta.');
             } else {
-                setAvailableDates(availableDates);
+                setAvailableDates(futureDates);
                 setShowCalendar(true);
             }
         } catch (error) {
@@ -90,6 +96,25 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             setError('Hubo un error al obtener la disponibilidad.');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleReservar = async (date) => {
+        try {
+            console.log("Reservando la ruta para la fecha:", date.toLocaleDateString());
+
+            // Aquí puedes agregar la lógica para guardar la reserva en Firestore
+            // Por ejemplo:
+            // const reservaDocRef = await addDoc(collection(db, 'reservas'), {
+            //     rutaId: id,
+            //     fecha: date,
+            //     usuarioId: usuarioActual.uid,
+            // });
+
+            alert(`Reserva confirmada para el ${date.toLocaleDateString()}`);
+        } catch (error) {
+            console.error('Error al reservar la ruta:', error);
+            alert('Hubo un error al reservar la ruta.');
         }
     };
 
@@ -202,19 +227,40 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                             <VscTriangleDown style={{ color: 'white', fontSize: '30px', justifyContent: 'flex-end', alignItems: 'flex-end' }} />
                         </div>
                     </div>
-                </div>
-            </div>
-
-            {/* Mostrar el calendario si hay fechas disponibles */}
+                    <div>
+                        {/* Mostrar el calendario si hay fechas disponibles */}
             {showCalendar && (
                 <div className="calendar-container">
                     <h3>Fechas disponibles:</h3>
                     <Calendar
+                        onClickDay={(date) => setSelectedDate(date)}
                         value={availableDates}
                         tileDisabled={({ date }) => !availableDates.some(d => d.toDateString() === date.toDateString())}
                     />
                 </div>
             )}
+
+                    </div>
+
+                    {selectedDate && (
+
+                <div className="reserva-container">
+                    <h3>Información de la reserva</h3>
+                    <p>Fecha seleccionada: {selectedDate.toLocaleDateString()}</p>
+                    <p>Ruta: {nombre}</p>
+                    <p>Dificultad: {dificultad}</p>
+                    <p>Duración: {duracion} minutos</p>
+                    <p>Distancia: {kilometros} km</p>
+                    <button className="reserva-button" onClick={() => handleReservar(selectedDate)}>
+                        Reservar
+                    </button>
+                </div>
+            )}
+
+                </div>
+            </div>
+
+            
 
             {/* Mostrar mensajes de error o carga */}
             {loading && <p>Cargando disponibilidad...</p>}

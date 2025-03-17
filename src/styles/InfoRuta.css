@@ -114,6 +114,41 @@
   border-radius: 8px;
 }
 
+
+
+/* Estilo para el día actual */
+.react-calendar__tile--now {
+  background-color: lightgreen !important; /* Fondo verde claro */
+  color: black !important; /* Texto negro */
+}
+
+.reserva-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Estilo para el botón de reserva */
+.reserva-button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.reserva-button:hover {
+  background-color: darkgreen;
+}
+
+
 .Actividad-title {
   font-family: 'Raleway-bold';
   color: black;

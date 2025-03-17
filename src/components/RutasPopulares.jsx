@@ -9,13 +9,13 @@ export function RutasPopulares({ link, nombre, nombreGuia, duracion, dificultad 
         <div className="mas-popular">Más popular</div>
         <h1 className="nombre">{nombre}</h1>
       </div>
-      <div className="detalles">
+      <div className="detallesruta">
         <div className="guia">
           <strong>{nombreGuia}</strong> Guía de senderismo
         </div>
  
         <div className="duracion">
-          Duración {duracion}
+          Duración {duracion} minutos
         </div>
         <div className="dificultad">
           Dificultad {dificultad}
