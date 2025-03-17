@@ -1,11 +1,11 @@
-* {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   text-align: center;
   font-family: 'Raleway-Regular', sans-serif;
 }
-.contactanos{
+.Contactanos-contactanos{
   width: 100%;
   max-width: 1110px;
   margin:20px 70px;
@@ -16,10 +16,9 @@
   font-size: 2rem;
 
 }
-.contactanos h1{
+.Contactanos-contactanos h1{
   font-family: 'Raleway-Bold';
-  margin-bottom: 40px; 
-  margin-top: 40px;
+  margin: auto;
   font-size: 5rem; 
   font-weight: 700;
   color: rgb(0,0,0);
@@ -27,26 +26,26 @@
   align-items: center;
   
 }
-.separador {
+.Contactanos-separador {
   width: 100%; /* Ancho completo */
   height: 1px; /* Grosor del separador */
   background-color: #0f0f0f; /* Color del separador */
   margin: 20px 0; /* Espacio arriba y abajo */
 }
-.Contenedor {
+.Contactanos-Contenedor {
   width: 100%;
   display: grid;
   flex-direction: row;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas */
   grid-gap: 20px;
 }
-.ContactForm h2{
+.Contactanos-ContactForm h2{
   font-family: 'Raleway-Bold';
   font-size: 2rem;
   color: black;
 }
 
-.Primerafila{
+.Contactanos-Primerafila{
   width:100%;
   display: flex;
   flex-direction: row; 
@@ -55,27 +54,27 @@
   margin-bottom: 10px;
   margin-top: 10px;
 }
-.Primerafila > div {
+.Contactanos-Primerafila > div {
   flex: 1; /* Cada input ocupa el mismo espacio */
 }
-.Primerafila label{
+.Contactanos-Primerafila label{
   font-size: 1.5rem;
   color: black;
   
 }
-.Primerafila input{
+.Contactanos-Primerafila input{
   width: 100%;
   padding: 15px 25px;
   font-size: 2rem;
   border-radius: 60px; 
   background-color: rgb(217,217,217); 
 }
-.ContactForm label{
+.Contactanos-ContactForm label{
   font-size: 1.5rem;
   color: black;
 
 }
-.ContactForm textarea{
+.Contactanos-ContactForm textarea{
   width: 100%;
   height: 200px;
   padding: 15px 25px; 
@@ -83,7 +82,7 @@
   border-radius: 40px; 
   background-color: rgb(217,217,217); 
 }
-.ContactForm button{
+.Contactanos-ContactForm button{
   height: 80px; 
   width: 60%;
   border-radius: 0.75rem; 
@@ -93,21 +92,18 @@
   cursor: pointer;
 }
 
-.Enviar:hover{
-  background-color: rgb(126, 207, 130);
-}
-.Contactinfo{
+.Contactanos-Contactinfo{
   width: 50%;
   margin:20% 35%;
 }
-.Button{
+.Contactanos-Button{
 
   display: flex;
   flex-direction: column;
   gap: 5px;
 
 }
-.Contactinfo button{
+.Contactanos-Contactinfo button{
   width: 100%; 
   border-radius: 60px; 
   display: flex;
@@ -120,14 +116,14 @@
   font-family: 'Raleway-Bold';
 
 }
-.Icon{
+.Contactanos-Icon{
   display: flex;
   flex-direction: row;
   gap: 5px; 
   margin-top: 10px;
 }
 
-.Icon button{
+.Contactanos-Icon button{
   border-radius: 60px;
   background-color: #4CAF50;
   color: black;
@@ -136,16 +132,16 @@
 }
 /* Media Queries para Tablets (768px - 1024px) */
 @media (min-width: 768px) {
-  .TituloContactanos h1 {
+  .Contactanos-TituloContactanos h1 {
     font-size: 4rem; /* Tamaño más grande para tablets */
   }
 
-  .ContactForm {
+  .Contactanos-ContactForm {
     margin-left: 5%;
     width: 100%;
   }
 
-  .PrimeraFila {
+  .Contactanos-PrimeraFila {
     flex-direction: row;
     flex-wrap: wrap;
   }

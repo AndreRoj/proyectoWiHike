@@ -171,21 +171,21 @@ export default function Perfil() {
 
     return (
       <div className='perfil'>
-          <div className='Izquierda'>
-              <div className='ProfileCard'>
+          <div className='perfilIzquierda'>
+              <div className='perfilProfileCard'>
                   <h2>Perfil</h2>
-                  <div className='EditButton'>
-                      <button className="editIcon" onClick={handleEditClick}>
+                  <div className='perfilEditButton'>
+                      <button className="perfileditIcon" onClick={handleEditClick}>
                           <BiEdit />
                       </button>
                   </div>
-                  <div className='Info'>
-                      <div className='Imagenperfil'>
-                          <img className="Imagenperfilz" src={userData1.profileImage} alt="ProfileImage" />
-                          <p className='Rolusuario'>{userData1.role}</p>
+                  <div className='perfilInfo'>
+                      <div className='perfilImagenperfil'>
+                          <img className="perfilImagenperfilz" src={userData1.profileImage} alt="ProfileImage" />
+                          <p className='perfilRolusuario'>{userData1.role}</p>
                       </div>
                       {isEditing ? (
-                          <div className='EditForm'>
+                          <div className='perfilEditForm'>
                               <input
                                   type="text"
                                   name="name"
@@ -216,22 +216,22 @@ export default function Perfil() {
                               <button onClick={() => setIsEditing(false)}>Cancelar</button>
                           </div>
                       ) : (
-                          <div className='Infousuario'>
-                              <div className='Columna'>
-                                  <span className="Label">Nombre: </span>
-                                  <span className='Value'> {userData1.name}</span>
+                          <div className='perfilInfousuario'>
+                              <div className='perfilColumna'>
+                                  <span className="perfilLabel">Nombre: </span>
+                                  <span className='perfilValue'> {userData1.name}</span>
                               </div>
-                              <div className='Columna'>
-                                  <span className="Label">Teléfono: </span>
-                                  <span className="Value"> {userData1.phone}</span>
+                              <div className='perfilColumna'>
+                                  <span className="perfilLabel">Teléfono: </span>
+                                  <span className="perfilValue"> {userData1.phone}</span>
                               </div>
-                              <div className='Columna'>
-                                  <span className="Label">Correo: </span>
-                                  <span className="Value"> {userData1.email}</span>
+                              <div className='perfilColumna'>
+                                  <span className="perfilLabel">Correo: </span>
+                                  <span className="perfilValue"> {userData1.email}</span>
                               </div>
                               {profile?.guia && (
-                                  <div className='GuideDashboardButton'>
-                                      <Link to="/guia" className="guideDashboardBtn">
+                                  <div className='perfilGuideDashboardButton'>
+                                      <Link to="/guia" className="perfilguideDashboardBtn">
                                           Ir al Dashboard de Guía
                                       </Link>
                                   </div>
@@ -242,70 +242,70 @@ export default function Perfil() {
               </div>
           </div>
             {/* Renderiza las estadísticas y rutas */}
-            <div className='Derecha'>
-                <div className='Estadisticas'>
+            <div className='perfilDerecha'>
+                <div className='perfilEstadisticas'>
                     <h2>Tu Actividad</h2>
-                    <div className='EstadisticasActividad'>
+                    <div className='perfilEstadisticasActividad'>
                         {Object.entries(activityStats).map(([key, value]) => (
-                            <div key={key} className='StatCards'>
-                                <span className='Value1'>{value}</span>
-                                <span className='Label1'>{key}</span>
+                            <div key={key} className='perfilStatCards'>
+                                <span className='perfilValue1'>{value}</span>
+                                <span className='perfilLabel1'>{key}</span>
                             </div>
                         ))}
                     </div>
                 </div>
-                <div className='Proximas-Rutas'>
+                <div className='perfilProximas-Rutas'>
                     <h2>Próximas Rutas Programadas</h2>
                     {userData1.upcomingRoutes.length > 0 && (
-                        <div className='Rutascontainer1'>
+                        <div className='perfilRutascontainer1'>
                             {userData1.upcomingRoutes.map((route, index) => (
-                                <div key={index} className="InfoRutas1">
-                                    <div className="imagen-ruta">
+                                <div key={index} className="perfilInfoRutas1">
+                                    <div className="perfilimagen-ruta">
                                         <img
                                             src={route.imagen || "https://via.placeholder.com/150"}
                                             alt={route.nombre}
-                                            className="pngruta"
+                                            className="perfilpngruta"
                                         />
-                                        <div className="Rutainfo">
+                                        <div className="perfilRutainfo">
                                             <h3>{route.nombre}</h3>
                                         </div>
                                     </div>
-                                    <div className="detallesruta">
-                                        <p className='guide'>
-                                            <span className="nombreguia">{route.guia} </span>
-                                            <span className='rol'>{route.guia}</span>
+                                    <div className="perfildetallesruta">
+                                        <p className='perfilguide'>
+                                            <span className="perfilnombreguia">{route.guia} </span>
+                                            <span className='perfilrol'>{route.guia}</span>
                                         </p>
-                                        <p className="route-info">Dificultad: {route.dificultad}</p>
-                                        <p className="route-info">Duración: {route.duracion}</p>
+                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
+                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     )}
                 </div>
-                <div className='Ultimas-Rutas'>
+                <div className='perfilUltimas-Rutas'>
                     <h2>Últimas Rutas</h2>
                     {userData1.latestRoutes.length > 0 && (
-                        <div className="Rutascontainer2">
+                        <div className="perfilRutascontainer2">
                             {userData1.latestRoutes.map((route, index) => (
-                                <div key={index} className="InfoRutas2">
-                                    <div className="imagen-ruta">
+                                <div key={index} className="perfilInfoRutas2">
+                                    <div className="perfilimagen-ruta">
                                         <img
                                             src={route.imagen || "https://via.placeholder.com/150"}
                                             alt={route.nombre}
-                                            className="pngruta"
+                                            className="perfilpngruta"
                                         />
-                                        <div className="Rutainfo">
+                                        <div className="perfilRutainfo">
                                             <h3>{route.nombre}</h3>
                                         </div>
                                     </div>
-                                    <div className="detallesruta">
+                                    <div className="perfildetallesruta">
                                         <p>
-                                            <span className="nombreguia">{route.guia} </span>
-                                            <span className='rol'>{route.guia}</span>
+                                            <span className="perfilnombreguia">{route.guia} </span>
+                                            <span className='perfilrol'>{route.guia}</span>
                                         </p>
-                                        <p className="route-info">Dificultad: {route.dificultad}</p>
-                                        <p className="route-info">Duración: {route.duracion}</p>
+                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
+                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
                                     </div>
                                 </div>
                             ))}
@@ -313,29 +313,29 @@ export default function Perfil() {
                     )}
                 </div>
 
-                  <div className='Ultimas-Rutas'>
+                  <div className='perfilUltimas-Rutas'>
                     <h2>Últimas Rutas</h2>
                     {userData1.latestRoutes.length > 0 && (
-                        <div className="Rutascontainer2">
+                        <div className="perfilRutascontainer2">
                             {userData1.latestRoutes.map((route, index) => (
-                                <div key={index} className="InfoRutas2">
-                                    <div className="imagen-ruta">
+                                <div key={index} className="perfilInfoRutas2">
+                                    <div className="perfilimagen-ruta">
                                         <img
                                             src={route.imagen || "https://via.placeholder.com/150"}
                                             alt={route.nombre}
-                                            className="pngruta"
+                                            className="perfilpngruta"
                                         />
-                                        <div className="Rutainfo">
+                                        <div className="perfilRutainfo">
                                             <h3>{route.nombre}</h3>
                                         </div>
                                     </div>
-                                    <div className="detallesruta">
+                                    <div className="perfildetallesruta">
                                         <p>
-                                            <span className="nombreguia">{route.guia} </span>
-                                            <span className='rol'>{route.guia}</span>
+                                            <span className="perfilnombreguia">{route.guia} </span>
+                                            <span className='perfilrol'>{route.guia}</span>
                                         </p>
-                                        <p className="route-info">Dificultad: {route.dificultad}</p>
-                                        <p className="route-info">Duración: {route.duracion}</p>
+                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
+                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
                                     </div>
                                 </div>
                             ))}

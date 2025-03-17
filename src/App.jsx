@@ -7,6 +7,8 @@ import Rutas from './pages/Rutas';
 import Perfil from './pages/Perfil';
 import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
+import Contactanos from './pages/Contactanos'; 
+import ReservaPago from './pages/ReservaPago';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import { UserProvider } from './Context/UserContext';
@@ -15,32 +17,43 @@ import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import React, { useEffect } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duración de la animación en milisegundos
+      once: true, // Si la animación solo se ejecuta una vez
+    });
+  }, []);
+
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+    <BrowserRouter>
+
+    <UserProvider>
+
+    <Routes>
+    
+      <Route element = {<Navbar/>}>
+
+        <Route path='/' element = {<HomePage/>} />
+        <Route path='login' element = {<Login/>}/>
+        <Route path='register' element = {<Register/>}/>
+        <Route path='*' element = {<NotFound/>}/>
+        <Route path='rutas' element = {<Rutas/>} />
+        <Route path='perfil' element = {<Perfil/>} />
+        <Route path='guia' element = {<Guia/>} />
+        <Route path="/info_rutas/:rutaId" element={<InfoRutas />} /> {/* Ruta dinámica */}
+        <Route path='contactanos' element = {<Contactanos/>} />
+        <Route path='reserva' element = {<ReservaPago/>} />
+      
+      </Route>
+
+    </Routes>
+
+    </UserProvider>
+
+  </BrowserRouter>
   )
 }
 
-export default App
+export default App;
