@@ -125,6 +125,8 @@
 }
 
 .reserva-container {
+  font-family: 'Raleway-Bold';
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,6 +135,12 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #f9f9f9;
+}
+
+.reserva-detalles{
+  font-family: 'Raleway-Regular';
+  flex-direction: row;
+  margin-bottom: 3px;
 }
 
 /* Estilo para el botón de reserva */
@@ -205,13 +213,13 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1px; 
+  padding-top: 8px;
 }
 
 .InfoRutacontainer3 {
   font-family: 'Raleway-Bold';
   font-size: 30px;
   color: black;
-  background-color: #ffffff;
   padding: 10px; /*para crear el espacio alrededor*/
   gap: 5px;
   display: flex;
@@ -222,6 +230,7 @@
 
 .InfoRutainformacion {
   font-family: 'Raleway-Regular';
+  color:black;
   font-size: 16px;
   display: flex;
   flex-direction: column;

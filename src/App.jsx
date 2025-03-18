@@ -9,6 +9,7 @@ import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
 import Contactanos from './pages/Contactanos'; 
 import ReservaPago from './pages/ReservaPago';
+import Programaciones from './pages/Programaciones';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import  PagoExitoso  from './pages/PagoExitoso';
@@ -44,6 +45,7 @@ function App() {
         <Route path='perfil' element = {<Perfil/>} />
         <Route path='guia' element = {<Guia/>} />
         <Route path="/info_rutas/:rutaId" element={<InfoRutas />} /> {/* Ruta dinámica */}
+        <Route path='programacion' element = {<Programaciones/>} />
         <Route path='contactanos' element = {<Contactanos/>} />
         <Route path="/reserva/:id" element={<ReservaPago />} />
         <Route path="exitosa" element={<PagoExitoso/>} />

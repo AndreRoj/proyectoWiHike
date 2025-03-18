@@ -186,109 +186,108 @@ import Calendar from 'react-calendar'; // Importa un componente de calendario
 import 'react-calendar/dist/Calendar.css'; // Estilos del calendario
 import { Link } from 'react-router-dom'; // Cambia esta línea
 
-export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, descripcion, kilometros, desnivel_positivo, duracion, dificultad, paseo, senderismo, acampada, URLmap }) {
-    const [showCalendar, setShowCalendar] = useState(false); // Estado para mostrar/ocultar el calendario
-    const [availableDates, setAvailableDates] = useState([]); // Estado para almacenar las fechas disponibles
-    const [loading, setLoading] = useState(false); // Estado para manejar la carga
-    const [error, setError] = useState(null); // Estado para manejar errores
-    const [selectedDate, setSelectedDate] = useState(null); // Estado para la fecha seleccionada
-    const [selectedProgramadoId, setSelectedProgramadoId] = useState(null);
-    const n = ['Juan', 'Ana', 'Carlos', 'María'];
+export function Programacion({ id, nombre, estrellas, imagen, imagen2, imagen3, descripcion, kilometros, desnivel_positivo, duracion, dificultad, paseo, senderismo, acampada, participantes}) {
+    // const [showCalendar, setShowCalendar] = useState(false); // Estado para mostrar/ocultar el calendario
+    // const [availableDates, setAvailableDates] = useState([]); // Estado para almacenar las fechas disponibles
+    // const [loading, setLoading] = useState(false); // Estado para manejar la carga
+    // const [error, setError] = useState(null); // Estado para manejar errores
+    // const [selectedDate, setSelectedDate] = useState(null); // Estado para la fecha seleccionada
+    // const [selectedProgramadoId, setSelectedProgramadoId] = useState(null);
 
-    // Función para obtener las fechas disponibles
-    const handleCheckAvailability = async () => {
-        setLoading(true);
-        setError(null);
+    // // Función para obtener las fechas disponibles
+    // const handleCheckAvailability = async () => {
+    //     setLoading(true);
+    //     setError(null);
     
-        try {
-            if (!id) {
-                throw new Error('El ID de la ruta no está definido.');
-            }
+    //     try {
+    //         if (!id) {
+    //             throw new Error('El ID de la ruta no está definido.');
+    //         }
     
-            const rutaDocRef = doc(db, 'rutas', id);
-            const rutaDoc = await getDoc(rutaDocRef);
+    //         const rutaDocRef = doc(db, 'rutas', id);
+    //         const rutaDoc = await getDoc(rutaDocRef);
     
-            if (!rutaDoc.exists()) {
-                throw new Error('No se encontró la ruta');
-            }
+    //         if (!rutaDoc.exists()) {
+    //             throw new Error('No se encontró la ruta');
+    //         }
     
-            const rutaData = rutaDoc.data();
-            const rutasCalendarIds = rutaData.rutascalendar || [];
+    //         const rutaData = rutaDoc.data();
+    //         const rutasCalendarIds = rutaData.rutascalendar || [];
     
-            if (rutasCalendarIds.length === 0) {
-                setShowCalendar(false);
-                setError('No hay rutas disponibles en este momento.');
-                return;
-            }
+    //         if (rutasCalendarIds.length === 0) {
+    //             setShowCalendar(false);
+    //             setError('No hay rutas disponibles en este momento.');
+    //             return;
+    //         }
     
-            const programadoCollection = collection(db, 'programado');
-            let availableDatesTemp = [];
+    //         const programadoCollection = collection(db, 'programado');
+    //         let availableDatesTemp = [];
     
-            console.log("Obteniendo fechas disponibles...");
-            for (const programadoId of rutasCalendarIds) {
-                const programadoDocRef = doc(programadoCollection, programadoId);
-                const programadoDoc = await getDoc(programadoDocRef);
+    //         console.log("Obteniendo fechas disponibles...");
+    //         for (const programadoId of rutasCalendarIds) {
+    //             const programadoDocRef = doc(programadoCollection, programadoId);
+    //             const programadoDoc = await getDoc(programadoDocRef);
     
-                if (programadoDoc.exists()) {
-                    const programadoData = programadoDoc.data();
-                    if (programadoData.dia) {
-                        availableDatesTemp.push({ 
-                            date: programadoData.dia.toDate(), 
-                            programadoId 
-                        });
-                    }
-                }
-            }
+    //             if (programadoDoc.exists()) {
+    //                 const programadoData = programadoDoc.data();
+    //                 if (programadoData.dia) {
+    //                     availableDatesTemp.push({ 
+    //                         date: programadoData.dia.toDate(), 
+    //                         programadoId 
+    //                     });
+    //                 }
+    //             }
+    //         }
     
-            const today = new Date();
-            const futureDates = availableDatesTemp.filter(d => d.date >= today);
+    //         const today = new Date();
+    //         const futureDates = availableDatesTemp.filter(d => d.date >= today);
     
-            if (futureDates.length === 0) {
-                setShowCalendar(false);
-                setError('No hay fechas disponibles para esta ruta.');
-            } else {
-                setAvailableDates(futureDates);
-                setShowCalendar(true);
-            }
-        } catch (error) {
-            console.error('Error al obtener la disponibilidad:', error);
-            setError('Hubo un error al obtener la disponibilidad.');
-        } finally {
-            setLoading(false);
-        }
-    };
+    //         if (futureDates.length === 0) {
+    //             setShowCalendar(false);
+    //             setError('No hay fechas disponibles para esta ruta.');
+    //         } else {
+    //             setAvailableDates(futureDates);
+    //             setShowCalendar(true);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error al obtener la disponibilidad:', error);
+    //         setError('Hubo un error al obtener la disponibilidad.');
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
     
 
-    const handleReservar = async (date) => {
-        try {
-            console.log("Reservando la ruta para la fecha:", date.toLocaleDateString());
+    // const handleReservar = async (date) => {
+    //     try {
+    //         console.log("Reservando la ruta para la fecha:", date.toLocaleDateString());
 
-            // Aquí puedes agregar la lógica para guardar la reserva en Firestore
-            // Por ejemplo:
-            // const reservaDocRef = await addDoc(collection(db, 'reservas'), {
-            //     rutaId: id,
-            //     fecha: date,
-            //     usuarioId: usuarioActual.uid,
-            // });
+    //         // Aquí puedes agregar la lógica para guardar la reserva en Firestore
+    //         // Por ejemplo:
+    //         // const reservaDocRef = await addDoc(collection(db, 'reservas'), {
+    //         //     rutaId: id,
+    //         //     fecha: date,
+    //         //     usuarioId: usuarioActual.uid,
+    //         // });
 
-            alert(`Reserva confirmada para el ${date.toLocaleDateString()}`);
-        } catch (error) {
-            console.error('Error al reservar la ruta:', error);
-            alert('Hubo un error al reservar la ruta.');
-        }
-    };
+    //         alert(`Reserva confirmada para el ${date.toLocaleDateString()}`);
+    //     } catch (error) {
+    //         console.error('Error al reservar la ruta:', error);
+    //         alert('Hubo un error al reservar la ruta.');
+    //     }
+    // };
 
-    const handleDateClick = (date) => {
-        const selected = availableDates.find(d => d.date.toDateString() === date.toDateString());
-        if (selected) {
-            setSelectedDate(selected.date);
-            setSelectedProgramadoId(selected.programadoId);
-        }
-    };
+    // const handleDateClick = (date) => {
+    //     const selected = availableDates.find(d => d.date.toDateString() === date.toDateString());
+    //     if (selected) {
+    //         setSelectedDate(selected.date);
+    //         setSelectedProgramadoId(selected.programadoId);
+    //     }
+    // };
     
 
     return (
-        <div className="InfoRuta-container" data-aos="fade-right">
+    <div className="InfoRuta-container" data-aos="fade-right">
         <div className="InfoRuta-content">
             <div className="InfoRutanombre">{nombre}</div>
             <div className='rating'>
@@ -356,131 +355,26 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                 )}
             </div>
 
-
-            <div className="InfoRutacontainer2">
-                <div className="InfoRutametrica2">
-                    <div className="InfoRutacontainer3">
-                        <span>Informacion sobre el Tour</span>
-                    </div>
-                    <div className="InfoRutacontainer3">
-                        <div className="InfoRutametrica2">
-                            <IoMdCheckmarkCircleOutline style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
-                        </div>
-                        <div className="InfoRutametrica2">
-                            <span><strong>Cancela sin cargos</strong></span>
-                            <span className="InfoRutainformacion">Cancela hasta 3 hrs antes para obtener el reembolso completo</span>
-                        </div>
-                    </div>
+            <div className="InfoRutaActividad-title">
+                <GoPerson className = "InfoRuta-iconAct" />
+                <span>Participantes</span>
+            </div>
+            <div className="InfoRutametrica2" style={{flexDirection: 'column', alignItems: 'center', backgroundColor:'#f9f9f9', borderRadius: '8px'}}>
+                {participantes.map((nombre) => (   /* aprticipantes serian los nombre de los usuarios */
                     <div className="InfoRutacontainer3">
                         <div className="InfoRutametrica2">
-                            <GoPerson style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
+                            <IoMdCheckmarkCircleOutline className="InfoRuta-iconAct"/>
                         </div>
                         <div className="InfoRutametrica2">
-                            <span><strong>Grupo Amplio</strong></span>
-                            <span className="InfoRutainformacion">Sin limite de personas</span>
+                            <span className="InfoRutainformacion" style={{fontSize: '19px'}}>{nombre}</span>
                         </div>
                     </div>
-                    <div className="InfoRutacontainer3">
-                        <div className="InfoRutametrica2">
-                            <FaMapMarkerAlt style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
-                        </div>
-                        <div className="InfoRutametrica2">
-                            <span><strong>Punto de encuentro</strong></span>
-                            <a href={URLmap} target="_blank" rel="noopener noreferrer">
-                                <span className="InfoRutatipolink">Abre en Mapa</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div className="InfoRutametrica2">
-                    <div className="InfoRuta-button-container">
-                        <div className="InfoRuta-button" onClick={handleCheckAvailability}>
-                            Ver disponibilidad
-                            <VscTriangleDown style={{ color: 'white', fontSize: '30px', justifyContent: 'flex-end', alignItems: 'flex-end' }} />
-                        </div>
-                    </div>
-                    <div>
-                        {/* Mostrar el calendario si hay fechas disponibles */}
-            {showCalendar && (
-                <div className="calendar-container">
-                    <h3>Fechas disponibles:</h3>
-                    <Calendar
-    onClickDay={handleDateClick}
-    tileDisabled={({ date }) => !availableDates.some(d => d.date.toDateString() === date.toDateString())}
-/>
-                </div>
-            )}
-
-                    </div>
-
-                    {selectedDate && (
-
-<div className="reserva-container">
-    <span style={{color: '#4CAF50', fontSize: '22px', marginBottom: '3px'}}><strong>Información de la reserva</strong></span>
-    <div className="reserva-detalles">
-        <span style={{fontFamily: 'Raleway-Bold'}}><strong>ID de Programado: </strong></span>
-        <span>{selectedProgramadoId}</span>
-    </div>
-    <div className="reserva-detalles">
-        <span style={{fontFamily: 'Raleway-Bold'}}><strong>Fecha seleccionada: </strong></span>
-        <span>{selectedDate.toLocaleDateString()}</span>
-    </div>
-    <div className="reserva-detalles">
-        <span style={{fontFamily: 'Raleway-Bold'}}><strong>Ruta: </strong></span>
-        <span>{nombre}</span>
-    </div>
-    <div className="reserva-detalles">
-        <span style={{fontFamily: 'Raleway-Bold'}}><strong>Dificultad: </strong></span>
-        <span>{dificultad}</span>
-    </div>
-    <div className="reserva-detalles">
-        <span style={{fontFamily: 'Raleway-Bold'}}><strong>Duración: </strong></span>
-        <span>{duracion} minutos</span>
-    </div>
-    <div className="reserva-detalles">
-        <span style={{fontFamily: 'Raleway-Bold'}}><strong>Distancia: </strong></span>
-        <span>{kilometros} km</span>
-    </div>
-
-
-                    
-                    <Link
-    to={{
-        pathname: `/reserva/${selectedProgramadoId}`, // Usa el ID directamente de las props
-        state: {
-            id: id, // Usa el ID directamente de las props
-            nombre: nombre, // Usa el nombre directamente de las props
-            estrellas: estrellas, // Usa las estrellas directamente de las props
-            imagen: imagen, // Usa la imagen directamente de las props
-            descripcion: descripcion, // Usa la descripción directamente de las props
-            distancia: kilometros, // Aquí estás usando "kilometros" en lugar de "distancia"
-            desnivel_positivo: desnivel_positivo, // Usa el desnivel positivo directamente de las props
-            duracion: duracion, // Usa la duración directamente de las props
-            kilometros: kilometros, // Usa los kilómetros directamente de las props
-            dificultad: dificultad, // Usa la dificultad directamente de las props
-            paseo: paseo, // Usa el valor de paseo directamente de las props
-            senderismo: senderismo, // Usa el valor de paseo directamente de las props
-            acampada: acampada, // Usa el valor de acampada directamente de las props
-            URLmap: URLmap, // Usa la URL del mapa directamente de las props
-            selectedDate: selectedDate, // Usa la fecha seleccionada del estado
-        }
-    }}
->
-    <button>Reservar</button>
-</Link>
-                </div>
-            )}
-
-                </div>
+                ))}
             </div>
 
-            
 
-            {/* Mostrar mensajes de error o carga */}
-            {loading && <p>Cargando disponibilidad...</p>}
-            {error && <p className="error-message">{error}</p>}
-        </div>
-        </div>
+            </div>
+        </div> 
     );
 }
 
