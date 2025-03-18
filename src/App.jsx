@@ -13,6 +13,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import  PagoExitoso  from './pages/PagoExitoso';
 import { UserProvider } from './Context/UserContext';
+import Galeria from './pages/Galeria';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import React, { useEffect } from 'react';
@@ -47,6 +48,7 @@ function App() {
         <Route path='contactanos' element = {<Contactanos/>} />
         <Route path="/reserva/:id" element={<ReservaPago />} />
         <Route path="exitosa" element={<PagoExitoso/>} />
+        <Route path='galeria' element = {<Galeria/>}/>
       
       </Route>
 

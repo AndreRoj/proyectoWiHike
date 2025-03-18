@@ -72,7 +72,10 @@ export function Navbar() {
                 Rutas
               </Link>
             </li>
-            <li className="options" onClick={toggleMenu}>Galeria</li>
+            <Link className="options" to="/galeria" onClick={toggleMenu} >
+            <li  >Galeria</li>
+            </Link>
+
             <li className="options" onClick={toggleMenu}>Foro</li>
             <li className="options">
               <IoSearch />
@@ -119,7 +122,12 @@ export function Navbar() {
             Rutas
           </Link>
         </li>
-        <li className="options">Galeria</li>
+
+
+        <Link className="options" to="/galeria" >
+            <li  >Galeria</li>
+            </Link>
+
         <li className="options">Foro</li>
       </ul>
 
