@@ -1,12 +1,13 @@
 .InfoRuta-container {
-    font-family: 'Raleway-Regular';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: white;
     width: 100%;
-    height: auto;
+    background-color: #f0f0f0;
+}
+
+.InfoRuta-iconAct{
+  color: black;
+  font-size: 45px;
+  justify-content: center;
+  justify-items: center;
 }
 
 .InfoRuta-content {
@@ -18,12 +19,14 @@
     padding: 50px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 100%;  
+    max-width: 96%;;
+    margin: 0 auto;
 }
 
 .InfoRutanombre {
     font-family: 'PaytoneOne';
-    font-size: 60px;
+    font-size: 45px;
     color: rgb(0, 0, 0);
   }
 
@@ -64,15 +67,15 @@
 
   .InfoRuta-description {
     margin-top: 30px; /*para colocar espacio antes del parrafo*/
-    margin-bottom: 30px; /*para colocar espacio despues del parrafo*/
+    margin-bottom: 40px; /*para colocar espacio despues del parrafo*/
     font-family: 'Raleway-Regular';
-    font-size: 32px;
+    font-size: 24px;
     color: #000000;
     line-height: 1.5;
 }
 
 .InfoRutametricas-container {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-around; /* Distribuye las métricas de manera uniforme */
   background-color: #f9f9f9;
@@ -87,20 +90,20 @@
 
 .InfoRutavalor {
   font-family: 'Raleway-Bold';
-  font-size: 80px; 
+  font-size: 55px; 
   font-weight: bold; /* Texto en negrita */
   color: #161616;
 }
 
 .InfoRutaunidad {
-  font-size: 36px;
+  font-size: 25px;
   color: #666; 
   margin-left: 4px; /* Espacio entre el valor y la unidad */
 }
 
 .InfoRutadetalles {
   font-family: 'Raleway-Regular';
-  font-size: 24px;
+  font-size: 20px;
   color: #777; 
   display: block; /* Hace que la descripción esté en una línea separada */
   margin-top: 8px; /* Espacio entre el valor y la descripción */
@@ -110,10 +113,9 @@
   height: 150px; /* Grosor de la línea */
   background: #2e2e2e;
   width: 3px; /* Ancho completo */
-  margin: 10px 0; /* Espacio alrededor de la línea */
+  margin: 6px 0; /* Espacio alrededor de la línea */
   border-radius: 8px;
 }
-
 
 
 /* Estilo para el día actual */
@@ -152,7 +154,7 @@
 .InfoRutaActividad-title {
   font-family: 'Raleway-bold';
   color: black;
-  font-size: 50px;
+  font-size: 42px;
   font-weight: bold;
   background-color: #4CAF50;
   border-radius: 8px;
@@ -166,7 +168,6 @@
 .InfoRutaActividad-container {
   font-family: 'Raleway-bold';
   color: black;
-  font-size: 50px;
   font-weight: bold;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -189,7 +190,6 @@
 .InfoRutacontainer2 {
   font-family: 'Raleway-bold';
   color: black;
-  font-size: 50px;
   font-weight: bold;
   background-color: #ffffff;
   padding: 40px; /*para crear el espacio alrededor*/
@@ -199,7 +199,7 @@
 
 .InfoRutametrica2 {
   font-family: 'Raleway-Bold';
-  font-size: 22px;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -243,16 +243,16 @@
 
 .InfoRuta-button {
   font-family: Arial;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 40px 54px;
+  padding: 30px 54px;
   gap: 45px;
-  width: 380px;
-  height: 50px;
+  width: 340px;
+  height: 40px;
 
   background: linear-gradient(0deg, #4CAF50, #4CAF50), #081E29;
   border-radius: 8px;
@@ -282,4 +282,118 @@
     src: url('/fonts/Raleway-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+
+
+/* Media Query para dispositivos móviles (teléfonos) */
+@media screen and (max-width: 768px) {
+    .InfoRuta-container {
+
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    .InfoRuta-iconAct{
+      font-size: 30px;
+    }
+
+    .InfoRuta-content {
+        width: 100%;
+        justify-content: center;
+        align-content: center;
+        padding: 20px;
+    }
+
+    .InfoRutanombre {
+        font-size: 30px;
+
+    }
+
+    .InfoRutagallery {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        gap: 15px;
+    }
+
+    .InfoRutamain-imag {
+        max-width: 100%;
+        height: 250px; /* Ajustamos la altura de la imagen principal */
+    }
+
+    .InfoRutamain-imag img {
+        height: 100%;
+    }
+
+    .InfoRutaside-imag {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .InfoRutaside-imag img {
+        width: 200px;
+        height: 180px;
+    }
+
+    .InfoRuta-description {
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+    .InfoRutametricas-container {
+      
+      max-width: 100%;
+      justify-content: space-around; 
+      gap: 8px; /* Espacio entre métricas */
+      padding: 10px;
+    }
+    
+    .InfoRuta-separador {
+      height: 50px; 
+      margin: 2px 0;
+    }
+
+    .InfoRutavalor,.InfoRutaActividad-title {
+      font-size: 30px;
+    }
+
+    .InfoRutaunidad {
+      font-size: 16px;
+    }
+
+    .InfoRutadetalles {
+      font-size: 6px;
+    }
+
+    .InfoRuta-button {
+        padding: 15px 30px; /* Reducción de tamaño del botón en móvil */
+        width: 100%; /* Hacer el botón más grande */
+    }
+    
+    .InfoRutacontainer2 {
+        width: 100%;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        gap: 55px;
+    }
+
+    .InfoRutametrica2{
+      max-width: 100%;
+    }
+
+    .InfoRutaActividad-container{
+      flex-direction: column;
+      max-width: 100%;
+      padding: 30px;
+      gap: 15px;
+
+    }
+
+    .InfoRutacontainer3{
+      font-size: 25px;
+    }
+
 }

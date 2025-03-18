@@ -287,6 +287,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
     
 
     return (
+        <div className="InfoRuta-container" data-aos="fade-right">
         <div className="InfoRuta-content">
             <div className="InfoRutanombre">{nombre}</div>
             <div className='rating'>
@@ -330,25 +331,25 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                 </div>
             </div>
             <div className="InfoRutaActividad-title">
-                <FaMapSigns style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
+                <FaMapSigns className = "InfoRuta-iconAct" />
                 <span>Actividades</span>
             </div>
             <div className="InfoRutaActividad-container">
                 {paseo && (
                     <div className="InfoRutaAct-metrica">
-                        <FaHiking style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
+                        <FaHiking className = "InfoRuta-iconAct"/>
                         <span className="InfoRutadetalles">Senderismo</span>
                     </div>
                 )}
                 {paseo && (
                     <div className="InfoRutaAct-metrica">
-                        <BsPersonWalking style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
+                        <BsPersonWalking className = "InfoRuta-iconAct" />
                         <span className="InfoRutadetalles">Paseo</span>
                     </div>
                 )}
                 {acampada && (
                     <div className="InfoRutaAct-metrica">
-                        <GiCampingTent style={{ color: 'black', fontSize: '50px', justifyContent: 'center' }} />
+                        <GiCampingTent className = "InfoRuta-iconAct" />
                         <span className="InfoRutadetalles">Acampada</span>
                     </div>
                 )}
@@ -360,7 +361,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                     </div>
                     <div className="InfoRutacontainer3">
                         <div className="InfoRutametrica2">
-                            <IoMdCheckmarkCircleOutline style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
+                            <IoMdCheckmarkCircleOutline style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
                         <div className="InfoRutametrica2">
                             <span><strong>Cancela sin cargos</strong></span>
@@ -369,7 +370,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                     </div>
                     <div className="InfoRutacontainer3">
                         <div className="InfoRutametrica2">
-                            <GoPerson style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
+                            <GoPerson style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
                         <div className="InfoRutametrica2">
                             <span><strong>Grupo Amplio</strong></span>
@@ -378,7 +379,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                     </div>
                     <div className="InfoRutacontainer3">
                         <div className="InfoRutametrica2">
-                            <FaMapMarkerAlt style={{ color: 'black', fontSize: '90px', justifyContent: 'center', alignItems: 'center' }} />
+                            <FaMapMarkerAlt style={{ color: 'black', fontSize: '50px', justifyContent: 'center', alignItems: 'center' }} />
                         </div>
                         <div className="InfoRutametrica2">
                             <span><strong>Punto de encuentro</strong></span>
@@ -456,6 +457,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             {/* Mostrar mensajes de error o carga */}
             {loading && <p>Cargando disponibilidad...</p>}
             {error && <p className="error-message">{error}</p>}
+        </div>
         </div>
     );
 }
