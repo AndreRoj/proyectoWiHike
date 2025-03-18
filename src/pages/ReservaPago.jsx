@@ -161,7 +161,7 @@ function ReservaPago() {
             </div>
             <div className="Reserva-Derecha">
                 <div className="Reserva-FinalizarPedido">
-                <BotonPaypal precio={reserva.precio} />
+                <BotonPaypal precio={reserva.precio} reservaId={reservaId}  />
                 </div>
                 <div className='Reserva-separador'></div>
                 <div className="Reserva-columna1">

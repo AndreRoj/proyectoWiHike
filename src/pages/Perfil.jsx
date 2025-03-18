@@ -5,11 +5,12 @@ import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
 import { db } from '../firebase'; // Asegúrate de importar tu configuración de Firebase
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
 
 export default function Perfil() {
     const profileContext = useContext(UserContext);
     const { logged, profile } = profileContext;
+    console.log("Profile data:", profile);
 
     const [userData1, setUserData1] = useState({
         name: "",
@@ -17,8 +18,8 @@ export default function Perfil() {
         phone: "",
         email: "",
         profileImage: "",
-        latestRoutes: [],
-        upcomingRoutes: [],
+        latestRoutes: [], //ultimas rutas de usuario finalizadas
+        upcomingRoutes: [], // Proximas rutas reservadas
     });
 
     // Estado para las estadísticas
@@ -40,17 +41,43 @@ export default function Perfil() {
     // Función para obtener los detalles de las rutas
     const getRouteDetails = async (routeIds) => {
         if (!routeIds || routeIds.length === 0) return []; // Si no hay IDs, retorna un array vacío
-
-        const routesCollection = collection(db, 'rutas'); // Asegúrate de que 'rutas' es el nombre correcto de tu colección
-        const q = query(routesCollection, where('__name__', 'in', routeIds)); // Consulta las rutas con los IDs proporcionados
+    
+        const routesCollection = collection(db, 'rutas');
+        const q = query(routesCollection, where('__name__', 'in', routeIds));
         const querySnapshot = await getDocs(q);
-
-        // Mapea los documentos a un array de objetos con los datos de las rutas
+    
+        console.log("Rutas encontradas:", querySnapshot.docs.map(doc => doc.data())); // Verifica los datos
+    
         return querySnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
         }));
     };
+    
+    const getUpcomingRoutes = async (proximasRutasIds) => {
+        if (!proximasRutasIds || proximasRutasIds.length === 0) return [];
+    
+        const programadoCollection = collection(db, 'programado');
+        const q = query(programadoCollection, where('__name__', 'in', proximasRutasIds));
+        const querySnapshot = await getDocs(q);
+    
+        console.log("Rutas programadas encontradas:", querySnapshot.docs.map(doc => doc.data())); // Verifica los datos
+    
+        const upcomingRoutes = await Promise.all(
+            querySnapshot.docs.map(async (programadoDoc) => {
+                const programadoData = programadoDoc.data();
+                const rutaDoc = await getDoc(doc(db, 'rutas', programadoData.idruta));
+                return {
+                    id: programadoDoc.id,
+                    ...programadoData,
+                    ruta: rutaDoc.data(),
+                };
+            })
+        );
+    
+        return upcomingRoutes;
+    };
+
 
     // Función para calcular las estadísticas
     const calculateStats = (latestRoutes) => {
@@ -59,8 +86,8 @@ export default function Perfil() {
         let totalRoutes = latestRoutes.length;
 
         latestRoutes.forEach(route => {
-            totalKm += parseFloat(route.kilometros) || 0; // Suma los kilómetros
-            totalDuration += parseFloat(route.duracion) || 0; // Suma la duración en minutos
+            totalKm += parseFloat(route.ruta.kilometros) || 0; // Suma los kilómetros
+            totalDuration += parseFloat(route.ruta.duracion) || 0; // Suma la duración en minutos
         });
 
         // Convertir la duración total a horas y minutos
@@ -141,11 +168,16 @@ export default function Perfil() {
         const fetchData = async () => {
             if (profile) { // Solo ejecuta si profile no es null o undefined
                 // Obtén los detalles de las últimas rutas
-                const latestRoutes = await getRouteDetails(profile.ultimasrutas || []);
-                console.log(latestRoutes);
+                console.log('latest routes crudo ' + profile.ultimasrutas);
+                console.log('upcoming routes' + profile.proximasrutasusuario)
+
+
+                const latestRoutes = await getUpcomingRoutes(profile.ultimasrutas || []);
+                console.log('latest routes' + latestRoutes);
                 // Obtén los detalles de las próximas rutas
-                const upcomingRoutes = await getRouteDetails(profile.proximasrutas || []);
-                console.log(upcomingRoutes);
+                const upcomingRoutes = await getUpcomingRoutes(profile.proximasrutasusuario || []);
+                console.log('upcoming routes' +upcomingRoutes);
+                console.log('perfil' + profile)
 
                 // Actualiza userData1 con los datos del perfil y las rutas
                 const updatedUserData = {
@@ -256,90 +288,75 @@ export default function Perfil() {
                 </div>
                 <div className='perfilProximas-Rutas'>
                     <h2>Próximas Rutas Programadas</h2>
-                    {userData1.upcomingRoutes.length > 0 && (
-                        <div className='perfilRutascontainer1'>
-                            {userData1.upcomingRoutes.map((route, index) => (
-                                <div key={index} className="perfilInfoRutas1">
-                                    <div className="perfilimagen-ruta">
-                                        <img
-                                            src={route.imagen || "https://via.placeholder.com/150"}
-                                            alt={route.nombre}
-                                            className="perfilpngruta"
-                                        />
-                                        <div className="perfilRutainfo">
-                                            <h3>{route.nombre}</h3>
-                                        </div>
-                                    </div>
-                                    <div className="perfildetallesruta">
-                                        <p className='perfilguide'>
-                                            <span className="perfilnombreguia">{route.guia} </span>
-                                            <span className='perfilrol'>{route.guia}</span>
-                                        </p>
-                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
-                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-                <div className='perfilUltimas-Rutas'>
-                    <h2>Últimas Rutas</h2>
-                    {userData1.latestRoutes.length > 0 && (
+                    {userData1.upcomingRoutes.length > 0 ? (
                         <div className="perfilRutascontainer2">
-                            {userData1.latestRoutes.map((route, index) => (
+                            {userData1.upcomingRoutes.map((programado, index) => (
                                 <div key={index} className="perfilInfoRutas2">
                                     <div className="perfilimagen-ruta">
                                         <img
-                                            src={route.imagen || "https://via.placeholder.com/150"}
-                                            alt={route.nombre}
+                                            src={programado.ruta?.imagen || "https://via.placeholder.com/150"}
+                                            alt={programado.ruta?.nombre}
                                             className="perfilpngruta"
                                         />
                                         <div className="perfilRutainfo">
-                                            <h3>{route.nombre}</h3>
+                                            <h3>{programado.ruta?.nombre}</h3>
+                                            
                                         </div>
                                     </div>
                                     <div className="perfildetallesruta">
                                         <p>
-                                            <span className="perfilnombreguia">{route.guia} </span>
-                                            <span className='perfilrol'>{route.guia}</span>
+                                            <span className="perfilnombreguia">{userData1.name} </span>
                                         </p>
-                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
-                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
+                                        <p className="perfilroute-info">Dificultad: {programado.ruta?.dificultad}</p>
+                                        <p className="perfilroute-info">Duración: {programado.ruta?.duracion}</p>
+                                        <p className="perfilfecha">
+                                                Fecha: {new Date(programado.dia?.toDate()).toLocaleString()}
+                                            </p>
                                     </div>
                                 </div>
                             ))}
                         </div>
+                    ) : (
+                        <p>No tienes próximas rutas programadas.</p>
                     )}
+                </div>
+                <div className='perfilUltimas-Rutas'>
+                    
+                    
                 </div>
 
                   <div className='perfilUltimas-Rutas'>
                     <h2>Últimas Rutas</h2>
-                    {userData1.latestRoutes.length > 0 && (
+                    {userData1.latestRoutes.length > 0 ? (
                         <div className="perfilRutascontainer2">
-                            {userData1.latestRoutes.map((route, index) => (
+                            {userData1.latestRoutes.map((programado, index) => (
                                 <div key={index} className="perfilInfoRutas2">
                                     <div className="perfilimagen-ruta">
                                         <img
-                                            src={route.imagen || "https://via.placeholder.com/150"}
-                                            alt={route.nombre}
+                                            src={programado.ruta?.imagen || "https://via.placeholder.com/150"}
+                                            alt={programado.ruta?.nombre}
                                             className="perfilpngruta"
                                         />
                                         <div className="perfilRutainfo">
-                                            <h3>{route.nombre}</h3>
+                                            <h3>{programado.ruta?.nombre}</h3>
+                                            
                                         </div>
                                     </div>
                                     <div className="perfildetallesruta">
                                         <p>
-                                            <span className="perfilnombreguia">{route.guia} </span>
-                                            <span className='perfilrol'>{route.guia}</span>
+                                            <span className="perfilnombreguia">{userData1.name} </span>
                                         </p>
-                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
-                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
+                                        <p className="perfilroute-info">Dificultad: {programado.ruta?.dificultad}</p>
+                                        <p className="perfilroute-info">Duración: {programado.ruta?.duracion}</p>
+                                        <p className="perfilfecha">
+                                                Fecha: {new Date(programado.dia?.toDate()).toLocaleString()}
+                                            </p>
                                     </div>
                                 </div>
                             ))}
                         </div>
+                    ) : (
+                        <p>No tienes próximas rutas programadas.</p>
                     )}
                 </div>
 
