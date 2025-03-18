@@ -5,6 +5,7 @@ import './ReservaPago.css';
 import { db } from '../firebase'; // Importa tu configuración de Firebase
 import { doc, getDoc } from 'firebase/firestore'; // Importa las funciones de Firestore
 import { UserContext } from '../Context/UserContext';
+import BotonPaypal from '../components/BotonPaypal'
 
 
 function ReservaPago() {
@@ -160,28 +161,21 @@ function ReservaPago() {
             </div>
             <div className="Reserva-Derecha">
                 <div className="Reserva-FinalizarPedido">
-                <button className="Reserva-PagoPaypal">
-                    <div className='Reserva-rectangulo'></div>
-                    <div className='Reserva-icon'> <FaPaypal /></div>
-                    <span>PayPal</span>
-                </button>
+                <BotonPaypal precio={reserva.precio} />
                 </div>
                 <div className='Reserva-separador'></div>
                 <div className="Reserva-columna1">
                     <span>Precio:</span>
                     {/* Aquí puedes mostrar el precio */}
-                    <span>$50.00</span>
+                    <span>${reserva.precio}</span>
                 </div>
                 <div className="Reserva-columna2">
-                    <span>Impuestos + IVA:</span>
-                    {/* Aquí puedes mostrar los impuestos */}
-                    <span>$5.00</span>
                 </div>
                 <div className='Reserva-separador'></div>
                 <div className="Reserva-columna3">
                     <span>Total a pagar:</span>
-                    {/* Aquí puedes mostrar el total */}
-                    <span>$55.00</span>
+
+                    <span>${reserva.precio}</span>
                 </div>
             </div>
         </div>
