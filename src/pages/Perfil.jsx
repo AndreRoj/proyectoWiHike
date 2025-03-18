@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom'; // Importa Link para la navegación
 import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
-import { db } from '../firebase'; // Asegúrate de importar tu configuración de Firebase
-import { collection, getDocs, query, where, doc, updateDoc} from 'firebase/firestore';
-import { supabase } from '../supabaseClient'
+import { collection, getDocs, query, where, doc, updateDoc, getFirestore} from 'firebase/firestore';
+import { app } from '../firebase';
+import { getAuth } from 'firebase/auth';
+import { uploadImage } from '../supabaseClient';
+
+const db = getFirestore(app);
+const auth = getAuth(app)
 
 export default function Perfil() {
     const profileContext = useContext(UserContext);
-    const { logged, profile } = profileContext;
+    const { logged, profile, setProfile } = profileContext;
+    const [isUploading, setIsUploading] = useState(false); 
 
     const [userData1, setUserData1] = useState({
         name: "",
@@ -75,26 +80,6 @@ export default function Perfil() {
         };
     };
 
-    const uploadProfileImage = async (userId, file) => {
-        try{
-            const {data, error } = await supabase.storage.from('avatars').upload(`user_${userId}/profile.png`, file, {
-                upsert: true
-            })
-
-            if(error){
-                console.error('Error subiendo a supabase:', supabase)
-                return null
-            }
-
-            const { data : {publicUrl}} = supabase.storage.from('avatars').getPublicUrl(data.path)
-            return publicUrl
-            
-        }catch (error) {
-            console.error('Error en supabase storage:', error)
-            return null
-        }
-    }
-
 
     //borrar
     const handleEditClick = () => {
@@ -118,17 +103,55 @@ export default function Perfil() {
 
   // Función para manejar la subida de la imagen de perfil
   const handleImageUpload = async (e) => {
-        const file = e.target.files?.[0]; // Obtiene el archivo del input
-        if (file) {
-            const imageUrl = await uploadProfileImage(profile.uid, file);
-            if (imageUrl) {
-                setFormData({
-                    ...formData,
-                    profileImage: imageUrl,
-                });
-            }
-        }
+    const file = e.target.files[0]; // Obtiene el archivo del input
+    if (!file) {
+        alert("Por favor, selecciona un archivo.");
+        return;
     }
+
+    try {
+        setIsUploading(true);
+
+        // Obtén el usuario actual
+        const user = auth.currentUser;
+        if (!user || !user.uid) {
+            throw new Error("No hay un usuario autenticado o el UID no está disponible.");
+        }
+
+        // Sube la imagen a Supabase
+        const imageUrl = await uploadImage(file, 'avatars', `user_${user.uid}`);
+        console.log("URL de la imagen:", imageUrl); // Depuración
+
+        if (!imageUrl) {
+            throw new Error("No se pudo obtener la URL de la imagen.");
+        }
+
+        // Actualiza Firestore con la nueva URL de la imagen
+        const userDocRef = doc(db, 'users', user.uid);
+        await updateDoc(userDocRef, {
+            image: imageUrl, // Asegúrate de que imageUrl no sea undefined
+        });
+
+        // Actualiza el estado local (userData1)
+        setUserData1((prevUserData) => ({
+            ...prevUserData,
+            profileImage: imageUrl,
+        }));
+
+        // Actualiza el contexto (profile)
+        setProfile((prevProfile) => ({
+            ...prevProfile,
+            image: imageUrl,
+        }));
+
+        console.log("Foto de perfil actualizada correctamente:", imageUrl);
+    } catch (error) {
+        console.error("Error al subir la imagen o actualizar el perfil:", error);
+        alert("Hubo un error al actualizar la foto de perfil.");
+    } finally {
+        setIsUploading(false); // Desactiva el estado de carga
+    }
+};
 
   // Función para guardar los cambios
   const handleSave = async () => {
