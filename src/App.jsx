@@ -11,7 +11,7 @@ import Contactanos from './pages/Contactanos';
 import ReservaPago from './pages/ReservaPago';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
-import  TransaccionExitosa  from './components/TransaccionExitosa';
+import  PagoExitoso  from './pages/PagoExitoso';
 import { UserProvider } from './Context/UserContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa los estilos de AOS
@@ -46,7 +46,7 @@ function App() {
         <Route path="/info_rutas/:rutaId" element={<InfoRutas />} /> {/* Ruta dinámica */}
         <Route path='contactanos' element = {<Contactanos/>} />
         <Route path="/reserva/:id" element={<ReservaPago />} />
-        <Route path="exitosa" element={<TransaccionExitosa/>} />
+        <Route path="exitosa" element={<PagoExitoso/>} />
       
       </Route>
 
