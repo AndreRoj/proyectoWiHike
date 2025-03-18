@@ -75,4 +75,21 @@
     align-items: center;
     padding: 16px;
 }
+.PaginaPrincipal2{
+    background-color: white;
+    justify-content: center;
+    width: 100%;
+    margin: 2rem;
+    padding: 0;
+}
+.PaginaPrincipal2-container{ 
+    width: 951px;
+    height: 724px;
+    background-color: #c4bebe;
+    border-radius: 10px;
+    padding: 3rem;
+    overflow-y: auto;
+}
+
+  
 

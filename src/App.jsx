@@ -9,7 +9,7 @@ import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
 import Contactanos from './pages/Contactanos'; 
 import ReservaPago from './pages/ReservaPago';
-import PPrincipal1 from './admin/PPrincipal1';
+import PagPrincipal from './admin/PagPrincipal';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import { UserProvider } from './Context/UserContext';
@@ -52,7 +52,7 @@ function App() {
 
       <Route >
         <Route path='*' element = {<NotFound/>}/>
-        <Route path='admin' element={<PPrincipal1/>} />
+        <Route path='admin' element={<PagPrincipal/>} />
       
 
       </Route>

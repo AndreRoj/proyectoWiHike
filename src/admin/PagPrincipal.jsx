@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import "./PPrincipal1.css";
+import "./PagPrincipal.css";
 import Header from "./Headeradmin";
 import Sidebar from "./Sidebar";
 import  TabItems  from './TabNavigation';
 import { FiEdit} from "react-icons/fi";
 import { FaTrash } from "react-icons/fa";
+import { MdOutlineCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
+import Routeitem from './Routeitem';
 
 
 
-function PPrincipal1() {
+function PagPrincipal() {
    const [activeTab, setActiveTab] = useState("banner");
   return (
     <div className="PaginaPrincipal1">
@@ -75,8 +77,24 @@ function PPrincipal1() {
                   </div>
                 )}
                 {activeTab === "rutas" && (
-                  <div className="tab-content">
-                    {/* Content for Rutas populares tab */}
+                  <div className="PaginaPrincipal2">
+                    <div className='PaginaPrincipal2-container'>
+                      <Routeitem 
+                        key={1}
+                        name={"Ruta 1"}
+                      />
+                      <Routeitem 
+                        key={2}
+                        name={"Ruta 2"}
+                      /><Routeitem 
+                      key={3}
+                      name={"Ruta 3"}
+                      />
+                      <Routeitem 
+                      key={4}
+                      name={"Ruta 4"}
+                    />
+                    </div>
                   </div>
                 )}
                 {activeTab === "sobre" && (
@@ -96,4 +114,4 @@ function PPrincipal1() {
   );
 }
 
-export default PPrincipal1;
+export default PagPrincipal;
