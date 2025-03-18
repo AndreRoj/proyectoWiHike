@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
-import { Link } from 'react-router-dom'; // Importa Link para la navegación
+import { Link } from 'react-router-dom'; 
 import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
@@ -27,15 +27,15 @@ export default function Perfil() {
         upcomingRoutes: [],
     });
 
-    // Estado para las estadísticas
+    //estado para las estadisticas
     const [activityStats, setActivityStats] = useState({
         Tiemposenderismo: "0h 0m",
         Kmrecorridos: "0 KM",
         Rutasrealizadas: "0",
     });
  
-    //borrar
-    const [isEditing, setIsEditing] = useState(false); // Estado para controlar la visibilidad del formulario de edición
+    //Estado para controlar la visibilidad del formulario de edicion
+    const [isEditing, setIsEditing] = useState(false); 
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -43,15 +43,15 @@ export default function Perfil() {
         profileImage: "",
     });
 
-    // Función para obtener los detalles de las rutas
+    // obitene detalles de las rutas
     const getRouteDetails = async (routeIds) => {
-        if (!routeIds || routeIds.length === 0) return []; // Si no hay IDs, retorna un array vacío
+        if (!routeIds || routeIds.length === 0) return []; 
 
-        const routesCollection = collection(db, 'rutas'); // Asegúrate de que 'rutas' es el nombre correcto de tu colección
-        const q = query(routesCollection, where('__name__', 'in', routeIds)); // Consulta las rutas con los IDs proporcionados
+        const routesCollection = collection(db, 'rutas'); 
+        const q = query(routesCollection, where('__name__', 'in', routeIds)); 
         const querySnapshot = await getDocs(q);
 
-        // Mapea los documentos a un array de objetos con los datos de las rutas
+        //mapea los documentos a un array de objetos con los datos de las rutas
         return querySnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
@@ -65,11 +65,11 @@ export default function Perfil() {
         let totalRoutes = latestRoutes.length;
 
         latestRoutes.forEach(route => {
-            totalKm += parseFloat(route.kilometros) || 0; // Suma los kilómetros
-            totalDuration += parseFloat(route.duracion) || 0; // Suma la duración en minutos
+            totalKm += parseFloat(route.kilometros) || 0; 
+            totalDuration += parseFloat(route.duracion) || 0; 
         });
 
-        // Convertir la duración total a horas y minutos
+        
         const hours = Math.floor(totalDuration / 60);
         const minutes = Math.round(totalDuration % 60);
 
@@ -92,7 +92,7 @@ export default function Perfil() {
       });
   };
 
-  // Función para manejar cambios en el formulario
+  // funcion para manejar cambios en el formulario
   const handleInputChange = (e) => {
       const { name, value } = e.target;
       setFormData({
@@ -101,9 +101,9 @@ export default function Perfil() {
       });
   };
 
-  // Función para manejar la subida de la imagen de perfil
+  // funcion para manejar la subida de la imagen de perfil
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0]; // Obtiene el archivo del input
+    const file = e.target.files[0]; 
     if (!file) {
         alert("Por favor, selecciona un archivo.");
         return;
@@ -112,13 +112,13 @@ export default function Perfil() {
     try {
         setIsUploading(true);
 
-        // Obtén el usuario actual
+        //  usuario actual
         const user = auth.currentUser;
         if (!user || !user.uid) {
             throw new Error("No hay un usuario autenticado o el UID no está disponible.");
         }
 
-        // Sube la imagen a Supabase
+        // sube la imagen a Supabase
         const imageUrl = await uploadImage(file, 'avatars', `user_${user.uid}`);
         console.log("URL de la imagen:", imageUrl); // Depuración
 
@@ -126,22 +126,28 @@ export default function Perfil() {
             throw new Error("No se pudo obtener la URL de la imagen.");
         }
 
-        // Actualiza Firestore con la nueva URL de la imagen
+        // actualiza Firestore con la nueva URL de la imagen
         const userDocRef = doc(db, 'users', user.uid);
         await updateDoc(userDocRef, {
-            image: imageUrl, // Asegúrate de que imageUrl no sea undefined
+            image: imageUrl,
         });
 
-        // Actualiza el estado local (userData1)
+        // actualiza el estado local 
         setUserData1((prevUserData) => ({
             ...prevUserData,
             profileImage: imageUrl,
         }));
 
-        // Actualiza el contexto (profile)
+        //actualiza contexto 
         setProfile((prevProfile) => ({
             ...prevProfile,
             image: imageUrl,
+        }));
+
+        //actualiza el form
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            profileImage: imageUrl,
         }));
 
         console.log("Foto de perfil actualizada correctamente:", imageUrl);
@@ -149,14 +155,14 @@ export default function Perfil() {
         console.error("Error al subir la imagen o actualizar el perfil:", error);
         alert("Hubo un error al actualizar la foto de perfil.");
     } finally {
-        setIsUploading(false); // Desactiva el estado de carga
+        setIsUploading(false);
     }
 };
 
-  // Función para guardar los cambios
+  // guardar los cambios
   const handleSave = async () => {
       try {
-          const userDocRef = doc(db, 'users', profile.uid); // Asegúrate de que 'users' es el nombre de tu colección
+          const userDocRef = doc(db, 'users', profile.uid); 
           await updateDoc(userDocRef, {
               nombre: formData.name,
               telefono: formData.phone,
@@ -164,7 +170,7 @@ export default function Perfil() {
               image: formData.profileImage,
           });
 
-          // Actualiza el estado local
+          // actualiza el estado local
           setUserData1({
               ...userData1,
               name: formData.name,
@@ -173,8 +179,8 @@ export default function Perfil() {
               profileImage: formData.profileImage,
           });
 
-          setIsEditing(false); // Cierra el formulario de edición
-          alert('Perfil actualizado correctamente.');
+          setIsEditing(false);
+
       } catch (error) {
           console.error('Error al actualizar el perfil:', error);
           alert('Hubo un error al actualizar el perfil.');
@@ -183,15 +189,15 @@ export default function Perfil() {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (profile) { // Solo ejecuta si profile no es null o undefined
-                // Obtén los detalles de las últimas rutas
+            if (profile) { 
+           
                 const latestRoutes = await getRouteDetails(profile.ultimasrutas || []);
                 console.log(latestRoutes);
-                // Obtén los detalles de las próximas rutas
+             
                 const upcomingRoutes = await getRouteDetails(profile.proximasrutas || []);
                 console.log(upcomingRoutes);
 
-                // Actualiza userData1 con los datos del perfil y las rutas
+             
                 const updatedUserData = {
                     name: profile.nombre ?? "Nombre no disponible",
                     role: profile.guia ? "Guía" : "Estudiante",
@@ -204,14 +210,14 @@ export default function Perfil() {
 
                 setUserData1(updatedUserData);
 
-                // Calcula las estadísticas basadas en las últimas rutas
+                // calcula las estadisticas delas ultimas rutas
                 const stats = calculateStats(latestRoutes);
                 setActivityStats(stats);
             }
         };
 
         fetchData();
-    }, [profile]); // Este efecto se ejecuta cuando profile cambia
+    }, [profile]); 
 
     return (
       <div className='perfil'>
@@ -300,7 +306,7 @@ export default function Perfil() {
                   </div>
               </div>
           </div>
-            {/* Renderiza las estadísticas y rutas */}
+            {/* renderiza estadsticas y rutas */}
             <div className='perfilDerecha'>
                 <div className='perfilEstadisticas'>
                     <h2>Tu Actividad</h2>
