@@ -4,6 +4,7 @@ import { FaPaypal } from "react-icons/fa";
 import './ReservaPago.css';
 import { db } from '../firebase'; // Importa tu configuración de Firebase
 import { doc, getDoc } from 'firebase/firestore'; // Importa las funciones de Firestore
+import { UserContext } from '../Context/UserContext';
 
 
 function ReservaPago() {
@@ -16,6 +17,8 @@ function ReservaPago() {
     const [ruta, setRuta] = useState(null); // Datos de la colección 'rutas'
     const [loading, setLoading] = useState(true); // Estado para manejar la carga
     const [error, setError] = useState(null); // Estado para manejar errores
+    const profileContext = useContext(UserContext);
+    const { logged, profile } = profileContext;
 
     // Obtén los datos de la ruta pasados desde InfoRuta
     const location = useLocation();
@@ -37,39 +40,44 @@ function ReservaPago() {
 
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchReserva = async () => {
             try {
                 if (!reservaId) {
                     throw new Error('El ID de la reserva no está definido.');
                 }
-
+    
                 console.log("Obteniendo datos de la reserva con ID:", reservaId);
-
+    
                 // 1. Obtener el documento de la colección 'programado'
                 const reservaDocRef = doc(db, 'programado', reservaId);
                 const reservaDoc = await getDoc(reservaDocRef);
-
+    
                 if (!reservaDoc.exists()) {
                     throw new Error('No se encontró la reserva');
                 }
-
+    
                 const reservaData = reservaDoc.data();
                 console.log("Datos de la reserva:", reservaData);
-
-                // 2. Obtener el documento de la colección 'rutas' usando el campo 'idruta'
-                const rutaDocRef = doc(db, 'rutas', reservaData.idruta);
-                const rutaDoc = await getDoc(rutaDocRef);
-
-                if (!rutaDoc.exists()) {
-                    throw new Error('No se encontró la ruta asociada');
-                }
-
-                const rutaData = rutaDoc.data();
-                console.log("Datos de la ruta:", rutaData);
-
-                // 3. Guardar los datos en los estados
+    
+                // Guardar la reserva en el estado
                 setReserva(reservaData);
-                setRuta(rutaData);
+    
+                // 2. Ahora que tenemos `idruta`, obtener los datos de la ruta
+                if (reservaData.idruta) {
+                    console.log("Buscando datos de la ruta con ID:", reservaData.idruta);
+                    const rutaDocRef = doc(db, 'rutas', reservaData.idruta);
+                    const rutaDoc = await getDoc(rutaDocRef);
+    
+                    if (!rutaDoc.exists()) {
+                        throw new Error('No se encontró la ruta asociada');
+                    }
+    
+                    const rutaData = rutaDoc.data();
+                    console.log("Datos de la ruta:", rutaData);
+    
+                    // Guardar los datos en los estados
+                    setRuta(rutaData);
+                }
             } catch (error) {
                 console.error('Error al obtener los datos:', error);
                 setError('Hubo un error al obtener los datos.');
@@ -77,9 +85,11 @@ function ReservaPago() {
                 setLoading(false);
             }
         };
+    
+        fetchReserva();
+    }, [reservaId]); 
 
-        fetchData();
-    }, [reservaId]); // Ejecuta este efecto cuando el ID cambie
+    
 
     // Muestra un mensaje de carga mientras se obtienen los datos
     if (loading) {
@@ -97,8 +107,7 @@ function ReservaPago() {
     }
 
     // Obtén la información del usuario desde el contexto
-    const profileContext = useContext(UserContext);
-    const { logged, profile } = profileContext;
+   
 
     console.log("Datos de la ruta:", location.state);
 
@@ -134,27 +143,28 @@ function ReservaPago() {
                         <span>Duracion</span>
                     </div>
                     <div className="Reserva-row2">
-                        {/* Mostrar los datos de la ruta */}
-                        {nombre && (
-                            <>
-                                <span>{nombre}</span>
-                                <span>{selectedDate?.toLocaleDateString()}</span>
-                                <span>{selectedDate?.toLocaleTimeString()}</span>
-                                <span>{duracion} minutos</span>
-                            </>
-                        )}
-                    </div>
+    {ruta && reserva ? (
+        <>
+            <span>{ruta.nombre}</span> 
+            <span>{reserva.dia ? reserva.dia.toDate().toLocaleDateString() : "Fecha no disponible"}</span>
+            <span>{reserva.dia ? reserva.dia.toDate().toLocaleTimeString() : "Hora no disponible"}</span>
+            <span>{ruta.duracion} minutos</span>
+        </>
+    ) : (
+        <span>Cargando datos...</span>
+    )}
+</div>
                 </div>
                 <div className='Reserva-separador1'></div>
+                
+            </div>
+            <div className="Reserva-Derecha">
+                <div className="Reserva-FinalizarPedido">
                 <button className="Reserva-PagoPaypal">
                     <div className='Reserva-rectangulo'></div>
                     <div className='Reserva-icon'> <FaPaypal /></div>
                     <span>PayPal</span>
                 </button>
-            </div>
-            <div className="Reserva-Derecha">
-                <div className="Reserva-FinalizarPedido">
-                    <button className="Reserva-reserva">Finalizar Pedido</button>
                 </div>
                 <div className='Reserva-separador'></div>
                 <div className="Reserva-columna1">

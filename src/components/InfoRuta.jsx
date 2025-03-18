@@ -192,6 +192,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
     const [loading, setLoading] = useState(false); // Estado para manejar la carga
     const [error, setError] = useState(null); // Estado para manejar errores
     const [selectedDate, setSelectedDate] = useState(null); // Estado para la fecha seleccionada
+    const [selectedProgramadoId, setSelectedProgramadoId] = useState(null);
 
     // Función para obtener las fechas disponibles
     const handleCheckAvailability = async () => {
@@ -199,13 +200,10 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
         setError(null);
     
         try {
-    
-            // Validar que el ID no sea undefined
             if (!id) {
                 throw new Error('El ID de la ruta no está definido.');
             }
     
-            // Crear la referencia al documento usando el ID como nombre del documento
             const rutaDocRef = doc(db, 'rutas', id);
             const rutaDoc = await getDoc(rutaDocRef);
     
@@ -214,10 +212,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             }
     
             const rutaData = rutaDoc.data();
-           
-    
             const rutasCalendarIds = rutaData.rutascalendar || [];
-           
     
             if (rutasCalendarIds.length === 0) {
                 setShowCalendar(false);
@@ -225,37 +220,27 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                 return;
             }
     
-            // Obtener los documentos de la colección 'programado' usando los IDs de rutascalendar
             const programadoCollection = collection(db, 'programado');
-            const availableDates = [];
+            let availableDatesTemp = [];
     
             console.log("Obteniendo fechas disponibles...");
             for (const programadoId of rutasCalendarIds) {
-              
                 const programadoDocRef = doc(programadoCollection, programadoId);
                 const programadoDoc = await getDoc(programadoDocRef);
     
                 if (programadoDoc.exists()) {
                     const programadoData = programadoDoc.data();
-                    
-    
                     if (programadoData.dia) {
-                        
-                        availableDates.push({ 
+                        availableDatesTemp.push({ 
                             date: programadoData.dia.toDate(), 
-                            programadoId // Guarda el ID del documento programado
+                            programadoId 
                         });
-                    } else {
-                        console.warn("El campo 'dia' no existe en el documento de programado:", programadoId);
                     }
-                } else {
-                    console.warn("No se encontró el documento de programado con ID:", programadoId);
                 }
             }
     
-            // Filtrar las fechas disponibles para excluir las fechas pasadas
-            const today = new Date(); // Fecha actual
-            const futureDates = availableDates.filter(date => date >= today);
+            const today = new Date();
+            const futureDates = availableDatesTemp.filter(d => d.date >= today);
     
             if (futureDates.length === 0) {
                 setShowCalendar(false);
@@ -271,6 +256,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             setLoading(false);
         }
     };
+    
 
     const handleReservar = async (date) => {
         try {
@@ -295,9 +281,10 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
         const selected = availableDates.find(d => d.date.toDateString() === date.toDateString());
         if (selected) {
             setSelectedDate(selected.date);
-            setSelectedProgramadoId(selected.programadoId); // Guarda el ID de la colección "programado"
+            setSelectedProgramadoId(selected.programadoId);
         }
     };
+    
 
     return (
         <div className="rutaInfo-content">
@@ -424,19 +411,20 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
 
                     {selectedDate && (
 
-                <div className="reserva-container">
-                    <h3>Información de la reserva</h3>
-                    <p>id {id}</p>
-                    <p>Fecha seleccionada: {selectedDate.toLocaleDateString()}</p>
-                    <p>Ruta: {nombre}</p>
-                    <p>Dificultad: {dificultad}</p>
-                    <p>Duración: {duracion} minutos</p>
-                    <p>Distancia: {kilometros} km</p>
+<div className="reserva-container">
+<h3>Información de la reserva</h3>
+<p><strong>ID de Programado:</strong> {selectedProgramadoId}</p> 
+<p><strong>Fecha seleccionada:</strong> {selectedDate.toLocaleDateString()}</p>
+<p><strong>Ruta:</strong> {nombre}</p>
+<p><strong>Dificultad:</strong> {dificultad}</p>
+<p><strong>Duración:</strong> {duracion} minutos</p>
+<p><strong>Distancia:</strong> {kilometros} km</p>
+
 
                     
                     <Link
     to={{
-        pathname: `/reserva/${id}`, // Usa el ID directamente de las props
+        pathname: `/reserva/${selectedProgramadoId}`, // Usa el ID directamente de las props
         state: {
             id: id, // Usa el ID directamente de las props
             nombre: nombre, // Usa el nombre directamente de las props
