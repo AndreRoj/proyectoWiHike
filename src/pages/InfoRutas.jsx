@@ -48,6 +48,7 @@ export default function InfoRutas() {
                 kilometros={ruta.kilometros}
                 dificultad={ruta.dificultad}
                 paseo={ruta.paseo}
+                senderismo={ruta.senderismo}
                 acampada={ruta.acampada}
                 URLmap={ruta.URLmap}
             />

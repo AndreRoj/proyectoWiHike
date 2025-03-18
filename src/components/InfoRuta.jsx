@@ -186,7 +186,7 @@ import Calendar from 'react-calendar'; // Importa un componente de calendario
 import 'react-calendar/dist/Calendar.css'; // Estilos del calendario
 import { Link } from 'react-router-dom'; // Cambia esta línea
 
-export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, descripcion, kilometros, desnivel_positivo, duracion, dificultad, paseo, acampada, URLmap }) {
+export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, descripcion, kilometros, desnivel_positivo, duracion, dificultad, paseo, senderismo, acampada, URLmap }) {
     const [showCalendar, setShowCalendar] = useState(false); // Estado para mostrar/ocultar el calendario
     const [availableDates, setAvailableDates] = useState([]); // Estado para almacenar las fechas disponibles
     const [loading, setLoading] = useState(false); // Estado para manejar la carga
@@ -335,7 +335,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
                 <span>Actividades</span>
             </div>
             <div className="InfoRutaActividad-container">
-                {paseo && (
+                {senderismo && (
                     <div className="InfoRutaAct-metrica">
                         <FaHiking className = "InfoRuta-iconAct"/>
                         <span className="InfoRutadetalles">Senderismo</span>
@@ -438,6 +438,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             kilometros: kilometros, // Usa los kilómetros directamente de las props
             dificultad: dificultad, // Usa la dificultad directamente de las props
             paseo: paseo, // Usa el valor de paseo directamente de las props
+            senderismo: senderismo, // Usa el valor de paseo directamente de las props
             acampada: acampada, // Usa el valor de acampada directamente de las props
             URLmap: URLmap, // Usa la URL del mapa directamente de las props
             selectedDate: selectedDate, // Usa la fecha seleccionada del estado
