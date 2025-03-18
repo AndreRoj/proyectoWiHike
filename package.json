@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.1",
     "@paypal/react-paypal-js": "^8.8.2",
+    "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/vite": "^4.0.8",
     "aos": "^2.3.4",
     "axios": "^1.8.1",
