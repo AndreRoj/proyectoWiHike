@@ -25,6 +25,8 @@ function Contactanos() {
         console.log('Formulario enviado:', formData);
       };
      return(
+      <div className="Contactanostodo">
+      
         <div className="Contactanos-contactanos">
            <h1>Contáctanos</h1>
               <div className='Contactanos-separador'></div> {/* Separador */}
@@ -92,6 +94,7 @@ function Contactanos() {
                   </div>
               </div>
             </div>
+          </div>
           </div>
      );
     }
