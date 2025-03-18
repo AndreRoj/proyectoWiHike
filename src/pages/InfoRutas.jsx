@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { InfoRuta } from '../components/InfoRuta';
 import { db } from '../firebase'; // Importa tu configuración de Firebase
 import { doc, getDoc } from 'firebase/firestore';
-import "./HomePage.css";
 
 export default function InfoRutas() {
     const { rutaId } = useParams(); // Obtén el ID de la ruta desde la URL
@@ -33,7 +32,7 @@ export default function InfoRutas() {
     }
 
     return (
-        <div className='HomePage'>
+        <div className='inforutaaa'>
 
             <InfoRuta
                 id = {ruta.id}

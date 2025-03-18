@@ -159,7 +159,11 @@ export function Navbar() {
           </>
         )}
 
-        <li className="options">Contáctanos</li>
+        <li> 
+          <Link className="options" to = '/contactanos'>
+          Contáctanos
+          </Link>
+        </li>
       </ul>
     </div>
   );

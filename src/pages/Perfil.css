@@ -6,14 +6,16 @@
   }
   
   .perfil {
+    background-color: #f0f2f5;
     display: flex;
     justify-content: space-evenly;
     width: 100%; /* Asegura que el contenedor no exceda el ancho de la página */
     overflow: hidden; /* Evita el desbordamiento horizontal */
   }
   
-  .Izquierda {
-height: fit-content;
+  .perfilIzquierda {
+    
+    height: fit-content;
     flex: 2;
     padding: 1rem;
     border-radius: 0.5rem;
@@ -21,7 +23,8 @@ height: fit-content;
     width: 100%; /* Ocupa todo el ancho disponible */
   }
   
-  .ProfileCard {
+  .perfilProfileCard {
+    background-color: white;
     width: 100%; /* Ancho relativo al contenedor padre */
     max-width: 458px; /* Ancho máximo para pantallas grandes */
     height: 32%;
@@ -38,19 +41,19 @@ height: fit-content;
         flex-direction: column;
     }
 
-    .Izquierda,
-    .Derecha {
+    .perfilIzquierda,
+    .perfilDerecha {
         max-width: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
         width: 100%;
     }
 
-    .ProfileCard {
+    .perfilProfileCard {
         padding: 1rem; /* Reducir el padding */
     }
 }
 
 @media (max-width: 480px) {
-    .ProfileCard {
+    .perfilProfileCard {
         padding: 0.75rem; /* Reducir aún más el padding */
         margin: 0.25rem; /* Reducir el margen */
         border-radius: 0.25rem; /* Reducir el radio de las esquinas */
@@ -58,7 +61,7 @@ height: fit-content;
 }
   
   @media (max-width: 480px) {
-    .ProfileCard {
+    .perfilProfileCard {
       max-width: 100%; /* Limita el ancho del contenedor izquierdo */
       width: 100%; /* Ocupar todo el ancho disponible en móviles */
       padding: 0.75rem; /* Reducir aún más el padding */
@@ -67,7 +70,7 @@ height: fit-content;
     }
   }
   
-  .ProfileCard h2 {
+  .perfilProfileCard h2 {
     font-size: 48px;
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     color: #009000;
@@ -75,14 +78,14 @@ height: fit-content;
     margin-bottom: 0.5rem;
   }
   
-  .EditButton {
+  .perfilEditButton {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
     width: 25%;
   }
   
-  .editIcon {
+  .perfileditIcon {
     color: black;
     font-size: 1.5rem;
     width: 125px;
@@ -94,14 +97,14 @@ height: fit-content;
     justify-content: center;
   }
   
-  .Info {
+  .perfilInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 2.5rem;
   }
   
-  .Imagenperfil {
+  .perfilImagenperfil {
     border-radius: 50%;
     width: 10rem;
     height: 10rem;
@@ -110,14 +113,14 @@ height: fit-content;
     overflow: hidden; /* Asegura que la imagen no sobresalga del contenedor */
   }
   
-  .Imagenperfilz {
+  .perfilImagenperfilz {
     object-fit: cover;
     width: 100%;
     height: 100%;
     border-radius: 100%;
   }
   
-  .Imagenperfil p {
+  .perfilImagenperfil p {
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: 400;
     font-size: 1rem;
@@ -126,7 +129,7 @@ height: fit-content;
     margin-top: 0.5rem;
   }
 
-  .fecha{
+  .perfilfecha{
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: 400;
     font-size: 1rem;
@@ -136,7 +139,7 @@ height: fit-content;
   }
   
   
-  .Infousuario {
+  .perfilInfousuario {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
@@ -146,31 +149,31 @@ height: fit-content;
     margin-bottom: 2rem;
   }
   
-  .Columna {
+  .perfilColumna {
     display: flex;
   }
   
-  .Label {
+  .perfilLabel {
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: 500;
     font-size: 1rem;
     color: #009000;
   }
   
-  .Value {
+  .perfilValue {
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: 500;
     font-size: 1rem;
     color: black;
   }
   
-  .Cerrasesion {
+  .perfilCerrasesion {
     display: flex;
     justify-content: flex-end;
     margin-top: 2rem;
   }
   
-  .Cerrasesion button {
+  .perfilCerrasesion button {
     background-color: #4caf50;
     color: white;
     border: none;
@@ -184,12 +187,13 @@ height: fit-content;
     transition: background-color 0.3s ease;
   }
   
-  .logout-button:hover {
+  .perfillogout-button:hover {
     background-color: #3d8b40;
   }
   
   /* Estilo CSS para la seccion de actividades*/
-  .Derecha {
+  .perfilDerecha {
+    background-color: white;
     flex: 2;
     padding: 2rem;
     border-radius: 0.5rem;
@@ -200,7 +204,7 @@ height: fit-content;
     margin-right: 20px;
   }
   
-  .Estadisticas h2 {
+  .perfilEstadisticas h2 {
     font-size: 3.5em;
     font-weight: 500;
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
@@ -209,14 +213,14 @@ height: fit-content;
     margin-bottom: 2rem;
   }
   
-  .EstadisticasActividad {
+  .perfilEstadisticasActividad {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     margin-bottom: 4rem;
   }
   
-  .StatCards {
+  .perfilStatCards {
     border-radius: 20px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     padding: 1.5rem;
@@ -229,14 +233,14 @@ height: fit-content;
     height: 8vw;
   }
   
-  .Label1 {
+  .perfilLabel1 {
     font-weight: 400;
     font-size: 1em;
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     color: rgb(255, 255, 255);
   }
   
-  .Value1 {
+  .perfilValue1 {
     font-weight: 600;
     font-size: 2em;
     font-family: 'Raleway-Regular-Regular', Helvetica, sans-serif;
@@ -245,27 +249,27 @@ height: fit-content;
   
   /* Media queries para ajustar el tamaño de la fuente en pantallas pequeñas */
   @media (max-width: 768px) {
-    .Label1 {
+    .perfilLabel1 {
       font-size: 0.9em;
     }
   
-    .Value1 {
+    .perfilValue1 {
       font-size: 2em;
     }
   }
   
   @media (max-width: 480px) {
-    .Label1 {
+    .perfilLabel1 {
       font-size: 0.8em;
     }
   
-    .Value1 {
+    .perfilValue1 {
       font-size: 1.5em;
     }
   }
   
-  .Proximas-Rutas,
-  .Ultimas-Rutas {
+  .perfilProximas-Rutas,
+  .perfilUltimas-Rutas {
     font-size: 38px;
     font-weight: 500;
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
@@ -276,8 +280,8 @@ height: fit-content;
     overflow: hidden; /* Evita el desbordamiento horizontal */
   }
   
-  .Rutascontainer1,
-  .Rutascontainer2 {
+  .perfilRutascontainer1,
+  .perfilRutascontainer2 {
     display: flex;
     gap: 2rem;
     overflow-x: auto; /* Permite el desplazamiento horizontal */
@@ -287,8 +291,8 @@ height: fit-content;
     max-width: 100%; /* Limita el ancho al 100% del contenedor padre */
   }
   
-  .InfoRutas1,
-  .InfoRutas2 {
+  .perfilInfoRutas1,
+  .perfilInfoRutas2 {
     flex: 0 0 auto; /* Evita que las tarjetas se compriman */
     width: 300px; /* Ancho fijo para las tarjetas */
     height: auto; /* Altura automática */
@@ -297,20 +301,20 @@ height: fit-content;
     background-color: white;
   }
   
-  .imagen-ruta {
+  .perfilimagen-ruta {
     position: relative;
   }
-  .imagen-ruta img {
+  .perfilimagen-ruta img {
     border-radius: 0.5rem;
   }
   
-  .pngruta {
+  .perfilpngruta {
     width: 100%;
     height: 200px;
     object-fit: cover;
   }
   
-  .Rutainfo {
+  .perfilRutainfo {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -319,18 +323,18 @@ height: fit-content;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   }
   
-  .Rutainfo h3 {
+  .perfilRutainfo h3 {
     font-size: 20px;
     font-family: 'Raleway-Regular One', Helvetica, sans-serif;
     color: white;
   }
   
-  .detallesruta {
+  .perfildetallesruta {
     padding: 0.75rem;
   }
   
-  .guide-info,
-  .route-info {
+  .perfilguide-info,
+  .perfilroute-info {
     font-size: 0.85rem;
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     margin-bottom: 0.25rem;
@@ -338,13 +342,13 @@ height: fit-content;
     color: black;
   }
   
-  .nombreguia {
+  .perfilnombreguia {
     font-size: 16px;
     font-family: 'Raleway-Regular', Helvetica, sans-serif;
     font-weight: bold;
   }
   
-  .rol {
+  .perfilrol {
     display: flex;
     justify-content: center;
     font-size: 0.75rem;
@@ -353,86 +357,96 @@ height: fit-content;
     margin-bottom: 0.25rem;
   }
   
-  .route-info {
+  .perfilroute-info {
     font-size: 14px;
   }
   
+  .perfilEditForm {
+    font-family: 'Raleway-Regular';
+    font-size: 15px;
+    justify-content: flex-start;
+    align-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+    color:#868686;
+  }
+
   /* Media Queries para hacer la página responsive */
   @media (max-width: 1200px) {
-    .perfil {
+    .perfilperfil {
       flex-direction: column;
     }
   
-    .Izquierda,
-    .Derecha {
+    .perfilIzquierda,
+    .perfilDerecha {
       flex: 1;
       width: 100%;
     }
   
-    .ProfileCard {
+    .perfilProfileCard {
       width: 100%;
       max-width: none;
     }
   
-    .EstadisticasActividad {
+    .perfilEstadisticasActividad {
       flex-direction: column;
     }
   
-    .StatCards {
+    .perfilStatCards {
       width: 100%;
       margin-bottom: 1rem;
     }
   
-    .Rutascontainer1,
-    .Rutascontainer2 {
+    .perfilRutascontainer1,
+    .perfilRutascontainer2 {
       flex-direction: column;
     }
   
-    .InfoRutas1,
-    .InfoRutas2 {
+    .perfilInfoRutas1,
+    .perfilInfoRutas2 {
       width: 100%;
     }
   }
   
   @media (max-width: 768px) {
-    .ProfileCard h2 {
+    .perfilProfileCard h2 {
       font-size: 36px;
     }
   
-    .Estadisticas h2,
-    .Proximas-Rutas h2,
-    .Ultimas-Rutas h2 {
+    .perfilEstadisticas h2,
+    .perfilProximas-Rutas h2,
+    .perfilUltimas-Rutas h2 {
       font-size: 28px;
     }
   
-    .Label,
-    .Value {
+    .perfilLabel,
+    .perfilValue {
       font-size: 1rem;
     }
   
-    .Label1,
-    .Value1 {
+    .perfilLabel1,
+    .perfilValue1 {
       font-size: 1.25rem;
     }
   
-    .Rutainfo h3 {
+    .perfilRutainfo h3 {
       font-size: 24px;
     }
   
-    .guide-info,
-    .route-info {
+    .perfilguide-info,
+    .perfilroute-info {
       font-size: 0.875rem;
     }
   
-    .nombreguia {
+    .perfilnombreguia {
       font-size: 16px;
     }
   
-    .route-info {
+    .perfilroute-info {
       font-size: 14px;
     }
   }
-
+  
 
   @font-face {
     font-family: 'Raleway-Regular';
