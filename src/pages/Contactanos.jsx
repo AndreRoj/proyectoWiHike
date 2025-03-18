@@ -25,15 +25,15 @@ function Contactanos() {
         console.log('Formulario enviado:', formData);
       };
      return(
-        <div className="contactanos">
+        <div className="Contactanos-contactanos">
            <h1>Contáctanos</h1>
-              <div className='separador'></div> {/* Separador */}
+              <div className='Contactanos-separador'></div> {/* Separador */}
               { /* Contact Form Section */}
-        <div className="Contenedor">
-            <div className="ContactForm">
+        <div className="Contactanos-Contenedor">
+            <div className="Contactanos-ContactForm">
               <h2>Enviános un mensaje</h2>
               <form onSubmit={handleSubmit}>
-                <div className="Primerafila">
+                <div className="Contactanos-Primerafila">
                   <div >
                       <label htmlFor="name">Nombre:</label>
                       <input 
@@ -68,8 +68,8 @@ function Contactanos() {
                 </form>
               </div>
               { /* Contact Info Section */}
-              <div className="Contactinfo">
-                    <div className="Button"> 
+              <div className="Contactanos-Contactinfo">
+                    <div className="Contactanos-Button"> 
                     <button>
                         <FaPhoneAlt />
                         +58 424-1392205
@@ -79,7 +79,7 @@ function Contactanos() {
                         wehike@avila.com
                     </button>
                     </div>
-                  <div className="Icon">
+                  <div className="Contactanos-Icon">
                   <button>
                         <FaFacebook />
                     </button>

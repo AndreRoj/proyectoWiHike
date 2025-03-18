@@ -7,6 +7,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { UserContext } from '../Context/UserContext';
 import { app } from '../firebase';
 import { getAuth, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const auth = getAuth(app);
 
@@ -15,6 +16,7 @@ export function Navbar() {
   const { logged, profile } = profileContext;
   const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar el menú
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768); // Estado para saber si es móvil
+  const navigate = useNavigate();
 
   // Función para detectar si es móvil
   const checkIsMobile = () => {
@@ -37,7 +39,7 @@ export function Navbar() {
     try {
       await signOut(auth); // Cierra la sesión del usuario
       console.log("Usuario cerró sesión");
-      window.location.reload();
+      navigate('/'); // Redirige a la página principal
     } catch (error) {
       
       console.error("Error al cerrar sesión:", error);
