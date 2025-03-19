@@ -7,7 +7,8 @@ const RouteItem = ({ image, name, onEdit, onDelete }) => {
   return (
     <div className="route-item">
       <div className="route-item__image">
-        <img src={image} alt={name} />
+        {image}
+        {/*deberia el usuario poder subir una imagen*/}
       </div>
       <div className="route-item__name">
         <span>{name}</span>

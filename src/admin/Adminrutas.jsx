@@ -28,15 +28,18 @@ const Adminrutas = () => {
             {activeTab === "ver" && (
               <div className='Adminrutas-ver'>
                 <div className='ver-rutas-card'>
-                  <div className='ver-rutas-label'>
-                    <h3>Imagen</h3>
+                  <div className='contenerdor-ver-rutas'>
+                    <div className='ver-rutas-label'>
+                      <h3>Imagen</h3>
+                    </div>
+                    <div className='ver-rutas-label1'>
+                      <h3>Nombre</h3>
+                    </div>
+                    <div className='ver-rutas-label2'>
+                      <h3>Editar</h3>
+                    </div>
                   </div>
-                  <div className='ver-rutas-label1'>
-                    <h3>Nombre</h3>
-                  </div>
-                  <div className='ver-rutas-label2'>
-                    <h3>Editar</h3>
-                  </div>
+                  <div className='component-rutaitem'>
                   <Verrutaitem
                     image="."
                     name="Ruta 1"
@@ -55,10 +58,11 @@ const Adminrutas = () => {
                     onEdit={() => console.log("Editar")}
                     onDelete={() => console.log("Eliminar")}
                     />
+                  </div>
                 </div>
               </div>
             )}
-            {activeTab === "rutas" && (
+            {activeTab === "crear" && (
               <div className='Adminrutas-crear'>
                 <div className='Adminrutas-crear-container'>
                   <Edititem
@@ -80,10 +84,10 @@ const Adminrutas = () => {
                       label={"Fecha"}
                     />
                     <Edititem
-                      label={"Limite de personas:"}
+                      label={"Forum:"}
                     />
                     <Edititem
-                      label={"Pto. de encuentro:"}
+                      label={"Encuentro:"}
                     />
                 </div>
                 <div className='Adminrutas-finalizar-button'>
@@ -93,7 +97,7 @@ const Adminrutas = () => {
                 </div>
               </div>
             )}
-            {activeTab === "sobre" && ( 
+            {activeTab === "editar" && ( 
               <div className='Adminrutas-editar'>
                  <div className='Adminrutas-editar-container'>
                   <Edititem
@@ -115,10 +119,10 @@ const Adminrutas = () => {
                       label={"Fecha"}
                     />
                     <Edititem
-                      label={"Limite de personas:"}
+                      label={"Forum:"}
                     />
                     <Edititem
-                      label={"Pto. de encuentro:"}
+                      label={"Encuentro:"}
                     />
                 </div>
                 <div className='Adminrutas-finalizar-button'>

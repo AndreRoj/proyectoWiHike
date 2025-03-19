@@ -11,9 +11,10 @@
 }
 .Edititem-item h3{
     font-family: 'Raleway', Helvetica;
+    justify-items: flex-start;
     font-weight: 700;
     font-size: 2rem;
-    padding: 1rem;
+    padding: 0rem;
     margin: 0rem 3rem;
     color: black;
    
@@ -23,7 +24,7 @@
     width: 40%;
     padding: 1rem;
     margin: 1rem;
-    background-color: rgb(190, 184, 175);
+    background-color: rgb(236, 233, 227);
     border-radius: 1rem;
 }
 .Edititem-icon{

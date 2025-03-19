@@ -8,13 +8,13 @@
     padding: 0;
 }
 .Adminrutas-contenedor{
+    position: relative;
     width: 100%;
     max-width: 1440px;
 }
 .Adminrutas-header{
-    position: relative;
-    min-height: 100vh;
-    background-color: white;
+    min-height: 6rem;
+    background-color: #f3f4f6;
 }
 .Adminrutas-sidebar{
     display: flex;
@@ -39,31 +39,45 @@
 }
 .ver-rutas-card{
     width: 100%;
-    height: 724px; /*cambiarrrr*/
+    height: fit-content; /*cambiarrrr*/
     background-color: #c4bebe;
     border-radius: 10px;
+    overflow: hidden;
+
+}
+.contenerdor-ver-rutas{
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 .ver-rutas-label, .ver-rutas-label1, .ver-rutas-label2{
     border-right: 1px solid #e0e0e0;
-    display: flex;
+    border-bottom: 1px solid #e0e0e0 ;
+    font-size: 2rem;
     flex-direction: row;
+    height: 4rem;
+
 }
 .ver-rutas-label h3, .ver-rutas-label1 h3, .ver-rutas-label2 h3{
     border-right: 1px solid #e0e0e0;
 }
+.component-rutaitem{
+    display: flex;
+    flex-direction: column;
+}
 .Adminrutas-crear, .Adminrutas-editar{
-    background-color: white;
-    justify-content: center;
-    width: 100%;
-    margin: 2rem;
-    padding: 0;
+    background-color: #c4bebe;
+    justify-self: center;
+    width: 90%;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
 }
 .Adminrutas-crear-container, .Adminrutas-editar-container{
-    width: 951px;
-    height: 724px;
+    width: 95%;
+    height: fit-content;
     background-color: #c4bebe;
     border-radius: 10px;
     padding: 3rem;
@@ -71,7 +85,10 @@
 } 
 .Adminrutas-finalizar-button{
     display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
 }
 .Adminrutas-finalizar-button button{
-    
+    font-size: 2rem;
+    background-color: green;
 }
