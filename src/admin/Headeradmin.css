@@ -1,0 +1,15 @@
+.header {
+    width: 100%;
+    height: 96px;
+    background-color: #ccc3c3e8;
+  }
+  
+  .header-title {
+    padding: 2rem 6rem;
+    font-family: 'Raleway', Helvetica;
+    font-weight: 700;
+    font-size: 32px;
+    color: black;
+    justify-self: flex-start;
+  }
+  

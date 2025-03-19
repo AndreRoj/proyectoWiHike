@@ -9,6 +9,7 @@ import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
 import Contactanos from './pages/Contactanos'; 
 import ReservaPago from './pages/ReservaPago';
+import PagPrincipal from './admin/PagPrincipal';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import  PagoExitoso  from './pages/PagoExitoso';
@@ -17,6 +18,7 @@ import { UserProvider } from './Context/UserContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import  { useEffect } from 'react';
+
 
 function App() {
   useEffect(() => {
@@ -50,6 +52,13 @@ function App() {
         <Route path="exitosa" element={<PagoExitoso/>} />
         <Route path='busqueda' element={<Buscador/>} />
       
+      </Route>
+
+      <Route >
+        <Route path='*' element = {<NotFound/>}/>
+        <Route path='admin' element={<PagPrincipal/>} />
+      
+
       </Route>
 
     </Routes>
