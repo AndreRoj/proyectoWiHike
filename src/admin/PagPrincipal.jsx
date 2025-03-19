@@ -13,6 +13,11 @@ import Edititem from './Edititem';
 
 function PagPrincipal() {
    const [activeTab, setActiveTab] = useState("banner");
+   const tabs = [
+    { id: "banner", name: "Banner principal" },
+    { id: "rutas", name: "Rutas populares" },
+    { id: "sobre", name: "Sobre wehike" },
+  ];
   return (
     <div className="PaginaPrincipal1">
       <div className="PaginaPrincipal1-contenedor">
@@ -23,7 +28,7 @@ function PagPrincipal() {
           <main className="PaginaPrincipal1-page-content">
             <h2 className="PaginaPrincipal1-page-title">Página principal</h2>
             <div className="PaginaPrincipal1-tabnavigation">
-              <TabItems activeTab={activeTab} onTabChange={setActiveTab} />
+              <TabItems activeTab={activeTab} onTabChange={setActiveTab}  tabs={tabs}/>
               {activeTab === "banner" && (
                   <div className="BannerPrincipal-content">
                     <div className="Banner-card">

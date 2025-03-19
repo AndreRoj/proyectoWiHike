@@ -1,16 +1,12 @@
 import React from "react";
 import "./TabNavigation.css";
 
-const TabItems = ({ activeTab, onTabChange }) => {
-  const tabItems = [
-    { id: "banner", name: "Banner principal" },
-    { id: "rutas", name: "Rutas populares" },
-    { id: "sobre", name: "Sobre wehike" },
-  ];
+const TabItems = ({ activeTab, onTabChange, tabs }) => {
+
 
   return (
     <div className="tab-list">
-      {tabItems.map((tab) => (
+      {tabs.map((tab) => (
         <button
           key={tab.id}
           className={`tab-item ${activeTab === tab.id ? "active" : ""}`}
