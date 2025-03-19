@@ -5,7 +5,7 @@ import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
 import { db } from '../firebase'; // Asegúrate de importar tu configuración de Firebase
-import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc, addDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 export default function Perfil() {
     const profileContext = useContext(UserContext);
@@ -37,6 +37,9 @@ export default function Perfil() {
         email: "",
         profileImage: "",
     });
+
+    const [showApplicationForm, setShowApplicationForm] = useState(false);
+    const [applicationMessage, setApplicationMessage] = useState("");
 
     // Función para obtener los detalles de las rutas
     const getRouteDetails = async (routeIds) => {
@@ -163,6 +166,63 @@ export default function Perfil() {
           alert('Hubo un error al actualizar el perfil.');
       }
   };
+
+  const handleSubmitApplication = async () => {
+    if (!applicationMessage.trim()) {
+        alert("Por favor, escribe un motivo para postularte.");
+        return;
+    }
+    
+    try {
+        const solicitudRef = collection(db, "solicitud");
+        const newSolicitud = await addDoc(solicitudRef, {
+            uid: profile.uid,
+            mensaje: applicationMessage,
+            fecha: new Date()
+        });
+        
+        // Agregar el ID generado al documento
+        await updateDoc(doc(db, "solicitud", newSolicitud.id), {
+            id: newSolicitud.id
+        });
+        
+        alert("Solicitud enviada correctamente.");
+        setShowApplicationForm(false);
+        setApplicationMessage(""); // Resetear el campo
+    } catch (error) {
+        console.error("Error al enviar la solicitud:", error);
+        alert("Hubo un error al enviar la solicitud.");
+    }
+};
+
+
+const handleSubmitReview = async () => {
+    if (!reviewMessage.trim() || !selectedRouteId) {
+        alert("Por favor, escribe tu reseña.");
+        return;
+    }
+    
+    try {
+        const rutaRef = doc(db, "rutas", selectedRouteId);
+        await updateDoc(rutaRef, {
+            reseñas: arrayUnion({
+                uid: profile.uid,
+                nombre: profile.nombre,
+                mensaje: reviewMessage,
+                fecha: new Date()
+            })
+        });
+        
+        alert("Reseña enviada correctamente.");
+        setShowReviewForm(false);
+        setReviewMessage(""); // Resetear el campo
+    } catch (error) {
+        console.error("Error al enviar la reseña:", error);
+        alert("Hubo un error al enviar la reseña.");
+    }
+};
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -319,6 +379,8 @@ export default function Perfil() {
                     ) : (
                         <p>No tienes próximas rutas programadas.</p>
                     )}
+
+
                 </div>
                 <div className='perfilUltimas-Rutas'>
                     
@@ -359,6 +421,27 @@ export default function Perfil() {
                         <p>No tienes próximas rutas programadas.</p>
                     )}
                 </div>
+
+                {!profile?.guia && (
+                    <div className='perfilGuideApplication'>
+                        <button onClick={() => setShowApplicationForm(true)} className='perfilGuideApplicationBtn'>
+                            Postularse a Guía
+                        </button>
+                        
+                        {showApplicationForm && (
+                            <div className='perfilApplicationForm'>
+                                <h3>¿Por qué quieres ser guía?</h3>
+                                <textarea
+                                    value={applicationMessage}
+                                    onChange={(e) => setApplicationMessage(e.target.value)}
+                                    placeholder='Escribe tu motivo aquí...'
+                                />
+                                <button onClick={handleSubmitApplication}>Enviar</button>
+                                <button onClick={() => setShowApplicationForm(false)}>Cancelar</button>
+                            </div>
+                        )}
+                    </div>
+                )}
 
             </div>
         </div>
