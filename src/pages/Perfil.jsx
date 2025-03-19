@@ -11,6 +11,10 @@ export default function Perfil() {
     const profileContext = useContext(UserContext);
     const { logged, profile } = profileContext;
     console.log("Profile data:", profile);
+    const [showReviewForm, setShowReviewForm] = useState(false);
+const [reviewMessage, setReviewMessage] = useState("");
+const [selectedRouteId, setSelectedRouteId] = useState(null);
+const [alreadyReviewed, setAlreadyReviewed] = useState(false);
 
     const [userData1, setUserData1] = useState({
         name: "",
@@ -195,6 +199,24 @@ export default function Perfil() {
     }
 };
 
+const checkIfAlreadyReviewed = async (routeId) => {
+    try {
+        const rutaRef = doc(db, "rutas", routeId);
+        const rutaSnap = await getDoc(rutaRef);
+        if (rutaSnap.exists()) {
+            const data = rutaSnap.data();
+            const hasReviewed = data.reseñas?.some(r => r.uid === profile.uid);
+            setAlreadyReviewed(hasReviewed);
+            if (!hasReviewed) {
+                setShowReviewForm(true);
+            } else {
+                alert("Ya has dejado una reseña en esta ruta.");
+            }
+        }
+    } catch (error) {
+        console.error("Error al verificar reseña:", error);
+    }
+};
 
 const handleSubmitReview = async () => {
     if (!reviewMessage.trim() || !selectedRouteId) {
@@ -421,6 +443,30 @@ const handleSubmitReview = async () => {
                         <p>No tienes próximas rutas programadas.</p>
                     )}
                 </div>
+<div>
+                {/* Renderizar botón de reseña en las últimas rutas */}
+{userData1.latestRoutes.map((route) => (
+    <div key={route.id} className='perfilRouteReview'>
+        <h3>{route.ruta?.nombre}</h3>
+        <button onClick={() => { setSelectedRouteId(route.ruta.id); checkIfAlreadyReviewed(route.ruta.id); }}>Dejar Reseña</button>
+    </div>
+))}
+
+{showReviewForm && !alreadyReviewed && (
+    <div className='perfilReviewForm'>
+        <h3>Deja tu reseña</h3>
+        <textarea
+            value={reviewMessage}
+            onChange={(e) => setReviewMessage(e.target.value)}
+            placeholder='Escribe tu experiencia...'
+        />
+        <button onClick={handleSubmitReview}>Enviar</button>
+        <button onClick={() => setShowReviewForm(false)}>Cancelar</button>
+    </div>
+)}
+
+</div>
+
 
                 {!profile?.guia && (
                     <div className='perfilGuideApplication'>
