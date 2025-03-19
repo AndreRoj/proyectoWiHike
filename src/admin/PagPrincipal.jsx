@@ -7,6 +7,7 @@ import { FiEdit} from "react-icons/fi";
 import { FaTrash } from "react-icons/fa";
 import { MdOutlineCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
 import Routeitem from './Routeitem';
+import Edititem from './Edititem';
 
 
 
@@ -98,8 +99,27 @@ function PagPrincipal() {
                   </div>
                 )}
                 {activeTab === "sobre" && (
-                  <div className="tab-content">
-                    {/* Content for Sobre wehike tab */}
+                  <div className="PaginaPrincipal3">
+                    <div className='PaginaPrincipal3-container'>
+                    <Edititem
+                        label={"Logo"}
+                      />
+                      <Edititem
+                        label={"N. de telefono"}
+                      />
+                       <Edititem
+                        label={"Correo"}
+                      />
+                       <Edititem
+                        label={"Instagram"}
+                      />
+                       <Edititem
+                        label={"Facebook"}
+                      />
+                       <Edititem
+                        label={"Twitter"}
+                      />
+                    </div>
                   </div>
                 )}
 
