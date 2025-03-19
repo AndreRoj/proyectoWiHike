@@ -1,5 +1,4 @@
-
-.PaginaPrincipal1{
+.Adminrutas{
     background-color: white;
     display: flex;
     flex-direction: row;
@@ -8,22 +7,22 @@
     margin: 0;
     padding: 0;
 }
-.PaginaPrincipal1-contenedor{
+.Adminrutas-contenedor{
     width: 100%;
     max-width: 1440px;
 }
-.PaginaPrincipal1-Header{
+.Adminrutas-header{
     position: relative;
     min-height: 100vh;
     background-color: white;
 }
-.PaginaPrincipal1-sidebar{
+.Adminrutas-sidebar{
     display: flex;
 }
-.PaginaPrincipal1-page-content{
+.Adminrutas-page-content{
     flex: 1;
 }
-.PaginaPrincipal1-page-title{
+.Adminrutas-page-content h2{
     padding: 2rem 3rem;
     font-family: 'Raleway', Helvetica;
     font-weight: 700;
@@ -31,14 +30,14 @@
     color: black;
     justify-self: flex-start;
 }
-.PaginaPrincipal1-tabnavigation{
+.Adminrutas-tabnavigation{
     width: 100%;
 }
-.BannerPrincipal-content{
+.Adminrutas-ver{
     margin-top: 2rem;
     padding: 0rem 1rem;
 }
-.Banner-card{
+.ver-rutas-card{
     width: 100%;
     height: 724px; /*cambiarrrr*/
     background-color: #c4bebe;
@@ -46,49 +45,33 @@
     overflow: hidden;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
 }
-.column-image, .section-image, .action-row, .text-section, .column-text{
+.ver-rutas-label, .ver-rutas-label1, .ver-rutas-label2{
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: row;
+}
+.ver-rutas-label h3, .ver-rutas-label1 h3, .ver-rutas-label2 h3{
     border-right: 1px solid #e0e0e0;
 }
-.column-image,.section-image,.action-row{
-    border-bottom: 1px solid #e0e0e0;
-}
-.column-image h3,.column-text h3{
-    border-right: 1px solid #e0e0e0;
-}
-.column-image,.action-section,.column-text, .action-row{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.section-image,.text-section{
-    display: flex;
-    flex-direction: column;
-}
-.inside-text-section,.inside-section-image{
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-}
-.PaginaPrincipal2, .PaginaPrincipal3{
+.Adminrutas-crear, .Adminrutas-editar{
     background-color: white;
     justify-content: center;
     width: 100%;
     margin: 2rem;
     padding: 0;
 }
-.PaginaPrincipal2-container, .PaginaPrincipal3-container{ 
+.Adminrutas-crear-container, .Adminrutas-editar-container{
     width: 951px;
     height: 724px;
     background-color: #c4bebe;
     border-radius: 10px;
     padding: 3rem;
     overflow-y: auto;
+} 
+.Adminrutas-finalizar-button{
+    display: flex;
 }
-
-  
-
+.Adminrutas-finalizar-button button{
+    
+}
