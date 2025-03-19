@@ -9,6 +9,63 @@
     height: auto;
 }
 
+.reseñas-container {
+
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título de la sección de reseñas */
+.reseñas-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: darkgreen;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  font-family: Raleway-bold ;
+}
+
+/* Cada reseña individual */
+.reseña-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Nombre del autor de la reseña */
+.reseña-item p strong {
+  font-size: 18px;
+  color: darkgreen;
+}
+
+/* Mensaje de la reseña */
+.reseña-item p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Fecha de la reseña */
+.reseña-item p small {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Mensaje cuando no hay reseñas */
+.reseñas-container p {
+  font-size: 16px;
+  color: #777;
+  text-align: center;
+}
+
+
 .rutaInfo-content {
     display: flex;
     flex-grow: 1;

@@ -23,6 +23,7 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
     const [error, setError] = useState(null); // Estado para manejar errores
     const [selectedDate, setSelectedDate] = useState(null); // Estado para la fecha seleccionada
     const [selectedProgramadoId, setSelectedProgramadoId] = useState(null);
+    const [reseñas, setReseñas] = useState([]); // Estado para almacenar las reseñas
 
     // Función para obtener las fechas disponibles
     const handleCheckAvailability = async () => {
@@ -114,6 +115,30 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             setSelectedProgramadoId(selected.programadoId);
         }
     };
+
+    useEffect(() => {
+        const fetchRutaData = async () => {
+            try {
+                const rutaDocRef = doc(db, 'rutas', id);
+                const rutaDoc = await getDoc(rutaDocRef);
+    
+                if (rutaDoc.exists()) {
+                    const rutaData = rutaDoc.data();
+                    if (rutaData.reseñas && Array.isArray(rutaData.reseñas)) {
+                        setReseñas(rutaData.reseñas); // Guarda las reseñas en el estado
+                    } else {
+                        console.log("El campo 'reseñas' no es un array o no existe.");
+                    }
+                } else {
+                    console.log("No se encontró el documento de la ruta.");
+                }
+            } catch (error) {
+                console.error('Error al obtener los datos de la ruta:', error);
+            }
+        };
+    
+        fetchRutaData();
+    }, [id]);
     
 
     return (
@@ -279,7 +304,31 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
             )}
 
                 </div>
+
+                
             </div>
+
+            <div className="reseñas-container">
+    <h3>Reseñas</h3>
+    {reseñas.length > 0 ? (
+        reseñas.map((reseña, index) => (
+            <div key={index} className="reseña-item">
+                <p ><strong>{reseña.nombre}</strong></p>
+                <p>{reseña.mensaje}</p>
+                <p>
+                    <small>
+                        {/* Convierte el Timestamp de Firestore a una fecha legible */}
+                        {reseña.fecha && typeof reseña.fecha.toDate === 'function'
+                            ? reseña.fecha.toDate().toLocaleDateString()
+                            : "Fecha no disponible"}
+                    </small>
+                </p>
+            </div>
+        ))
+    ) : (
+        <p>No hay reseñas disponibles.</p>
+    )}
+</div>
 
             
 
