@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const adminEmail = 'admin@correo.unimet.edu.ve'
 
 export default function Login() {
   const navigation = useNavigate();
@@ -20,7 +21,13 @@ export default function Login() {
       const user = await signInWithEmailAndPassword(auth, email, password);
       console.log(user.user.uid);
       console.log(user.user.email);
-      navigation('/');
+
+      console.log(user.email, adminEmail)
+      if (user.user.email === adminEmail) {
+        navigation('/adminrutas');
+      } else {
+        navigation('/');
+      }
     } catch (error) {
       setError("Correo o contraseña incorrectos");
       console.log(error);
@@ -34,9 +41,13 @@ export default function Login() {
 
       console.log("Usuario logueado con Google:", user.uid);
       console.log("Correo del usuario:", user.email);
-
-      // Redirige al usuario a la página principal
-      navigation('/');
+      console.log(user.email, adminEmail)
+      if (user.user.email === adminEmail) {
+        navigation('/adminrutas');
+      } else {
+        navigation('/');
+      }
+      
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
       setError("Ocurrió un error al iniciar sesión con Google");

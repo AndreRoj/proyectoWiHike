@@ -81,10 +81,11 @@ export function Navbar() {
             <li className="options" onClick={toggleMenu}>Foro</li>
             </Link>
 
-
-            <li className="options">
-              <IoSearch />
-            </li>
+            <Link className="options" to="/busqueda" onClick={toggleMenu} >
+              <li className="options">
+                <IoSearch />
+              </li>
+            </Link>
             {logged ? (
               // Si el usuario está logueado
               <>
@@ -147,10 +148,13 @@ export function Navbar() {
       </Link>
 
       {/* Elementos a la derecha */}
+      
       <ul>
+      <Link className="options" to="/busqueda" >
         <li className="options">
           <IoSearch />
         </li>
+      </Link>
 
         {/* Mostrar opciones condicionales */}
         {logged ? (
