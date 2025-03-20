@@ -15,6 +15,7 @@
     "@tailwindcss/vite": "^4.0.8",
     "aos": "^2.3.4",
     "axios": "^1.8.1",
+    "express": "^4.21.2",
     "firebase": "^11.4.0",
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
@@ -24,7 +25,9 @@
     "react-router": "^7.3.0",
     "react-router-dom": "^7.3.0",
     "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "vite-plugin-pwa": "^0.21.1",
+    "workbox-webpack-plugin": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
