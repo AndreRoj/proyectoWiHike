@@ -56,7 +56,7 @@ export default function Perfil() {
         const upcomingRoutes = await Promise.all(
             querySnapshot.docs.map(async (programadoDoc) => {
                 const programadoData = programadoDoc.data();
-                const rutaDoc = await getDoc(doc(db, 'rutas', programadoData.idruta)); // Obtén los detalles de la ruta
+                const rutaDoc = await getDoc(doc(db, 'rutas', programadoData.idruta)); 
                 return {
                     id: programadoDoc.id,
                     ...programadoData,
@@ -100,11 +100,11 @@ export default function Perfil() {
                 console.log('Ultimas rutas')
                 console.log(latestRoutes);
 
-                // Obtén los detalles de las próximas rutas programadas
+                
                 const upcomingRoutes = await getUpcomingRoutes(profile.proximasrutas || []);
                 console.log(upcomingRoutes);
 
-                // Obtén las rutas que tiene permitido dar el guía
+                
                 const routes = await getRouteDetails(profile.rutasguia || []);
                 console.log(routes);
 

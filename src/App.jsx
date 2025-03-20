@@ -9,8 +9,8 @@ import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
 import Contactanos from './pages/Contactanos'; 
 import ReservaPago from './pages/ReservaPago';
-import PagPrincipal from './admin/PagPrincipal';
 import Adminrutas from './admin/Adminrutas';
+import Usuarioadmin from './admin/Usuarioadmin'
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
 import  PagoExitoso  from './pages/PagoExitoso';
@@ -56,9 +56,8 @@ function App() {
       </Route>
  
       <Route >
-          <Route path="admin" element={<PagPrincipal />} />
           <Route path="/adminrutas" element={<Adminrutas/>}  />
-          <Route path="/usuarios"  />
+          <Route path="/usuarios" element={<Usuarioadmin/>} />
           <Route path='*' element = {<NotFound/>}/>
       
 

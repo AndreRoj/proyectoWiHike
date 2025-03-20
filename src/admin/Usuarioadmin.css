@@ -1,0 +1,47 @@
+.usuario {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+  }
+  
+  .usuario-content {
+    display: flex;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 24px;
+  }
+  
+  .section-title {
+    padding: 2rem 3rem;
+    font-family: 'Raleway', Helvetica;
+    font-weight: 700;
+    font-size: 2rem;
+    color: black;
+    justify-self: flex-start;
+  }
+  
+  .user-table {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .table-header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: #c4bebe;
+    padding: 15px 0;
+  }
+  
+  .usuario-cell {
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    padding: 0 10px;
+  }
+  

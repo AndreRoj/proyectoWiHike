@@ -7,9 +7,6 @@ function Sidebar() {
     <div className="sidebar">
       <ul className="sidebar-list">
         <li className="sidebar-item">
-          <Link to="admin" className="sidebar-link">
-            Página Principal
-          </Link>
         </li>
         <li className="sidebar-item">
           <Link to="/adminrutas" className="sidebar-link">
@@ -17,8 +14,8 @@ function Sidebar() {
           </Link>
         </li>
         <li className="sidebar-item">
-          <Link to="/usuarios" className="sidebar-link">
-            Usuarios
+          <Link to="/solicitudes" className="sidebar-link">
+            Solicitudes
           </Link>
         </li>
       </ul>

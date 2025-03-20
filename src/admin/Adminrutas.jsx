@@ -208,15 +208,7 @@ const Adminrutas = () => {
                   ) : (
                     <div className='Adminrutas-ver'>
                       <div className='ver-rutas-card'>
-                        <div className='ver-rutas-label'>
-                          <h3>Imagen</h3>
-                        </div>
-                        <div className='ver-rutas-label1'>
-                          <h3>Nombre</h3>
-                        </div>
-                        <div className='ver-rutas-label2'>
-                          <h3>Acciones</h3>
-                        </div>
+                        
                         {rutas.map((ruta) => (
                           <Verrutaitem
                             key={ruta.id}

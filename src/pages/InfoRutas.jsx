@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { InfoRuta } from '../components/InfoRuta';
-import { db } from '../firebase'; // Importa tu configuración de Firebase
+import { db } from '../firebase'; 
 import { doc, getDoc } from 'firebase/firestore';
 
 export default function InfoRutas() {
-    const { rutaId } = useParams(); // Obtén el ID de la ruta desde la URL
+    const { rutaId } = useParams(); 
     const [ruta, setRuta] = useState(null); // Estado para almacenar los datos de la ruta
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function InfoRutas() {
     }, [rutaId]);
 
     if (!ruta) {
-        return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtienen los datos
+        return <div>Cargando...</div>; 
     }
 
     return (
