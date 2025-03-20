@@ -35,7 +35,7 @@ export function Ruta({id, imagen, nombre, descripcion, nombreguia, duracion, kil
                 <div className='ruta-footer'>
                     <p><strong>{nombreguia}</strong> Guia de senderismo</p>
                     <div className='ruta-details'>
-                        <span><FaRegClock />{duracion}</span>
+                        <span><FaRegClock />{duracion} min</span>
                         <span><FaRegMap />{kilometros} km</span>
                     </div>
                 </div>

@@ -4,9 +4,10 @@ import { InfoRuta } from '../components/InfoRuta';
 import { db } from '../firebase'; // Importa tu configuración de Firebase
 import { doc, getDoc } from 'firebase/firestore';
 
-export default function InfoRutas() {
+export default function Programaciones() {
     const { rutaId } = useParams(); // Obtén el ID de la ruta desde la URL
     const [ruta, setRuta] = useState(null); // Estado para almacenar los datos de la ruta
+
 
     useEffect(() => {
         const fetchRuta = async () => {
@@ -34,7 +35,7 @@ export default function InfoRutas() {
     return (
         <div className='inforutaaa'>
 
-            <InfoRuta
+            <Programacion
                 id = {ruta.id}
                 nombre={ruta.nombre}
                 estrellas={ruta.estrellas}
@@ -50,8 +51,9 @@ export default function InfoRutas() {
                 paseo={ruta.paseo}
                 senderismo={ruta.senderismo}
                 acampada={ruta.acampada}
-                URLmap={ruta.URLmap}
+                participantes= {nombres}
             />
+
         </div>
     );
 }

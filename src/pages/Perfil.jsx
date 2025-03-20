@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
-import { Link } from 'react-router-dom'; // Importa Link para la navegación
+import { Link } from 'react-router-dom'; 
 import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
 import { db } from '../firebase'; // Asegúrate de importar tu configuración de Firebase
-import { collection, getDocs, query, where, doc, getDoc, addDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc, addDoc, updateDoc, arrayUnion, getFirestore } from 'firebase/firestore';
+import { app } from '../firebase';
+import { getAuth } from 'firebase/auth';
+import { uploadImage } from '../supabaseClient';
 
 export default function Perfil() {
     const profileContext = useContext(UserContext);
@@ -15,6 +18,9 @@ export default function Perfil() {
 const [reviewMessage, setReviewMessage] = useState("");
 const [selectedRouteId, setSelectedRouteId] = useState(null);
 const [alreadyReviewed, setAlreadyReviewed] = useState(false);
+const db = getFirestore(app);
+const auth = getAuth(app)
+const [isUploading, setIsUploading] = useState(false); 
 
     const [userData1, setUserData1] = useState({
         name: "",
@@ -26,15 +32,15 @@ const [alreadyReviewed, setAlreadyReviewed] = useState(false);
         upcomingRoutes: [], // Proximas rutas reservadas
     });
 
-    // Estado para las estadísticas
+    //estado para las estadisticas
     const [activityStats, setActivityStats] = useState({
         Tiemposenderismo: "0h 0m",
         Kmrecorridos: "0 KM",
         Rutasrealizadas: "0",
     });
  
-    //borrar
-    const [isEditing, setIsEditing] = useState(false); // Estado para controlar la visibilidad del formulario de edición
+    //Estado para controlar la visibilidad del formulario de edicion
+    const [isEditing, setIsEditing] = useState(false); 
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -97,7 +103,7 @@ const [alreadyReviewed, setAlreadyReviewed] = useState(false);
             totalDuration += parseFloat(route.ruta.duracion) || 0; // Suma la duración en minutos
         });
 
-        // Convertir la duración total a horas y minutos
+        
         const hours = Math.floor(totalDuration / 60);
         const minutes = Math.round(totalDuration % 60);
 
@@ -120,7 +126,7 @@ const [alreadyReviewed, setAlreadyReviewed] = useState(false);
       });
   };
 
-  // Función para manejar cambios en el formulario
+  // funcion para manejar cambios en el formulario
   const handleInputChange = (e) => {
       const { name, value } = e.target;
       setFormData({
@@ -129,24 +135,68 @@ const [alreadyReviewed, setAlreadyReviewed] = useState(false);
       });
   };
 
-  // Función para manejar la subida de la imagen de perfil
+  // funcion para manejar la subida de la imagen de perfil
   const handleImageUpload = async (e) => {
-      const file = e.target.files[0];
-      if (file) {
-          const storageRef = ref(storage, `profileImages/${profile.uid}/${file.name}`);
-          await uploadBytes(storageRef, file);
-          const downloadURL = await getDownloadURL(storageRef);
-          setFormData({
-              ...formData,
-              profileImage: downloadURL,
-          });
-      }
-  };
+    const file = e.target.files[0]; 
+    if (!file) {
+        alert("Por favor, selecciona un archivo.");
+        return;
+    }
 
-  // Función para guardar los cambios
+    try {
+        setIsUploading(true);
+
+        //  usuario actual
+        const user = auth.currentUser;
+        if (!user || !user.uid) {
+            throw new Error("No hay un usuario autenticado o el UID no está disponible.");
+        }
+
+        // sube la imagen a Supabase
+        const imageUrl = await uploadImage(file, 'avatars', `user_${user.uid}`);
+        console.log("URL de la imagen:", imageUrl); // Depuración
+
+        if (!imageUrl) {
+            throw new Error("No se pudo obtener la URL de la imagen.");
+        }
+
+        // actualiza Firestore con la nueva URL de la imagen
+        const userDocRef = doc(db, 'users', user.uid);
+        await updateDoc(userDocRef, {
+            image: imageUrl,
+        });
+
+        // actualiza el estado local 
+        setUserData1((prevUserData) => ({
+            ...prevUserData,
+            profileImage: imageUrl,
+        }));
+
+        //actualiza contexto 
+        setProfile((prevProfile) => ({
+            ...prevProfile,
+            image: imageUrl,
+        }));
+
+        //actualiza el form
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            profileImage: imageUrl,
+        }));
+
+        console.log("Foto de perfil actualizada correctamente:", imageUrl);
+    } catch (error) {
+        console.error("Error al subir la imagen o actualizar el perfil:", error);
+        alert("Hubo un error al actualizar la foto de perfil.");
+    } finally {
+        setIsUploading(false);
+    }
+};
+
+  // guardar los cambios
   const handleSave = async () => {
       try {
-          const userDocRef = doc(db, 'users', profile.uid); // Asegúrate de que 'users' es el nombre de tu colección
+          const userDocRef = doc(db, 'users', profile.uid); 
           await updateDoc(userDocRef, {
               nombre: formData.name,
               telefono: formData.phone,
@@ -154,7 +204,7 @@ const [alreadyReviewed, setAlreadyReviewed] = useState(false);
               image: formData.profileImage,
           });
 
-          // Actualiza el estado local
+          // actualiza el estado local
           setUserData1({
               ...userData1,
               name: formData.name,
@@ -163,8 +213,8 @@ const [alreadyReviewed, setAlreadyReviewed] = useState(false);
               profileImage: formData.profileImage,
           });
 
-          setIsEditing(false); // Cierra el formulario de edición
-          alert('Perfil actualizado correctamente.');
+          setIsEditing(false);
+
       } catch (error) {
           console.error('Error al actualizar el perfil:', error);
           alert('Hubo un error al actualizar el perfil.');
@@ -261,7 +311,7 @@ const handleSubmitReview = async () => {
                 console.log('upcoming routes' +upcomingRoutes);
                 console.log('perfil' + profile)
 
-                // Actualiza userData1 con los datos del perfil y las rutas
+             
                 const updatedUserData = {
                     name: profile.nombre ?? "Nombre no disponible",
                     role: profile.guia ? "Guía" : "Estudiante",
@@ -274,14 +324,14 @@ const handleSubmitReview = async () => {
 
                 setUserData1(updatedUserData);
 
-                // Calcula las estadísticas basadas en las últimas rutas
+                // calcula las estadisticas delas ultimas rutas
                 const stats = calculateStats(latestRoutes);
                 setActivityStats(stats);
             }
         };
 
         fetchData();
-    }, [profile]); // Este efecto se ejecuta cuando profile cambia
+    }, [profile]); 
 
     return (
       <div className='perfil'>
@@ -299,7 +349,9 @@ const handleSubmitReview = async () => {
                           <p className='perfilRolusuario'>{userData1.role}</p>
                       </div>
                       {isEditing ? (
-                          <div className='perfilEditForm'>
+                          <div className='container'>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Nombre: </span>
                               <input
                                   type="text"
                                   name="name"
@@ -307,6 +359,9 @@ const handleSubmitReview = async () => {
                                   onChange={handleInputChange}
                                   placeholder="Nombre"
                               />
+                            </div>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Telefono: </span>  
                               <input
                                   type="text"
                                   name="phone"
@@ -314,6 +369,9 @@ const handleSubmitReview = async () => {
                                   onChange={handleInputChange}
                                   placeholder="Teléfono"
                               />
+                            </div>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Email: </span>   
                               <input
                                   type="email"
                                   name="email"
@@ -321,14 +379,21 @@ const handleSubmitReview = async () => {
                                   onChange={handleInputChange}
                                   placeholder="Correo"
                               />
+                            </div>
+                            <div className='perfilEditForm'>
+                              <span style={{color: '#009000'}}>Foto de perfil: </span> 
                               <input
                                   type="file"
                                   accept="image/*"
                                   onChange={handleImageUpload}
                               />
+                            </div>
+                            <div style={{marginTop: '30px'}}>
                               <button onClick={handleSave}>Guardar</button>
                               <button onClick={() => setIsEditing(false)}>Cancelar</button>
-                          </div>
+                            </div>
+                        </div>
+                          
                       ) : (
                           <div className='perfilInfousuario'>
                               <div className='perfilColumna'>
@@ -355,7 +420,7 @@ const handleSubmitReview = async () => {
                   </div>
               </div>
           </div>
-            {/* Renderiza las estadísticas y rutas */}
+            {/* renderiza estadsticas y rutas */}
             <div className='perfilDerecha'>
                 <div className='perfilEstadisticas'>
                     <h2>Tu Actividad</h2>
