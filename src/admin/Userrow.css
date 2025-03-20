@@ -1,0 +1,54 @@
+.user-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .user-cell {
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 0 10px;
+    color: black;
+  }
+  
+  .user-email {
+    text-decoration: underline;
+    color: #0000EE;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .edit-button,
+  .delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .edit-button img,
+  .delete-button img {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .action-button span {
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 5px;
+  }
+  
