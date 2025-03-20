@@ -9,8 +9,11 @@ import Guia from './pages/Guia';
 import InfoRutas from './pages/InfoRutas';
 import Contactanos from './pages/Contactanos'; 
 import ReservaPago from './pages/ReservaPago';
+import ForoDetalle from './pages/ForoDetalle';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
+import ForoPrincipal from './pages/ForoPrincipal';
+
 import  PagoExitoso  from './pages/PagoExitoso';
 import { UserProvider } from './Context/UserContext';
 import Galeria from './pages/Galeria';
@@ -49,6 +52,8 @@ function App() {
         <Route path="/reserva/:id" element={<ReservaPago />} />
         <Route path="exitosa" element={<PagoExitoso/>} />
         <Route path='galeria' element = {<Galeria/>}/>
+        <Route path='foro' element = {<ForoPrincipal/>}/>
+        <Route path="/foro/:id" element={<ForoDetalle />} />
       
       </Route>
 

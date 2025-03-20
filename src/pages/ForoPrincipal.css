@@ -1,0 +1,14 @@
+.foro-principal-container {
+  display: flex;
+  
+  
+}
+
+.nuevo-tema-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.foros-container {
+  flex: 2;
+}

@@ -1,0 +1,60 @@
+.foro-detalle-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .foro-detalle-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .foro-detalle-container p {
+    color: #555;
+  }
+  
+  .chat-container {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f4f4f4;
+  }
+  
+  .mensaje {
+    padding: 8px;
+    margin: 5px 0;
+    background: #e1f5fe;
+    border-radius: 5px;
+  }
+  
+  .chat-input {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .chat-input button {
+    padding: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    border-radius: 5px;
+  }
+  
+  .chat-input button:hover {
+    background: #0056b3;
+  }
+  
