@@ -1,17 +1,18 @@
-import React from 'react'
-import { FiEdit } from "react-icons/fi";
+import React from 'react';
 import './Edititem.css';
 
-const Edititem = ({label}) => {
+const Edititem = ({ label, name, value, onChange }) => {
   return (
     <div className='Edititem-item'>
-        <h3>{label}</h3>
-        <input type="edititem"></input> {/* Deberia ser un input, que guarde el dato*/}
-        <div className='Edititem-icon'>
-            <FiEdit />
-        </div>
+      <h3>{label}</h3>
+      <input
+        type="text"
+        name={name} 
+        value={value} 
+        onChange={onChange}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Edititem
+export default Edititem;

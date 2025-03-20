@@ -7,14 +7,13 @@ import "./Buscador.css";
 import { db } from '../firebase'; 
 import { getDocs, collection } from "firebase/firestore";
 
-
 export default function Buscador () {
   const [rutas, setRutas] = useState([]); // Estado para almacenar las rutas
   const [loading, setLoading] = useState(true); // Estado para manejar la carga
   const [error, setError] = useState(null); // Estado para manejar errores
   const [search, setSearch] = useState("");
   const [filteredRutas, setFilteredRutas] = useState([]); 
-  const [filtroTipo, setFiltroTipo] = useState([]);
+  const [filtroTipo, setFiltroTipo] = useState('');
 
   // Función para obtener rutas de Firestore
   const fetchRutas = async () => {
@@ -34,12 +33,11 @@ export default function Buscador () {
     }
   };
 
-
   const handleSearch = () => {
     const searchTerm = search.toLowerCase();
     const filtered = rutas.filter((ruta) => {
       const coincideNombre = ruta.nombre.toLowerCase().includes(searchTerm);
-      const coincideGuia = ruta.nombreguia.toLowerCase().includes(searchTerm);
+      const coincideGuia = ruta.nombreguia ? ruta.nombreguia.toLowerCase().includes(searchTerm) : false;
 
       let coincideTipo = true;
       if (filtroTipo === 'paseo') {
@@ -55,24 +53,22 @@ export default function Buscador () {
     setFilteredRutas(filtered); 
   };
 
-    const handleKeyDown = (e) => { //esta es para que busque con enter, cuando se presione enter llama a handleSearch
-      if (e.key === 'Enter') {
-        handleSearch();
-      }
+  const handleKeyDown = (e) => { // Buscar al presionar Enter
+    if (e.key === 'Enter') {
+      handleSearch();
     }
+  };
 
-    const handleClear = () =>{ //esta es para limpiar search bar con el boton
-      setSearch('');
-      setFiltroTipo('');
-      setFilteredRutas(rutas);
-    }
+  const handleClear = () => { // Limpiar la búsqueda
+    setSearch('');
+    setFiltroTipo('');
+    setFilteredRutas(rutas);
+  };
 
-  
   useEffect(() => {
     fetchRutas();
   }, []); 
 
- 
   if (loading) {
     return <div>Cargando rutas...</div>;
   }
@@ -82,22 +78,19 @@ export default function Buscador () {
     return <div>{error}</div>;
   }
 
-
-
-
   return (
-    <div className="listadorutas" >
+    <div className="listadorutas">
       <div className="search-bar">
         <input
           type="text"
           placeholder="Buscar"
           value={search}
-          onChange= {(e) => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           onKeyDown={handleKeyDown}
         />
         {search && (
           <button className="clear-button" onClick={handleClear}>
-            <IoClose size={20}/>
+            <IoClose size={20} />
           </button>
         )}
         <button className="search-button" onClick={handleSearch}>
@@ -105,46 +98,45 @@ export default function Buscador () {
         </button>
       </div>
       
-      {/* filtro de excursiones*/}
+      {/* Filtro de excursiones */}
       <div className="filtros">
         <button
           className={filtroTipo === '' ? 'filtro-activo' : ''}
-          onClick={() => {setFiltroTipo('')
-          handleSearch();
+          onClick={() => {
+            setFiltroTipo('');
+            handleSearch();
           }}
         >
           Todos
         </button>
         <button
           className={filtroTipo === 'paseo' ? 'filtro-activo' : ''}
-          onClick={() => { 
-            setFiltroTipo('paseo')
-            handleSearch()
+          onClick={() => {
+            setFiltroTipo('paseo');
+            handleSearch();
           }}
-
         >
           Paseo
         </button>
         <button
           className={filtroTipo === 'senderismo' ? 'filtro-activo' : ''}
-          onClick={() => { 
-            setFiltroTipo('senderismo')
-            handleSearch()
+          onClick={() => {
+            setFiltroTipo('senderismo');
+            handleSearch();
           }}
         >
           Senderismo
         </button>
         <button
           className={filtroTipo === 'acampada' ? 'filtro-activo' : ''}
-          onClick={() => { 
-            setFiltroTipo('acampada')
-            handleSearch()
+          onClick={() => {
+            setFiltroTipo('acampada');
+            handleSearch();
           }}
         >
           Acampada
         </button>
       </div>
-      
 
       <div className="ll">
         {/* Mapea las rutas y crea un componente Ruta por cada una */}
