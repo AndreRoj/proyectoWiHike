@@ -144,10 +144,6 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
     return (
         <div className="rutaInfo-content">
             <div className="nombreRuta">{nombre}</div>
-            <div className='rating'>
-                <FaStar style={{ color: 'black', fontSize: '30px' }} />
-                <span style={{ color: 'black', fontSize: '20px' }}>{estrellas}</span>
-            </div>
             <div className="gallery">
                 <div className="main-imag">
                     <img src={imagen} alt="Imagen principal" />
@@ -268,7 +264,6 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
 
 <div className="reserva-container">
 <h3>Información de la reserva</h3>
-<p><strong>ID de Programado:</strong> {selectedProgramadoId}</p> 
 <p><strong>Fecha seleccionada:</strong> {selectedDate.toLocaleDateString()}</p>
 <p><strong>Ruta:</strong> {nombre}</p>
 <p><strong>Dificultad:</strong> {dificultad}</p>
