@@ -9,7 +9,66 @@
     height: auto;
 }
 
-.InfoRuta-content {
+.reseñas-container {
+
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título de la sección de reseñas */
+.reseñas-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: darkgreen;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  font-family: Raleway-bold ;
+}
+
+/* Cada reseña individual */
+.reseña-item {
+  color: #000000;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color:white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Nombre del autor de la reseña */
+.reseña-item p strong {
+  font-size: 18px;
+  color: darkgreen;
+}
+
+/* Mensaje de la reseña */
+.reseña-item p {
+  font-size: 16px;
+  color: #000000;
+  margin: 10px 0;
+}
+
+/* Fecha de la reseña */
+.reseña-item p small {
+  color: #000000;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Mensaje cuando no hay reseñas */
+.reseñas-container p {
+  font-size: 16px;
+  color: #777;
+  text-align: center;
+}
+
+
+.rutaInfo-content {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -268,6 +327,55 @@
   align-items: center;
   margin-top: 10px; /* Espacio arriba del botón */
   margin-bottom: 30px;
+}
+
+
+.reserva-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.reserva-container h3 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.reserva-container p {
+  font-size: 16px;
+  color: #666;
+  margin: 8px 0;
+}
+
+.reserva-container strong {
+  color: #333;
+}
+
+.reserva-container button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-top: 15px;
+}
+
+.reserva-container button:hover {
+  background-color: darkgreen;
+  transform: scale(1.05);
+}
+
+.reserva-container button:active {
+  transform: scale(0.98);
 }
 
 @font-face {

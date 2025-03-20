@@ -11,11 +11,15 @@ import Contactanos from './pages/Contactanos';
 import ReservaPago from './pages/ReservaPago';
 import Adminrutas from './admin/Adminrutas';
 import Usuarioadmin from './admin/Usuarioadmin'
+import ForoDetalle from './pages/ForoDetalle';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navbar } from './components/Navbar';
+import ForoPrincipal from './pages/ForoPrincipal';
+
 import  PagoExitoso  from './pages/PagoExitoso';
 import Buscador from './pages/Buscador';
 import { UserProvider } from './Context/UserContext';
+import Galeria from './pages/Galeria';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import  { useEffect } from 'react';
@@ -52,6 +56,9 @@ function App() {
         <Route path="/reserva/:id" element={<ReservaPago />} />
         <Route path="exitosa" element={<PagoExitoso/>} />
         <Route path='busqueda' element={<Buscador/>} />
+        <Route path='galeria' element = {<Galeria/>}/>
+        <Route path='foro' element = {<ForoPrincipal/>}/>
+        <Route path="/foro/:id" element={<ForoDetalle />} />
       
       </Route>
  

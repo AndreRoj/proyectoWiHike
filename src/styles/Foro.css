@@ -1,0 +1,42 @@
+.foro-container {
+    background-color:  #009000;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    cursor: pointer;
+
+  }
+  
+  .foro-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .foro-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+  }
+  
+  .foro-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #ffffff;
+  }
+  
+  .foro-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .foro-tag {
+    background-color: #4f545c;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #fff;
+  }

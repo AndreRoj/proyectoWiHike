@@ -1,11 +1,14 @@
+
+
+
 import React, { useContext, useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
-import { Link } from 'react-router-dom'; // Importa Link para la navegación
+import { Link } from 'react-router-dom'; 
 import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
-import { db } from '../firebase'; // Asegúrate de importar tu configuración de Firebase
-import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase'; 
+import { collection, getDocs, query, where, doc, getDoc, addDoc, Timestamp, updateDoc, arrayUnion } from 'firebase/firestore';
 
 export default function Perfil() {
     const profileContext = useContext(UserContext);
@@ -28,6 +31,75 @@ export default function Perfil() {
         KmComoGuia: "0 KM",
         RutasACargo: "0",
     });
+
+    const [showForm, setShowForm] = useState(false); // Estado para mostrar/ocultar el formulario
+    const [selectedDate, setSelectedDate] = useState(""); // Estado para la fecha seleccionada
+    const [selectedRoute, setSelectedRoute] = useState(""); // Estado para la ruta seleccionada
+    const [selectedPrice, setSelectedPrice] = useState(""); // Estado para el precio
+
+
+    const handleScheduleActivity = async (e) => {
+        e.preventDefault();
+    
+        if (!selectedDate || !selectedRoute) {
+            alert("Por favor, selecciona una fecha y una ruta.");
+            return;
+        }
+    
+        try {
+            // Crear el objeto para Firestore
+            const nuevaActividad = {
+                dia: Timestamp.fromDate(new Date(selectedDate)),
+                guia: profile.uid,
+                idruta: selectedRoute,
+                precio: parseFloat(selectedPrice), // Guardar el precio como número
+                personas: [], // Array vacío para las personas
+            };
+    
+            const docRef = await addDoc(collection(db, 'programado'), nuevaActividad);
+            console.log("Actividad programada con ID:", docRef.id);
+    
+            await updateDoc(docRef, {
+                id: docRef.id // Agregar el ID como un atributo
+            });
+    
+            // Actualizar la ruta correspondiente en la colección 'rutas'
+            const rutaRef = doc(db, 'rutas', selectedRoute);
+            await updateDoc(rutaRef, {
+                rutascalendar: arrayUnion(docRef.id) // Agrega el ID de programado al array rutascalendar
+            });
+    
+            // Actualizar el perfil del usuario con la nueva actividad programada
+            const userRef = doc(db, 'users', profile.uid);
+            await updateDoc(userRef, {
+                proximasrutas: arrayUnion(docRef.id) // Agrega el ID de programado al array proximasrutas
+            });
+    
+            // Obtener los detalles de la nueva actividad programada
+            const nuevaActividadConDetalles = {
+                id: docRef.id,
+                ...nuevaActividad,
+                ruta: await getDoc(doc(db, 'rutas', selectedRoute)).then(doc => doc.data()),
+            };
+    
+            // Actualizar el estado local con la nueva actividad programada
+            setUserData1(prevState => ({
+                ...prevState,
+                upcomingRoutes: [...prevState.upcomingRoutes, nuevaActividadConDetalles],
+            }));
+    
+            // Cerrar el formulario y resetear los estados
+            setShowForm(false);
+            setSelectedDate("");
+            setSelectedRoute("");
+            setSelectedPrice("");
+    
+            alert("Actividad programada correctamente.");
+        } catch (error) {
+            console.error("Error al programar la actividad:", error);
+            alert("Hubo un error al programar la actividad.");
+        }
+    };
 
     // Función para obtener los detalles de las rutas
     const getRouteDetails = async (routeIds) => {
@@ -185,6 +257,51 @@ export default function Perfil() {
                         ))}
                     </div>
                 </div>
+                {profile?.guia && (
+                    <div className='perfilProgramarActividad'>
+                        <button onClick={() => setShowForm(!showForm)}>
+                            {showForm ? "Cancelar" : "Programar Actividad"}
+                        </button>
+                        {showForm && (
+                            <form onSubmit={handleScheduleActivity}>
+                                <label>
+                                    Fecha:
+                                    <input
+                                        type="datetime-local"
+                                        value={selectedDate}
+                                        onChange={(e) => setSelectedDate(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    Ruta:
+                                    <select
+                                        value={selectedRoute}
+                                        onChange={(e) => setSelectedRoute(e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Selecciona una ruta</option>
+                                        {userData1.routes.map(route => (
+                                            <option key={route.id} value={route.id}>
+                                                {route.nombre}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </label>
+                                <label>
+                                    Precio ($):
+                                    <input
+                                        type="number"
+                                        value={selectedPrice}
+                                        onChange={(e) => setSelectedPrice(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                                <button type="submit">Programar</button>
+                            </form>
+                        )}
+                    </div>
+                )}
                 <div className='perfilProximas-Rutas'>
                     <h2>Tus Rutas</h2>
                     {userData1.routes.length > 0 ? (

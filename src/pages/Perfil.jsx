@@ -4,18 +4,22 @@ import { Link } from 'react-router-dom';
 import './Perfil.css';
 import "../styles/RutasPopulares.css";
 import { UserContext } from '../Context/UserContext';
-import { collection, getDocs, query, where, doc, updateDoc, getFirestore} from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc, addDoc, updateDoc, arrayUnion, getFirestore } from 'firebase/firestore';
 import { app } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import { uploadImage } from '../supabaseClient';
 
 const db = getFirestore(app);
 const auth = getAuth(app)
-
 export default function Perfil() {
     const profileContext = useContext(UserContext);
-    const { logged, profile, setProfile } = profileContext;
-    const [isUploading, setIsUploading] = useState(false); 
+    const { logged, profile } = profileContext;
+    console.log("Profile data:", profile);
+    const [showReviewForm, setShowReviewForm] = useState(false);
+const [reviewMessage, setReviewMessage] = useState("");
+const [selectedRouteId, setSelectedRouteId] = useState(null);
+const [alreadyReviewed, setAlreadyReviewed] = useState(false);
+const [isUploading, setIsUploading] = useState(false); 
 
     const [userData1, setUserData1] = useState({
         name: "",
@@ -23,8 +27,8 @@ export default function Perfil() {
         phone: "",
         email: "",
         profileImage: "",
-        latestRoutes: [],
-        upcomingRoutes: [],
+        latestRoutes: [], //ultimas rutas de usuario finalizadas
+        upcomingRoutes: [], // Proximas rutas reservadas
     });
 
     //estado para las estadisticas
@@ -43,20 +47,49 @@ export default function Perfil() {
         profileImage: "",
     });
 
-    // obitene detalles de las rutas
+    const [showApplicationForm, setShowApplicationForm] = useState(false);
+    const [applicationMessage, setApplicationMessage] = useState("");
+
+    // Función para obtener los detalles de las rutas
     const getRouteDetails = async (routeIds) => {
-        if (!routeIds || routeIds.length === 0) return []; 
-
-        const routesCollection = collection(db, 'rutas'); 
-        const q = query(routesCollection, where('__name__', 'in', routeIds)); 
+        if (!routeIds || routeIds.length === 0) return []; // Si no hay IDs, retorna un array vacío
+    
+        const routesCollection = collection(db, 'rutas');
+        const q = query(routesCollection, where('__name__', 'in', routeIds));
         const querySnapshot = await getDocs(q);
-
-        //mapea los documentos a un array de objetos con los datos de las rutas
+    
+        console.log("Rutas encontradas:", querySnapshot.docs.map(doc => doc.data())); // Verifica los datos
+    
         return querySnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
         }));
     };
+    
+    const getUpcomingRoutes = async (proximasRutasIds) => {
+        if (!proximasRutasIds || proximasRutasIds.length === 0) return [];
+    
+        const programadoCollection = collection(db, 'programado');
+        const q = query(programadoCollection, where('__name__', 'in', proximasRutasIds));
+        const querySnapshot = await getDocs(q);
+    
+        console.log("Rutas programadas encontradas:", querySnapshot.docs.map(doc => doc.data())); // Verifica los datos
+    
+        const upcomingRoutes = await Promise.all(
+            querySnapshot.docs.map(async (programadoDoc) => {
+                const programadoData = programadoDoc.data();
+                const rutaDoc = await getDoc(doc(db, 'rutas', programadoData.idruta));
+                return {
+                    id: programadoDoc.id,
+                    ...programadoData,
+                    ruta: rutaDoc.data(),
+                };
+            })
+        );
+    
+        return upcomingRoutes;
+    };
+
 
     // Función para calcular las estadísticas
     const calculateStats = (latestRoutes) => {
@@ -65,8 +98,8 @@ export default function Perfil() {
         let totalRoutes = latestRoutes.length;
 
         latestRoutes.forEach(route => {
-            totalKm += parseFloat(route.kilometros) || 0; 
-            totalDuration += parseFloat(route.duracion) || 0; 
+            totalKm += parseFloat(route.ruta.kilometros) || 0; // Suma los kilómetros
+            totalDuration += parseFloat(route.ruta.duracion) || 0; // Suma la duración en minutos
         });
 
         
@@ -120,7 +153,7 @@ export default function Perfil() {
 
         // sube la imagen a Supabase
         const imageUrl = await uploadImage(file, 'avatars', `user_${user.uid}`);
-        console.log("URL de la imagen:", imageUrl); // Depuración
+        console.log("URL de la imagen:", imageUrl); 
 
         if (!imageUrl) {
             throw new Error("No se pudo obtener la URL de la imagen.");
@@ -187,15 +220,95 @@ export default function Perfil() {
       }
   };
 
+  const handleSubmitApplication = async () => {
+    if (!applicationMessage.trim()) {
+        alert("Por favor, escribe un motivo para postularte.");
+        return;
+    }
+    
+    try {
+        const solicitudRef = collection(db, "solicitud");
+        const newSolicitud = await addDoc(solicitudRef, {
+            uid: profile.uid,
+            mensaje: applicationMessage,
+            fecha: new Date()
+        });
+        
+        // Agregar el ID generado al documento
+        await updateDoc(doc(db, "solicitud", newSolicitud.id), {
+            id: newSolicitud.id
+        });
+        
+        alert("Solicitud enviada correctamente.");
+        setShowApplicationForm(false);
+        setApplicationMessage(""); 
+    } catch (error) {
+        console.error("Error al enviar la solicitud:", error);
+        alert("Hubo un error al enviar la solicitud.");
+    }
+};
+
+const checkIfAlreadyReviewed = async (routeId) => {
+    try {
+        const rutaRef = doc(db, "rutas", routeId);
+        const rutaSnap = await getDoc(rutaRef);
+        if (rutaSnap.exists()) {
+            const data = rutaSnap.data();
+            const hasReviewed = data.reseñas?.some(r => r.uid === profile.uid);
+            setAlreadyReviewed(hasReviewed);
+            if (!hasReviewed) {
+                setShowReviewForm(true);
+            } else {
+                alert("Ya has dejado una reseña en esta ruta.");
+            }
+        }
+    } catch (error) {
+        console.error("Error al verificar reseña:", error);
+    }
+};
+
+const handleSubmitReview = async () => {
+    if (!reviewMessage.trim() || !selectedRouteId) {
+        alert("Por favor, escribe tu reseña.");
+        return;
+    }
+    
+    try {
+        const rutaRef = doc(db, "rutas", selectedRouteId);
+        await updateDoc(rutaRef, {
+            reseñas: arrayUnion({
+                uid: profile.uid,
+                nombre: profile.nombre,
+                mensaje: reviewMessage,
+                fecha: new Date()
+            })
+        });
+        
+        alert("Reseña enviada correctamente.");
+        setShowReviewForm(false);
+        setReviewMessage(""); // Resetear el campo
+    } catch (error) {
+        console.error("Error al enviar la reseña:", error);
+        alert("Hubo un error al enviar la reseña.");
+    }
+};
+
+
+
     useEffect(() => {
         const fetchData = async () => {
-            if (profile) { 
-           
-                const latestRoutes = await getRouteDetails(profile.ultimasrutas || []);
-                console.log(latestRoutes);
-             
-                const upcomingRoutes = await getRouteDetails(profile.proximasrutas || []);
-                console.log(upcomingRoutes);
+            if (profile) { // Solo ejecuta si profile no es null o undefined
+                // Obtén los detalles de las últimas rutas
+                console.log('latest routes crudo ' + profile.ultimasrutas);
+                console.log('upcoming routes' + profile.proximasrutasusuario)
+
+
+                const latestRoutes = await getUpcomingRoutes(profile.ultimasrutas || []);
+                console.log('latest routes' + latestRoutes);
+                // Obtén los detalles de las próximas rutas
+                const upcomingRoutes = await getUpcomingRoutes(profile.proximasrutasusuario || []);
+                console.log('upcoming routes' +upcomingRoutes);
+                console.log('perfil' + profile)
 
              
                 const updatedUserData = {
@@ -321,92 +434,124 @@ export default function Perfil() {
                 </div>
                 <div className='perfilProximas-Rutas'>
                     <h2>Próximas Rutas Programadas</h2>
-                    {userData1.upcomingRoutes.length > 0 && (
-                        <div className='perfilRutascontainer1'>
-                            {userData1.upcomingRoutes.map((route, index) => (
-                                <div key={index} className="perfilInfoRutas1">
-                                    <div className="perfilimagen-ruta">
-                                        <img
-                                            src={route.imagen || "https://via.placeholder.com/150"}
-                                            alt={route.nombre}
-                                            className="perfilpngruta"
-                                        />
-                                        <div className="perfilRutainfo">
-                                            <h3>{route.nombre}</h3>
-                                        </div>
-                                    </div>
-                                    <div className="perfildetallesruta">
-                                        <p className='perfilguide'>
-                                            <span className="perfilnombreguia">{route.guia} </span>
-                                            <span className='perfilrol'>{route.guia}</span>
-                                        </p>
-                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
-                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-                <div className='perfilUltimas-Rutas'>
-                    <h2>Últimas Rutas</h2>
-                    {userData1.latestRoutes.length > 0 && (
+                    {userData1.upcomingRoutes.length > 0 ? (
                         <div className="perfilRutascontainer2">
-                            {userData1.latestRoutes.map((route, index) => (
+                            {userData1.upcomingRoutes.map((programado, index) => (
                                 <div key={index} className="perfilInfoRutas2">
                                     <div className="perfilimagen-ruta">
                                         <img
-                                            src={route.imagen || "https://via.placeholder.com/150"}
-                                            alt={route.nombre}
+                                            src={programado.ruta?.imagen || "https://via.placeholder.com/150"}
+                                            alt={programado.ruta?.nombre}
                                             className="perfilpngruta"
                                         />
                                         <div className="perfilRutainfo">
-                                            <h3>{route.nombre}</h3>
+                                            <h3>{programado.ruta?.nombre}</h3>
+                                            
                                         </div>
                                     </div>
                                     <div className="perfildetallesruta">
                                         <p>
-                                            <span className="perfilnombreguia">{route.guia} </span>
-                                            <span className='perfilrol'>{route.guia}</span>
+                                            <span className="perfilnombreguia">{userData1.name} </span>
                                         </p>
-                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
-                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
+                                        <p className="perfilroute-info">Dificultad: {programado.ruta?.dificultad}</p>
+                                        <p className="perfilroute-info">Duración: {programado.ruta?.duracion}</p>
+                                        <p className="perfilfecha">
+                                                Fecha: {new Date(programado.dia?.toDate()).toLocaleString()}
+                                            </p>
                                     </div>
                                 </div>
                             ))}
                         </div>
+                    ) : (
+                        <p>No tienes próximas rutas programadas.</p>
                     )}
+
+
+                </div>
+                <div className='perfilUltimas-Rutas'>
+                    
+                    
                 </div>
 
                   <div className='perfilUltimas-Rutas'>
                     <h2>Últimas Rutas</h2>
-                    {userData1.latestRoutes.length > 0 && (
+                    {userData1.latestRoutes.length > 0 ? (
                         <div className="perfilRutascontainer2">
-                            {userData1.latestRoutes.map((route, index) => (
+                            {userData1.latestRoutes.map((programado, index) => (
                                 <div key={index} className="perfilInfoRutas2">
                                     <div className="perfilimagen-ruta">
                                         <img
-                                            src={route.imagen || "https://via.placeholder.com/150"}
-                                            alt={route.nombre}
+                                            src={programado.ruta?.imagen || "https://via.placeholder.com/150"}
+                                            alt={programado.ruta?.nombre}
                                             className="perfilpngruta"
                                         />
                                         <div className="perfilRutainfo">
-                                            <h3>{route.nombre}</h3>
+                                            <h3>{programado.ruta?.nombre}</h3>
+                                            
                                         </div>
                                     </div>
                                     <div className="perfildetallesruta">
                                         <p>
-                                            <span className="perfilnombreguia">{route.guia} </span>
-                                            <span className='perfilrol'>{route.guia}</span>
+                                            <span className="perfilnombreguia">{userData1.name} </span>
                                         </p>
-                                        <p className="perfilroute-info">Dificultad: {route.dificultad}</p>
-                                        <p className="perfilroute-info">Duración: {route.duracion}</p>
+                                        <p className="perfilroute-info">Dificultad: {programado.ruta?.dificultad}</p>
+                                        <p className="perfilroute-info">Duración: {programado.ruta?.duracion}</p>
+                                        <p className="perfilfecha">
+                                                Fecha: {new Date(programado.dia?.toDate()).toLocaleString()}
+                                            </p>
                                     </div>
                                 </div>
                             ))}
                         </div>
+                    ) : (
+                        <p>No tienes próximas rutas programadas.</p>
                     )}
                 </div>
+<div>
+                {/* Renderiza botón de reseña en las últimas rutas */}
+{userData1.latestRoutes.map((route) => (
+    <div key={route.id} className='perfilRouteReview'>
+        <h3>{route.ruta?.nombre}</h3>
+        <button onClick={() => { setSelectedRouteId(route.ruta.id); checkIfAlreadyReviewed(route.ruta.id); }}>Dejar Reseña</button>
+    </div>
+))}
+
+{showReviewForm && !alreadyReviewed && (
+    <div className='perfilReviewForm'>
+        <h3>Deja tu reseña</h3>
+        <textarea
+            value={reviewMessage}
+            onChange={(e) => setReviewMessage(e.target.value)}
+            placeholder='Escribe tu experiencia...'
+        />
+        <button onClick={handleSubmitReview}>Enviar</button>
+        <button onClick={() => setShowReviewForm(false)}>Cancelar</button>
+    </div>
+)}
+
+</div>
+
+
+                {!profile?.guia && (
+                    <div className='perfilGuideApplication'>
+                        <button onClick={() => setShowApplicationForm(true)} className='perfilGuideApplicationBtn'>
+                            Postularse a Guía
+                        </button>
+                        
+                        {showApplicationForm && (
+                            <div className='perfilApplicationForm'>
+                                <h3>¿Por qué quieres ser guía?</h3>
+                                <textarea
+                                    value={applicationMessage}
+                                    onChange={(e) => setApplicationMessage(e.target.value)}
+                                    placeholder='Escribe tu motivo aquí...'
+                                />
+                                <button onClick={handleSubmitApplication}>Enviar</button>
+                                <button onClick={() => setShowApplicationForm(false)}>Cancelar</button>
+                            </div>
+                        )}
+                    </div>
+                )}
 
             </div>
         </div>

@@ -72,8 +72,16 @@ export function Navbar() {
                 Rutas
               </Link>
             </li>
-            <li className="options" onClick={toggleMenu}>Galeria</li>
+            <Link className="options" to="/galeria" onClick={toggleMenu} >
+            <li  >Galeria</li>
+            </Link>
+
+
+            <Link className="options" to="/foro" onClick={toggleMenu} >
             <li className="options" onClick={toggleMenu}>Foro</li>
+            </Link>
+
+
             <li className="options">
               <IoSearch />
             </li>
@@ -119,8 +127,18 @@ export function Navbar() {
             Rutas
           </Link>
         </li>
-        <li className="options">Galeria</li>
+
+
+        <Link className="options" to="/galeria" >
+            <li  >Galeria</li>
+            </Link>
+
+
+            <Link className="options" to="/foro" >
         <li className="options">Foro</li>
+        </Link>
+
+
       </ul>
 
       {/* Logo en el centro */}

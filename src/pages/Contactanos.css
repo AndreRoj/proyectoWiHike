@@ -4,8 +4,12 @@ html, body {
   width: 100%;
   text-align: center;
   font-family: 'Raleway-Regular', sans-serif;
+
 }
+
+
 .Contactanos-contactanos{
+
   width: 100%;
   max-width: 1110px;
   margin:20px 70px;
@@ -16,94 +20,115 @@ html, body {
   font-size: 2rem;
 
 }
-.Contactanos-contactanos h1{
-  font-family: 'Raleway-Bold';
-  margin: auto;
-  font-size: 5rem; 
-  font-weight: 700;
+
+.Contactanos-container {
+  width: 100%;
+  background-color: #f0f0f0;
+}
+
+.Contactanos-content{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    text-align: left;
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;  
+    max-width: 96%;;
+    margin: 0 auto;
+}
+
+.tc, .tc2{
+  font-family: 'Raleway-bold';
   color: rgb(0,0,0);
+  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
+  font-size: 45px;
   
 }
+
+
 .Contactanos-separador {
   width: 100%; /* Ancho completo */
   height: 1px; /* Grosor del separador */
   background-color: #0f0f0f; /* Color del separador */
   margin: 20px 0; /* Espacio arriba y abajo */
 }
+
 .Contactanos-Contenedor {
-  width: 100%;
-  display: grid;
-  flex-direction: row;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-  grid-gap: 20px;
-}
-.Contactanos-ContactForm h2{
-  font-family: 'Raleway-Bold';
-  font-size: 2rem;
+  font-family: 'Raleway-bold';
+  justify-content: center;
   color: black;
-}
-
-.Contactanos-Primerafila{
-  width:100%;
+  font-weight: bold;
+  /* background-color: #a57b7b; */
+  padding: 10px; /*para crear el espacio alrededor*/
+  gap: 20px;
   display: flex;
-  flex-direction: row; 
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-.Contactanos-Primerafila > div {
-  flex: 1; /* Cada input ocupa el mismo espacio */
-}
-.Contactanos-Primerafila label{
-  font-size: 1.5rem;
-  color: black;
   
-}
-.Contactanos-Primerafila input{
-  width: 100%;
-  padding: 15px 25px;
-  font-size: 2rem;
-  border-radius: 60px; 
-  background-color: rgb(217,217,217); 
-}
-.Contactanos-ContactForm label{
-  font-size: 1.5rem;
-  color: black;
 
 }
-.Contactanos-ContactForm textarea{
-  width: 100%;
-  height: 200px;
-  padding: 15px 25px; 
-  font-size: 2rem;
-  border-radius: 40px; 
-  background-color: rgb(217,217,217); 
-}
-.Contactanos-ContactForm button{
-  height: 80px; 
-  width: 60%;
-  border-radius: 0.75rem; 
-  background-color: #4CAF50;
-  color: #0a0a0a;
-  padding: 10px 20px ;
-  cursor: pointer;
-}
 
-.Contactanos-Contactinfo{
-  width: 50%;
-  margin:20% 35%;
-}
-.Contactanos-Button{
-
+.Contacmetrica {
+  font-size: 18px;
+  /* background-color: aqua; */
   display: flex;
   flex-direction: column;
-  gap: 5px;
-
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1px; 
 }
-.Contactanos-Contactinfo button{
+
+.PrimeraFila1{
+  font-family: 'Raleway-bold';
+  /* background-color: #4CAF50; */
+  color: black;
+  font-weight: bold;
+  padding: 20px; /*para crear el espacio alrededor*/
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: row;
+  margin-bottom: 10px;
+  max-width: 100%;
+}
+
+.nomb{
+  font-family: 'Raleway-bold';
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.ContImp{
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 3rem;
+}
+
+.ContImp2{
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 4rem;
+}
+
+.pf{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1px;
+  margin-bottom: 10px;
+}
+
+.ContactanosbuttonP{
   width: 100%; 
   border-radius: 60px; 
   display: flex;
@@ -114,44 +139,72 @@ html, body {
   background-color: #4CAF50;
   color: black;
   font-family: 'Raleway-Bold';
-
-}
-.Contactanos-Icon{
-  display: flex;
-  flex-direction: row;
-  gap: 5px; 
-  margin-top: 10px;
 }
 
-.Contactanos-Icon button{
-  border-radius: 60px;
-  background-color: #4CAF50;
-  color: black;
-  align-items: center;
 
+@font-face {
+  font-family: 'Raleway-bold';
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Media Queries para Tablets (768px - 1024px) */
-@media (min-width: 768px) {
-  .Contactanos-TituloContactanos h1 {
-    font-size: 4rem; /* Tamaño más grande para tablets */
-  }
+@media screen and (max-width: 768px) {
+  .Contactanos-container {
+    max-width: 100%;
+    padding: 5px;
+}
 
-  .Contactanos-ContactForm {
-    margin-left: 5%;
+.tc2{
+  font-size: 30px;
+}
+
+.PrimeraFila1{
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.nomb{
+  font-size: 20px;
+}
+
+.Contactanos-content {
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  padding: 20px;
+}
+
+.ContImp{
+  max-width: 300px ;
+}
+
+.ContImp2{
+  max-width: 300px ;
+  height: 200px;
+
+}
+
+  .Contactanos-Contenedor {
     width: 100%;
-  }
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    gap: 55px;
+}
 
-  .Contactanos-PrimeraFila {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .Nombre, .Correo {
-    width: 48%; /* Ancho reducido para tablets */
-  }
-
-  .Telefono-Boton, .Correo-Boton {
-    width: 30%; /* Ancho reducido para tablets */
+  .Contacmetrica{
+      align-items: center;
+      max-width: 100%;
   }
 }
 
