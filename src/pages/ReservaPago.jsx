@@ -13,6 +13,7 @@ function ReservaPago() {
     const { id, rutaId } = useParams();
     const reservaId = id || rutaId; // Usa id si está disponible, de lo contrario usa rutaId
     console.log("ID de la reserva desde la URL:", reservaId);
+    //hola
 
     const [reserva, setReserva] = useState(null); // Datos de la colección 'programado'
     const [ruta, setRuta] = useState(null); // Datos de la colección 'rutas'
