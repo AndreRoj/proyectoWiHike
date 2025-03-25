@@ -53,7 +53,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import "./Sidebar.css";
-
+const auth = getAuth(app);
 function Sidebar() {
   const navigate = useNavigate();
 
