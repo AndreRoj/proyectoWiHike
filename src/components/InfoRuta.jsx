@@ -138,10 +138,10 @@ export function InfoRuta({ id, nombre, estrellas, imagen, imagen2, imagen3, desc
         <div className="rutaInfo-content">
             <div className="InfoRutanombre">{nombre}</div>
             <div className="InfoRutagallery">
-                <div className="main-imag">
+                <div className="InfoRutamain-imag">
                     <img src={imagen} alt="Imagen principal" />
                 </div>
-                <div className="InfoRutaside-imag">
+                <div className=".InfoRutaside-imag">
                     <img src={imagen2} alt="Imagen lateral 1" />
                     <img src={imagen3} alt="Imagen lateral 2" />
                 </div>
