@@ -64,7 +64,7 @@ function App() {
  
       <Route >
           <Route path="/adminrutas" element={<Adminrutas/>}  />
-          <Route path="/usuarios" element={<Usuarioadmin/>} />
+          <Route path="/solicitudes" element={<Usuarioadmin/>} />
           <Route path='*' element = {<NotFound/>}/>
       
 
