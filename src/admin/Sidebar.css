@@ -23,3 +23,14 @@
 .sidebar-link:hover {
   color: #007bff;
 }
+
+
+.sidebar-item {
+  transition: background-color 0.3s ease;
+  padding: 10px 15px;
+}
+
+.sidebar-item:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
