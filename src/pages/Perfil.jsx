@@ -451,7 +451,7 @@ const handleSubmitReview = async () => {
                                     </div>
                                     <div className="perfildetallesruta">
                                         <p>
-                                            <span className="perfilnombreguia">{userData1.name} </span>
+                                            <span className="perfilnombreguia">{programado.ruta.nombreguia || "none"} </span>
                                         </p>
                                         <p className="perfilroute-info">Dificultad: {programado.ruta?.dificultad}</p>
                                         <p className="perfilroute-info">Duración: {programado.ruta?.duracion}</p>
