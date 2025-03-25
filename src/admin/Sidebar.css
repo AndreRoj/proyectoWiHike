@@ -25,12 +25,12 @@
 }
 
 
-.sidebar-item {
+.sidebar-itemm {
   transition: background-color 0.3s ease;
   padding: 10px 15px;
 }
 
-.sidebar-item:hover {
+.sidebar-itemm:hover {
   background-color: #f0f0f0;
   cursor: pointer;
 }

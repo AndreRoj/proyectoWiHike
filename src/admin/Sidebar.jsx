@@ -75,7 +75,7 @@ function Sidebar() {
           </Link>
         </li>
         <li 
-          className="sidebar-item" 
+          className="sidebar-itemm" 
           onClick={handleLogout}
           style={{ 
             color: 'red',
