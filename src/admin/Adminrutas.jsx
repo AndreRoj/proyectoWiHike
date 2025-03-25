@@ -30,7 +30,7 @@ const Adminrutas = () => {
     paseo: false,
   });
   const [errores, setErrores] = useState({
-    desnivelPositivo: "",
+    desnivel_positivo: "",
     kilometros: "",
   });
 
@@ -87,7 +87,7 @@ const Adminrutas = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "desnivelPositivo" || name === "kilometros") {
+    if (name === "desnivel_positivo" || name === "kilometros") {
       if (!validarNumero(value)) {
         setErrores({
           ...errores,
@@ -121,7 +121,7 @@ const Adminrutas = () => {
   const guardarRuta = async () => {
     try {
     
-      if (!validarNumero(nuevaRuta.desnivelPositivo) || !validarNumero(nuevaRuta.kilometros)) {
+      if (!validarNumero(nuevaRuta.desnivel_positivo) || !validarNumero(nuevaRuta.kilometros)) {
         alert("Por favor, corrige los errores en los campos numéricos.");
         return;
       }
@@ -152,7 +152,7 @@ const Adminrutas = () => {
     setNuevaRuta({ 
       urlMap: "",
       descripcion: "",
-      desnivelPositivo: "",
+      desnivel_positivo: "",
       dificultad: "",
       duracion: "",
       imagen: "",
@@ -166,7 +166,7 @@ const Adminrutas = () => {
       paseo: false,
     });
     setErrores({ 
-      desnivelPositivo: "",
+      desnivel_positivo: "",
       kilometros: "",
     });
   };
@@ -239,12 +239,12 @@ const Adminrutas = () => {
                       />
                       <Edititem
                         label={"Desnivel Positivo:"}
-                        name="desnivelPositivo"
-                        value={nuevaRuta.desnivelPositivo}
+                        name="desnivel_positivo"
+                        value={nuevaRuta.desnivel_positivo}
                         onChange={handleInputChange}
                       />
-                      {errores.desnivelPositivo && (
-                        <p className="error-message">{errores.desnivelPositivo}</p>
+                      {errores.desnivel_positivo && (
+                        <p className="error-message">{errores.desnivel_positivo}</p>
                       )}
                       <div className='Edititem-item'>
                         <h3>Dificultad:</h3>
