@@ -14,7 +14,7 @@ function Sidebar() {
           </Link>
         </li>
         <li className="sidebar-item">
-          <Link to="/solicitudes" className="sidebar-link">
+          <Link to="/usuarios" className="sidebar-link">
             Solicitudes
           </Link>
         </li>
