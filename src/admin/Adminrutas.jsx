@@ -16,7 +16,7 @@ const Adminrutas = () => {
   const [nuevaRuta, setNuevaRuta] = useState({
     urlMap: "",
     descripcion: "",
-    desnivelPositivo: "",
+    desnivel_positivo: "",
     dificultad: "",
     duracion: "",
     imagen: "",
