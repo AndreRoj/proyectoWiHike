@@ -186,7 +186,7 @@ const [isUploading, setIsUploading] = useState(false);
         console.log("Foto de perfil actualizada correctamente:", imageUrl);
     } catch (error) {
         console.error("Error al subir la imagen o actualizar el perfil:", error);
-        alert("Hubo un error al actualizar la foto de perfil.");
+        
     } finally {
         setIsUploading(false);
     }

@@ -41,19 +41,17 @@
 // export default Sidebar;
 
 import  { useState, useEffect } from 'react';
-
-
-
 import { UserContext } from '../Context/UserContext';
 import { app } from '../firebase';
 import { getAuth, signOut } from 'firebase/auth';
-
-
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import "./Sidebar.css";
+
+
 const auth = getAuth(app);
+
+
 function Sidebar() {
   const navigate = useNavigate();
 
