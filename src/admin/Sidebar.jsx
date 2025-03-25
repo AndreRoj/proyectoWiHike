@@ -89,7 +89,7 @@ function Sidebar() {
             padding: '10px 15px' // Añade el mismo padding que tus otros items
           }}
         >
-          Salirr
+          Salir
         </li>
       </ul>
     </div>
